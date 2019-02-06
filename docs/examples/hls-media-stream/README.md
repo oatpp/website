@@ -1,9 +1,11 @@
-# Example-HLS-Media-Stream 
+# Example-HLS-Media-Stream
 
 Example project how-to build HLS-streaming server using oat++ Async-API.
 *Live stream tested with Safari-Browser and VLC-player.*
 
-See it on Github [https://github.com/oatpp/example-hls-media-stream](https://github.com/oatpp/example-hls-media-stream)
+::: tip
+[CLONE FROM GITHUB](https://github.com/oatpp/example-hls-media-stream)
+:::
 
 ## Overview
 

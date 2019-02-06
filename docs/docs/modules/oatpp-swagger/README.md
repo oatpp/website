@@ -4,14 +4,13 @@ sidebarDepth: 0
 ---
 
 # oatpp-swagger [![oatpp build status](https://dev.azure.com/lganzzzo/lganzzzo/_apis/build/status/oatpp.oatpp-swagger)](https://dev.azure.com/lganzzzo/lganzzzo/_build?definitionId=2)
-Swagger UI for oatpp services
 
-More about oatpp see [https://oatpp.io/](https://oatpp.io/)
-More about Swagger UI see [https://swagger.io/tools/swagger-ui/](https://swagger.io/tools/swagger-ui/)
+[Swagger-UI](https://swagger.io/tools/swagger-ui/) for oatpp services.
 
-## Example
-
-For full example project see: [Example CRUD-API project with Swagger UI](https://github.com/oatpp/example-crud)
+::: tip
+- [Github Repo](https://github.com/oatpp/oatpp-swagger)
+- [Example Project](/examples/crud/)
+:::
 
 ## Brief
 

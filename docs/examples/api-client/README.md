@@ -2,7 +2,9 @@
 
 Example project how-to use oatpp ```ApiClient``` and how it works
 
-See it on Github [https://github.com/oatpp/example-api-client](https://github.com/oatpp/example-api-client)
+::: tip
+[CLONE FROM GITHUB](https://github.com/oatpp/example-api-client)
+:::
 
 ## About ApiClient
 

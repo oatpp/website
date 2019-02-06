@@ -3,18 +3,14 @@ title: Module oatpp-consul
 sidebarDepth: 0
 ---
 
-# oatpp-consul [![Build Status](https://dev.azure.com/lganzzzo/lganzzzo/_apis/build/status/oatpp.oatpp-consul?branchName=master)](https://dev.azure.com/lganzzzo/lganzzzo/_build/latest?definitionId=7?branchName=master)
+# oatpp-consul
+
 oatpp client for consul
-
-- [oatpp::consul::Client](https://github.com/oatpp/oatpp-consul/blob/master/Client.hpp) - Simple consul-KV API.
-- [oatpp::consul::rest::Client](https://github.com/oatpp/oatpp-consul/blob/master/rest/Client.hpp) - oatpp retrofit-like client for consul. Currently provides consul KV, Agent-Checks, Agent-Services API.
-
-More about oatpp see [https://oatpp.io/](https://oatpp.io/)
 More about consul API see [https://www.consul.io/api/index.html](https://www.consul.io/api/index.html)
 
-## Example
+- [Github Repo](https://github.com/oatpp/oatpp-consul)
+- [Example Project](/examples/consul/)
 
-For full example project see: [oatpp-consul example](https://github.com/oatpp/example-consul)
 
 ### KV
 

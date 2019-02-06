@@ -1,8 +1,9 @@
 # idea
-
 .idea/
 
 # node
-
 node_modules/
 package-lock.json
+
+# vuepress
+docs/.vuepress/dist/

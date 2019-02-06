@@ -1,8 +1,11 @@
 module.exports = {
-    title: "oat++",
+    title: "Oat++",
     description: "Light, zero-dependency, no-installation web-framework. Create bleedingly-fast web-services. C++",
 
     themeConfig: {
+
+        logo: "https://raw.githubusercontent.com/lganzzzo/oatpp-website-res/master/logo.png",
+
         // Assumes GitHub. Can also be a full GitLab url.
         repo: "https://github.com/oatpp/oatpp",
 
@@ -17,7 +20,7 @@ module.exports = {
         },
 
         nav: [
-            {text: "Examples", link: "/examples/crud"},
+            {text: "Examples", link: "/examples/crud/"},
             {text: "Docs", link: "/docs/start/"}
         ],
         sidebar: [
@@ -25,48 +28,51 @@ module.exports = {
                 title: "Benchmark",
                 collapsable: true,
                 children: [
-                    ["/benchmark/aws", "Amazon Web Services"],
-                    ["/benchmark/digital-ocean", "Digital Ocean"]
+                    ["/benchmark/aws/", "Amazon Web Services"],
+                    ["/benchmark/digital-ocean/", "Digital Ocean"]
                 ]
             },
             {
                 title: "Examples",
                 collapsable: true,
                 children: [
-                    ["/examples/hls-media-stream", "HTTP Live Streaming Server"],
-                    ["/examples/crud", "CRUD API + Swagger-UI"],
-                    ["/examples/async-api", "Asynchronous API"],
-                    ["/examples/api-client", "HTTP Requests with ApiClient"],
-                    ["/examples/libressl", "TLS with Libressl"],
-                    ["/examples/consul", "Consul Integration"]
+                    ["/examples/crud/", "CRUD API + Swagger-UI"],
+                    ["/examples/hls-media-stream/", "HTTP Live Streaming Server"],
+                    ["/examples/async-api/", "Asynchronous API"],
+                    ["/examples/api-client/", "HTTP Requests with ApiClient"],
+                    ["/examples/libressl/", "TLS with Libressl"],
+                    ["/examples/consul/", "Consul Integration"]
                 ]
             },{
                 title: "Start",
                 collapsable: true,
                 children: [
-                    ["/docs/start/", "Start"],
-                    ["/docs/start/step-by-step", "Step-By-Step Guide"]
+                    ["/docs/start/", "Getting Started"],
+                    ["/docs/start/step-by-step/", "Step-By-Step Guide"],
+                    ["/docs/start/project/", "Starter Project"],
+                    ["/docs/start/project-async-api/", "Async API - Starter Project"],
+                    ["/docs/start/module/", "Oatpp Module - Starter Project"],
                 ]
             },
             {
                 title: "Modules",
                 collapsable: true,
                 children: [
-                    ["/docs/modules/oatpp", "oatpp"],
-                    ["/docs/modules/oatpp-consul", "oatpp-consul"],
-                    ["/docs/modules/oatpp-curl", "oatpp-curl"],
-                    ["/docs/modules/oatpp-libressl", "oatpp-libressl"],
-                    ["/docs/modules/oatpp-swagger", "oatpp-swagger"],
-                    ["/docs/modules/oatpp-websocket", "oatpp-websocket"]
+                    ["/docs/modules/oatpp/", "oatpp"],
+                    ["/docs/modules/oatpp-consul/", "oatpp-consul"],
+                    ["/docs/modules/oatpp-curl/", "oatpp-curl"],
+                    ["/docs/modules/oatpp-libressl/", "oatpp-libressl"],
+                    ["/docs/modules/oatpp-swagger/", "oatpp-swagger"],
+                    ["/docs/modules/oatpp-websocket/", "oatpp-websocket"]
                 ]
             },
             {
                 title: "Components",
                 collapsable: true,
                 children: [
-                    ["/docs/components/api-controller", "Api Controller"],
-                    ["/docs/components/api-client", "Api Client"],
-                    ["/docs/components/dto", "Data Transfer Object (DTO)"]
+                    ["/docs/components/api-controller/", "Api Controller"],
+                    ["/docs/components/api-client/", "Api Client"],
+                    ["/docs/components/dto/", "Data Transfer Object (DTO)"]
                 ]
             }
         ]

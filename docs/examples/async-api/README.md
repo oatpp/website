@@ -1,16 +1,12 @@
-# Consul Integration Example 
+# Async API Example
 
-Example project how-to use [oatpp-consul](https://github.com/oatpp/oatpp-consul) module.
+Example project how-to use oatpp asynchronous API.
 
-See it on Github [https://github.com/oatpp/example-consul](https://github.com/oatpp/example-consul)
+::: tip
+[CLONE FROM GITHUB](https://github.com/oatpp/example-async-api)
+:::
 
 ## Overview
-This project is using `oatpp` and `oatpp-consul` modules.
-
-Currently this is trivial example.- Read/Write from/to Consul KV via endpoints declared in Controller.
-More complex example later.
-
-In this example Consul is expected to run at port 8500.
 
 ### Project layout
 
@@ -50,6 +46,6 @@ $ make run        ## Download, build, and install all dependencies. Run project
 ### In Docker
 
 ```bash
-$ docker build -t example-consul .
-$ docker run -p 8000:8000 -t example-consul
+$ docker build -t example-async-api .
+$ docker run -p 8000:8000 -t example-async-api
 ```

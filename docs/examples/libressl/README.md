@@ -1,14 +1,16 @@
-# TLS-LibreSSL Example 
+# TLS-LibreSSL Example
 
-Example project of how-to use [oatpp-libressl](https://github.com/oatpp/oatpp-libressl) module.
+Example project how-to use [oatpp-libressl](/docs/modules/oatpp-libressl/) module.
 - Serve via HTTPS
 - Make client calls via HTTPS.
 - Using oatpp Async API.
 
-See it on Github [https://github.com/oatpp/example-libressl](https://github.com/oatpp/example-libressl)
+::: tip
+[CLONE FROM GITHUB](https://github.com/oatpp/example-libressl)
+:::
 
 ## Overview
-This project is using `oatpp` and `oatpp-libressl` modules.
+This project is using [oatpp](/docs/modules/oatpp/) and [oatpp-libressl](/docs/modules/oatpp-libressl/) modules.
 
 ### Project layout
 
