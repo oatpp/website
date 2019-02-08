@@ -74,6 +74,13 @@ module.exports = {
                     ["/docs/components/api-client/", "Api Client"],
                     ["/docs/components/dto/", "Data Transfer Object (DTO)"]
                 ]
+            },
+            {
+                title: "Project Status",
+                collapsable: true,
+                children: [
+                    ["/status/build/", "Build Status"]
+                ]
             }
         ]
 
