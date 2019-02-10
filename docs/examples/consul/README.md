@@ -1,4 +1,4 @@
-# Consul Integration Example
+# Consul Integration Example <seo/>
 
 Example project how-to use [oatpp-consul](/docs/modules/oatpp-consul/) module.
 

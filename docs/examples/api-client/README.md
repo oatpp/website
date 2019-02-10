@@ -1,4 +1,4 @@
-# ApiClient Example
+# ApiClient Example <seo/>
 
 Example project how-to use oatpp ```ApiClient``` and how it works
 

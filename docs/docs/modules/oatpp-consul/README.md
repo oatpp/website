@@ -2,8 +2,7 @@
 title: Module oatpp-consul
 sidebarDepth: 0
 ---
-
-# oatpp-consul
+# oatpp-consul <seo/>
 
 oatpp client for consul
 More about consul API see [https://www.consul.io/api/index.html](https://www.consul.io/api/index.html)

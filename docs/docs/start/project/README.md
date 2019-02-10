@@ -1,4 +1,4 @@
-# Starter Project [![Build Status](https://dev.azure.com/lganzzzo/lganzzzo/_apis/build/status/oatpp.oatpp-starter?branchName=master)](https://dev.azure.com/lganzzzo/lganzzzo/_build/latest?definitionId=10?branchName=master)
+# Starter Project <seo/>
 
 Simple-API web service starter project.
 

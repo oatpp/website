@@ -3,7 +3,7 @@ title: Module oatpp-curl
 sidebarDepth: 0
 ---
 
-# oatpp-curl [![Build Status](https://dev.azure.com/lganzzzo/lganzzzo/_apis/build/status/oatpp.oatpp-curl?branchName=master)](https://dev.azure.com/lganzzzo/lganzzzo/_build/latest?definitionId=5?branchName=master)
+# oatpp-curl <seo/>
 
 **oatpp-curl** is a wrapper over the libcurl. It adapts libcurl to be used as a ```RequestExecutor``` in the oatpp's ```ApiClient```.
 It supports all features of oatpp ApiClient together with Synchronous and Asynchronous oatpp's APIs.

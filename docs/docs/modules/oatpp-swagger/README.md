@@ -3,7 +3,7 @@ title: Module oatpp-swagger
 sidebarDepth: 0
 ---
 
-# oatpp-swagger [![oatpp build status](https://dev.azure.com/lganzzzo/lganzzzo/_apis/build/status/oatpp.oatpp-swagger)](https://dev.azure.com/lganzzzo/lganzzzo/_build?definitionId=2)
+# oatpp-swagger <seo/>
 
 [Swagger-UI](https://swagger.io/tools/swagger-ui/) for oatpp services.
 

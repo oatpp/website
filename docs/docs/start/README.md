@@ -4,7 +4,7 @@ description: Getting started with oatpp
 sidebarDepth: 0
 ---
 
-# Getting Started
+# Getting Started <seo/>
 
 ## Recommended way to go
 

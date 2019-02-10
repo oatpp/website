@@ -1,4 +1,4 @@
-# Oatpp Module - Starter Project [![oatpp build status](https://dev.azure.com/lganzzzo/lganzzzo/_apis/build/status/oatpp.oatpp-starter-module)](https://dev.azure.com/lganzzzo/lganzzzo/_build?definitionId=4)
+# Oatpp Module - Starter Project <seo/>
 
 Starter project for oatpp-module
 

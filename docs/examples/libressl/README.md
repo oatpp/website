@@ -1,4 +1,4 @@
-# TLS-LibreSSL Example
+# TLS-LibreSSL Example <seo/>
 
 Example project how-to use [oatpp-libressl](/docs/modules/oatpp-libressl/) module.
 - Serve via HTTPS

@@ -2,5 +2,4 @@
 title: Module oatpp
 sidebarDepth: 0
 ---
-
-# Module oatpp
+# Module oatpp <seo/>

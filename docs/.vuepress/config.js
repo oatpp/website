@@ -2,6 +2,8 @@ module.exports = {
     title: "Oat++",
     description: "Light, zero-dependency, no-installation web-framework. Create bleedingly-fast web-services. C++",
 
+    componentsDir: "docs/.vuepress/components",
+
     themeConfig: {
 
         logo: "https://raw.githubusercontent.com/lganzzzo/oatpp-website-res/master/logo.png",

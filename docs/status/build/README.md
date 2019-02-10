@@ -1,4 +1,4 @@
-# Project build status
+# Project build status <seo/>
 
 ## Modules
 

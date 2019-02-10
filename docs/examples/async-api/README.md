@@ -1,4 +1,4 @@
-# Async API Example
+# Async API Example <seo/>
 
 Example project how-to use oatpp asynchronous API.
 

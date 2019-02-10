@@ -1,4 +1,4 @@
-# Async API - Starter Project  [![Build Status](https://dev.azure.com/lganzzzo/lganzzzo/_apis/build/status/oatpp.oatpp-starter-async?branchName=master)](https://dev.azure.com/lganzzzo/lganzzzo/_build/latest?definitionId=11?branchName=master)
+# Async API - Starter Project <seo/>
 
 Async-API web service starter project.
 

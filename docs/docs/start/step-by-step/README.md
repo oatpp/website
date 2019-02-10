@@ -2,7 +2,7 @@
 sidebarDepth: 0
 ---
 
-# Step by step guide
+# Step by step guide <seo/>
 
 This is a step-by-step guide to the setting up and building oatpp project from scratch.
 Finishing this guide you will have well-structured and extendable web-service with basic endpoints.

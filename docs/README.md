@@ -6,7 +6,8 @@ tagline: Zero-Dependency. Performance oriented web-service development framework
 actionText: Get Started
 actionLink: /docs/start/
 ---
-
 ::: tip
 Easy to start
 :::
+
+<seo/>
