@@ -70,9 +70,12 @@ module.exports = {
                 ]
             },
             {
-                title: "Components",
+                title: "Overview",
                 collapsable: true,
                 children: [
+                    ["/docs/simple-vs-async/", "Simple vs Async"],
+                    ["/docs/async/", "Async"],
+                    ["/docs/oatpp-coroutines/", "Oatpp Coroutines"],
                     ["/docs/components/api-controller/", "Api Controller"],
                     ["/docs/components/api-client/", "Api Client"],
                     ["/docs/components/dto/", "Data Transfer Object (DTO)"]
