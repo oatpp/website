@@ -8,5 +8,3 @@ package-lock.json
 # vuepress
 docs/.vuepress/dist/
 
-# server
-server/
