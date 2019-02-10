@@ -8,10 +8,10 @@ sidebarDepth: 0
 **oatpp-curl** is a wrapper over the libcurl. It adapts libcurl to be used as a ```RequestExecutor``` in the oatpp's ```ApiClient```.
 It supports all features of oatpp ApiClient together with Synchronous and Asynchronous oatpp's APIs.
 
-More about oat++:
-- Website: [https://oatpp.io](https://oatpp.io)
-- ```ApiClient``` docs: [https://oatpp.io/docs/component/api-client](https://oatpp.io/docs/component/api-client)
-- Usage example: [oatpp-examples/ApiClient-Demo](https://github.com/oatpp/oatpp-examples/tree/master/ApiClient-Demo)
+::: tip
+- [Github Repo](https://github.com/oatpp/oatpp-curl)
+- [Example Project](/examples/api-client/)
+:::
 
 ## Requires
 

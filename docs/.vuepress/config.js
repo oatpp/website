@@ -30,6 +30,7 @@ module.exports = {
                 title: "Benchmark",
                 collapsable: true,
                 children: [
+                    ["/benchmark/info/", "Info"],
                     ["/benchmark/aws/", "Amazon Web Services"],
                     ["/benchmark/digital-ocean/", "Digital Ocean"]
                 ]

@@ -6,7 +6,7 @@ Example project how-to use [oatpp-libressl](/docs/modules/oatpp-libressl/) modul
 - Using oatpp Async API.
 
 ::: tip
-[CLONE FROM GITHUB](https://github.com/oatpp/example-libressl)
+[Github Repo](https://github.com/oatpp/example-libressl)
 :::
 
 ## Overview

@@ -3,7 +3,7 @@
 Example project how-to use oatpp asynchronous API.
 
 ::: tip
-[CLONE FROM GITHUB](https://github.com/oatpp/example-async-api)
+[Github Repo](https://github.com/oatpp/example-async-api)
 :::
 
 ## Overview

@@ -6,8 +6,10 @@ sidebarDepth: 0
 # oatpp-libressl <seo/>
 This submodule provides secure server and client connection providers for oatpp applications. Based on LibreSSL.
 
-More about oat++:
-- Website: [https://oatpp.io](https://oatpp.io)
+::: tip
+- [Github Repo](https://github.com/oatpp/oatpp-libressl)
+- [Example Project](/examples/libressl/)
+:::
 
 ## Requires
 

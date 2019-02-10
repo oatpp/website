@@ -3,7 +3,7 @@
 Example project how-to use [oatpp-consul](/docs/modules/oatpp-consul/) module.
 
 ::: tip
-[CLONE FROM GITHUB](https://github.com/oatpp/example-consul)
+[Github Repo](https://github.com/oatpp/example-consul)
 :::
 
 ## Overview

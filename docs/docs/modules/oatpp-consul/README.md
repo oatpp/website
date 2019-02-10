@@ -7,8 +7,10 @@ sidebarDepth: 0
 oatpp client for consul
 More about consul API see [https://www.consul.io/api/index.html](https://www.consul.io/api/index.html)
 
+::: tip
 - [Github Repo](https://github.com/oatpp/oatpp-consul)
 - [Example Project](/examples/consul/)
+:::
 
 
 ### KV
