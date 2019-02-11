@@ -1,3 +1,8 @@
+---
+title: Build status
+description: Build status of oatpp repos.
+---
+
 # Project build status <seo/>
 
 ## Modules

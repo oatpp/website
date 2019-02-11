@@ -1,5 +1,6 @@
 ---
-title: Module oatpp-curl
+title: oatpp-curl (module)
+description: Oatpp RequestExecutor for oatpp ApiClient based on libcurl.
 sidebarDepth: 0
 ---
 

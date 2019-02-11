@@ -1,3 +1,9 @@
+---
+title: Simple vs Async API
+description: Simple and Async oatpp APIs. Pros and Cons. Configuration difference.
+sidebarDepth: 0
+---
+
 # API - Simple vs Async <seo/>
 
 ## Brief

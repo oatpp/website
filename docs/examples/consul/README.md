@@ -1,3 +1,9 @@
+---
+title: Example Consul Integration
+description: Example project how-to use oatpp-consul module.
+sidebarDepth: 0
+---
+
 # Consul Integration Example <seo/>
 
 Example project how-to use [oatpp-consul](/docs/modules/oatpp-consul/) module.

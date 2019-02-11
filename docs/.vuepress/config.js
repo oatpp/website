@@ -39,11 +39,11 @@ module.exports = {
                 title: "Examples",
                 collapsable: true,
                 children: [
-                    ["/examples/crud/", "CRUD API + Swagger-UI"],
+                    ["/examples/crud/", "CRUD API With Swagger-UI"],
                     ["/examples/hls-media-stream/", "HTTP Live Streaming Server"],
                     ["/examples/async-api/", "Asynchronous API"],
-                    ["/examples/api-client/", "HTTP Requests with ApiClient"],
-                    ["/examples/libressl/", "TLS with Libressl"],
+                    ["/examples/api-client/", "HTTP Requests With ApiClient"],
+                    ["/examples/libressl/", "TLS With Libressl"],
                     ["/examples/consul/", "Consul Integration"]
                 ]
             },{

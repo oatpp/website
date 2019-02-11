@@ -1,3 +1,9 @@
+---
+title: Benchmark - Digital Ocean
+description: Oatpp Benchmark for Digital Ocean cloud
+sidebarDepth: 0
+---
+
 # Benchmark oatpp - Digital Ocean cloud <seo/>
 
 ## Digital Ocean droplet 1vCPU 1GB Ubuntu 16.04 - $5/Month

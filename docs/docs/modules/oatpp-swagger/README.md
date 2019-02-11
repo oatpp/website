@@ -1,5 +1,6 @@
 ---
-title: Module oatpp-swagger
+title: oatpp-swagger (module)
+description: Swagger UI. Auto-generate api-docs for oatpp Api Controllers.
 sidebarDepth: 0
 ---
 

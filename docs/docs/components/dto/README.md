@@ -1,3 +1,9 @@
+---
+title: Data Transfer Object
+description: Oatpp Data-Transfer-Object (DTO) and object mapping.
+sidebarDepth: 0
+---
+
 # Data Transfer Object (DTO) <seo/>
 
 DTO is any object of the class which extends `oatpp::data::mapping::type::Object`. It is a special object which can be Serialized and Deserialized with the help of 

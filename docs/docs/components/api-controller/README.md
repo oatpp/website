@@ -1,3 +1,9 @@
+---
+title: ApiController
+description: Oatpp REST-API Controller. Endpoints for simple and async APIs.
+sidebarDepth: 0
+---
+
 # Api Controller <seo/>
 
 `ApiController` is the class which extends `oatpp::web::server::api::ApiController`. It implements and manages endpoints. 

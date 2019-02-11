@@ -1,5 +1,6 @@
 ---
-title: Module oatpp-libressl
+title: oatpp-libressl (module)
+description: Secure server and client connection providers for oatpp applications. Based on LibreSSL.
 sidebarDepth: 0
 ---
 

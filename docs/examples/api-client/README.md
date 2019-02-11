@@ -1,3 +1,9 @@
+---
+title: Example ApiClient
+description: Example project how-to use oatpp ApiClient and how it works.
+sidebarDepth: 0
+---
+
 # ApiClient Example <seo/>
 
 Example project how-to use oatpp ```ApiClient``` and how it works

@@ -1,3 +1,9 @@
+---
+title: ApiClient
+description: HTTP calls with oatpp Api Client.
+sidebarDepth: 0
+---
+
 # Api Client <seo/>
 
 `ApiClient` is the class which extends `oatpp::web::client::ApiClient`. It provides convenient Retrofit-like interface over the

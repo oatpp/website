@@ -1,7 +1,9 @@
 ---
-title: Module oatpp
+title: oatpp (module)
+description: Main oatpp module and it's functionality
 sidebarDepth: 0
 ---
+
 # Module oatpp <seo/>
 
 `oatpp` - Main module. Other modules depend on it.

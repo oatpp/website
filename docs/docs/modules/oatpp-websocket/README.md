@@ -1,5 +1,6 @@
 ---
-title: Module oatpp-websocket
+title: oatpp-websocket (module)
+description: Websocket server and websocket client.
 sidebarDepth: 0
 ---
 

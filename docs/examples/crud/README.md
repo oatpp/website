@@ -1,3 +1,9 @@
+---
+title: Example CRUD
+description: Example project how-to create basic CRUD endpoints and document them with Swagger-UI and OpenApi 3.0.0.
+sidebarDepth: 0
+---
+
 # Example-CRUD <seo/>
 
 Example project how-to create basic CRUD endpoints and document them with Swagger-UI and OpenApi 3.0.0

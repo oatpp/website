@@ -1,3 +1,9 @@
+---
+title: Async API
+description: About Oatpp Asynchronous API
+sidebarDepth: 0
+---
+
 # Async <seo/>
 
 Roughly, Async approach can be described as iterating through NON-BLOCKING operations in the loop. 

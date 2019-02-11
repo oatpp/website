@@ -1,5 +1,5 @@
 ---
-title: Getting started with oatpp
+title: Getting started
 description: Getting started with oatpp
 sidebarDepth: 0
 ---

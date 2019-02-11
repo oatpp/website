@@ -1,3 +1,9 @@
+---
+title: Example Async API
+description: Example project how-to use oatpp asynchronous API.
+sidebarDepth: 0
+---
+
 # Async API Example <seo/>
 
 Example project how-to use oatpp asynchronous API.

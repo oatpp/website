@@ -1,3 +1,9 @@
+---
+title: Example HLS Stream
+description: Example project how-to build HTTP Live Streaming server using oat++ Async-API.
+sidebarDepth: 0
+---
+
 # Example-HLS-Media-Stream <seo/>
 
 Example project how-to build HLS-streaming server using oat++ Async-API.

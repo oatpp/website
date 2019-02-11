@@ -1,3 +1,9 @@
+---
+title: Benchmark Info
+description: About Oatpp Benchmark
+sidebarDepth: 0
+---
+
 # Benchmarks info <seo/>
 
 Benchmarks were taken for oatpp version `0.18.9`  

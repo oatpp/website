@@ -1,5 +1,6 @@
 ---
-title: Module oatpp-consul
+title: oatpp-consul (module)
+description: Oatpp module for Consul integration. Consul API client.
 sidebarDepth: 0
 ---
 # oatpp-consul <seo/>

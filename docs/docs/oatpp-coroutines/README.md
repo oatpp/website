@@ -1,4 +1,10 @@
-# Oatpp Coroutines
+---
+title: Coroutines
+description: Oatpp coroutines. 
+sidebarDepth: 0
+---
+
+# Oatpp Coroutines <seo/>
 
 In oatpp, Coroutine is the class extended from `oatpp::async::Coroutine` or from 
 `oatpp::async::CoroutineWithResult`.  

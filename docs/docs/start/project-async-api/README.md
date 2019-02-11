@@ -1,3 +1,9 @@
+---
+title: Async Starter Project
+description: Starter project based on oatpp asynchronous API.
+sidebarDepth: 0
+---
+
 # Async API - Starter Project <seo/>
 
 Async-API web service starter project.

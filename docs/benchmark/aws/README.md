@@ -1,3 +1,9 @@
+---
+title: Benchmark - Amazon Web Services
+description: Oatpp benchmark for Amazon Web Services cloud
+sidebarDepth: 0
+---
+
 # Benchmark oatpp - AWS cloud <seo/>
 
 ## AWS t2.micro instance. 1vCPU 1GB Ubuntu 18.04 - free tier

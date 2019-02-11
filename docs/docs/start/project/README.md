@@ -1,3 +1,9 @@
+---
+title: Starter Project
+description: Starter project based on oatpp simple API.
+sidebarDepth: 0
+---
+
 # Starter Project <seo/>
 
 Simple-API web service starter project.
