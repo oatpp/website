@@ -50,8 +50,8 @@ public:
 #else
     v_word16 port = 443;
 #endif
-    oatpp::String keyFile = "/cert/oatpp.io.key";
-    oatpp::String certFile = "/cert/oatpp.io.crt";
+    oatpp::String keyFile = "/certificate/oatpp.io.key";
+    oatpp::String certFile = "/certificate/oatpp.io.crt";
     auto config = oatpp::libressl::Config::createDefaultServerConfig(keyFile, certFile);
     return oatpp::libressl::server::ConnectionProvider::createShared(config, port, true);
   }());
