@@ -9,7 +9,7 @@ sidebarDepth: 0
 Simple-API web service starter project.
 
 ::: tip
-[CLONE FROM GITHUB](https://github.com/oatpp/oatpp-starter)
+[Github Repo](https://github.com/oatpp/oatpp-starter)
 :::
 
 ## Overview

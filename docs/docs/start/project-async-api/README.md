@@ -9,7 +9,7 @@ sidebarDepth: 0
 Async-API web service starter project.
 
 ::: tip
-[CLONE FROM GITHUB](https://github.com/oatpp/oatpp-starter-async)
+[Github Repo](https://github.com/oatpp/oatpp-starter-async)
 :::
 
 ## Overview

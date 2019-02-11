@@ -9,5 +9,5 @@ sidebarDepth: 0
 Starter project for oatpp-module
 
 ::: tip
-[CLONE FROM GITHUB](https://github.com/oatpp/oatpp-starter-module)
+[Github Repo](https://github.com/oatpp/oatpp-starter-module)
 :::

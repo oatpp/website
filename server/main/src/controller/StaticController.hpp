@@ -152,7 +152,7 @@ public:
 
       v_int32 size = buffer->getSize() / 1024;
 
-      OATPP_LOGD("serv", "file='%s', kb=%d", tail->c_str(), size);
+      //OATPP_LOGD("serv", "file='%s', kb=%d", tail->c_str(), size);
 
       return _return(controller->createResponse(Status::CODE_200, buffer));
     }

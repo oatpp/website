@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Coroutines | Oat++</title>
+    <meta name="description" content="Oatpp coroutines.">
+    <link rel='canonical' href='https://oatpp.io/docs/oatpp-coroutines'/>
+    
+    <link rel="preload" href="/assets/css/0.styles.2dec02fd.css" as="style"><link rel="preload" href="/assets/js/app.947cf458.js" as="script"><link rel="preload" href="/assets/js/18.f77c4887.js" as="script"><link rel="preload" href="/assets/js/3.729b3c94.js" as="script"><link rel="prefetch" href="/assets/js/10.1d368533.js"><link rel="prefetch" href="/assets/js/11.06d6e1f6.js"><link rel="prefetch" href="/assets/js/12.363cd88d.js"><link rel="prefetch" href="/assets/js/13.e484d4f6.js"><link rel="prefetch" href="/assets/js/14.ef043e37.js"><link rel="prefetch" href="/assets/js/15.b29faf9b.js"><link rel="prefetch" href="/assets/js/16.7e6e2136.js"><link rel="prefetch" href="/assets/js/17.e3e3a066.js"><link rel="prefetch" href="/assets/js/19.8ff4ffef.js"><link rel="prefetch" href="/assets/js/2.ea43f0c9.js"><link rel="prefetch" href="/assets/js/20.13f34454.js"><link rel="prefetch" href="/assets/js/21.f6fb5dab.js"><link rel="prefetch" href="/assets/js/22.befc84cf.js"><link rel="prefetch" href="/assets/js/23.0c91d162.js"><link rel="prefetch" href="/assets/js/24.44b7e746.js"><link rel="prefetch" href="/assets/js/25.fba87ec9.js"><link rel="prefetch" href="/assets/js/26.03d47cd9.js"><link rel="prefetch" href="/assets/js/27.86003ca8.js"><link rel="prefetch" href="/assets/js/28.3e3a6ba6.js"><link rel="prefetch" href="/assets/js/29.ba7aaeca.js"><link rel="prefetch" href="/assets/js/30.9350bb4e.js"><link rel="prefetch" href="/assets/js/31.030c1337.js"><link rel="prefetch" href="/assets/js/32.5f52b8bd.js"><link rel="prefetch" href="/assets/js/4.d9b6bfee.js"><link rel="prefetch" href="/assets/js/5.39572870.js"><link rel="prefetch" href="/assets/js/6.861b36e7.js"><link rel="prefetch" href="/assets/js/7.401a23f1.js"><link rel="prefetch" href="/assets/js/8.30689692.js"><link rel="prefetch" href="/assets/js/9.60f9c781.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.2dec02fd.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="https://raw.githubusercontent.com/lganzzzo/oatpp-website-res/master/logo.png" alt="Oat++" class="logo"> <span class="site-name can-hide">Oat++</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/benchmark/aws/" class="nav-link">Benchmark</a></div><div class="nav-item"><a href="/examples/crud/" class="nav-link">Examples</a></div><div class="nav-item"><a href="/docs/start/" class="nav-link">Docs</a></div> <a href="https://github.com/oatpp/oatpp" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/benchmark/aws/" class="nav-link">Benchmark</a></div><div class="nav-item"><a href="/examples/crud/" class="nav-link">Examples</a></div><div class="nav-item"><a href="/docs/start/" class="nav-link">Docs</a></div> <a href="https://github.com/oatpp/oatpp" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first collapsable"><p class="sidebar-heading"><span>Benchmark</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Examples</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Start</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Modules</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading open"><span>Overview</span> <span class="arrow down"></span></p> <ul class="sidebar-group-items"><li><a href="/docs/simple-vs-async/" class="sidebar-link">Simple vs Async</a></li><li><a href="/docs/async/" class="sidebar-link">Async</a></li><li><a href="/docs/oatpp-coroutines/" class="active sidebar-link">Oatpp Coroutines</a></li><li><a href="/docs/components/api-controller/" class="sidebar-link">Api Controller</a></li><li><a href="/docs/components/api-client/" class="sidebar-link">Api Client</a></li><li><a href="/docs/components/dto/" class="sidebar-link">Data Transfer Object (DTO)</a></li></ul></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Project Status</span> <span class="arrow right"></span></p> <!----></div></li></ul> </div> <div class="page"> <div class="content"><h1 id="oatpp-coroutines"><a href="#oatpp-coroutines" aria-hidden="true" class="header-anchor">#</a> Oatpp Coroutines <div data-v-f2a24f4a></div></h1> <p>In oatpp, Coroutine is the class extended from <code>oatpp::async::Coroutine</code> or from
+<code>oatpp::async::CoroutineWithResult</code>.<br>
+Coroutines are processed in the <code>oatpp::async::Processor</code>.
+Root Coroutine should always be <code>oatpp::async::Coroutine</code>.</p> <h2 id="example"><a href="#example" aria-hidden="true" class="header-anchor">#</a> Example</h2> <div class="language-cpp extra-class"><pre class="language-cpp"><code><span class="token keyword">class</span> <span class="token class-name">MyCoroutine</span> <span class="token operator">:</span> <span class="token keyword">public</span> oatpp<span class="token operator">::</span>async<span class="token operator">::</span>Coroutine<span class="token operator">&lt;</span>MyCoroutine<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+
+  <span class="token comment">/*
+   *  act() - entrypoint of Coroutine
+   *  returns Action - what to do next
+   */</span>
+  Action <span class="token function">act</span><span class="token punctuation">(</span><span class="token punctuation">)</span> override <span class="token punctuation">{</span>
+    <span class="token function">OATPP_LOGD</span><span class="token punctuation">(</span><span class="token string">&quot;MyCoroutine&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;act()&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token function">yieldTo</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>MyCoroutine<span class="token operator">::</span>step2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  Action <span class="token function">step2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">OATPP_LOGD</span><span class="token punctuation">(</span><span class="token string">&quot;MyCoroutine&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;step2&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token function">yieldTo</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>MyCoroutine<span class="token operator">::</span>step3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  Action <span class="token function">step3</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">OATPP_LOGD</span><span class="token punctuation">(</span><span class="token string">&quot;MyCoroutine&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;step3&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token function">finish</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+oatpp<span class="token operator">::</span>async<span class="token operator">::</span>Processor processor<span class="token punctuation">;</span>
+processor<span class="token punctuation">.</span><span class="token function">addCoroutine</span><span class="token punctuation">(</span>MyCoroutine<span class="token operator">::</span><span class="token function">getBench</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span>processor<span class="token punctuation">.</span><span class="token function">iterate</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Output:</p> <div class="language- extra-class"><pre class="language-text"><code>MyCoroutine:act()
+MyCoroutine:step2
+MyCoroutine:step3
+</code></pre></div><h2 id="call-coroutine-from-coroutine"><a href="#call-coroutine-from-coroutine" aria-hidden="true" class="header-anchor">#</a> Call Coroutine from Coroutine</h2> <div class="language-cpp extra-class"><pre class="language-cpp"><code><span class="token keyword">class</span> <span class="token class-name">OtherCoroutine</span> <span class="token operator">:</span> <span class="token keyword">public</span> oatpp<span class="token operator">::</span>async<span class="token operator">::</span>Coroutine<span class="token operator">&lt;</span>OtherCoroutine<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+  Action <span class="token function">act</span><span class="token punctuation">(</span><span class="token punctuation">)</span> override <span class="token punctuation">{</span>
+    <span class="token function">OATPP_LOGD</span><span class="token punctuation">(</span><span class="token string">&quot;OtherCoroutine&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;act()&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token function">finish</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">MyCoroutine</span> <span class="token operator">:</span> <span class="token keyword">public</span> oatpp<span class="token operator">::</span>async<span class="token operator">::</span>Coroutine<span class="token operator">&lt;</span>MyCoroutine<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+
+  Action <span class="token function">act</span><span class="token punctuation">(</span><span class="token punctuation">)</span> override <span class="token punctuation">{</span>
+    <span class="token function">OATPP_LOGD</span><span class="token punctuation">(</span><span class="token string">&quot;MyCoroutine&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;act()&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> startCoroutine<span class="token operator">&lt;</span>OtherCoroutine<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token function">finish</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">/* Action to do after OtherCoroutine finished */</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+oatpp<span class="token operator">::</span>async<span class="token operator">::</span>Processor processor<span class="token punctuation">;</span>
+processor<span class="token punctuation">.</span><span class="token function">addCoroutine</span><span class="token punctuation">(</span>MyCoroutine<span class="token operator">::</span><span class="token function">getBench</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span>processor<span class="token punctuation">.</span><span class="token function">iterate</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Output:</p> <div class="language- extra-class"><pre class="language-text"><code>MyCoroutine:act()
+OtherCoroutine:act()
+</code></pre></div><h2 id="call-coroutine-and-return-result"><a href="#call-coroutine-and-return-result" aria-hidden="true" class="header-anchor">#</a> Call Coroutine and return Result</h2> <div class="language-cpp extra-class"><pre class="language-cpp"><code><span class="token keyword">class</span> <span class="token class-name">CoroutineWithResult</span> <span class="token operator">:</span> <span class="token keyword">public</span> oatpp<span class="token operator">::</span>async<span class="token operator">::</span>CoroutineWithResult<span class="token operator">&lt;</span>CoroutineWithResult<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> <span class="token comment">/* result type */</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+  Action <span class="token function">act</span><span class="token punctuation">(</span><span class="token punctuation">)</span> override <span class="token punctuation">{</span>
+    <span class="token function">OATPP_LOGD</span><span class="token punctuation">(</span><span class="token string">&quot;CoroutineWithResult&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;act()&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token function">_return</span><span class="token punctuation">(</span><span class="token string">&quot;&lt;result&gt;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">MyCoroutine</span> <span class="token operator">:</span> <span class="token keyword">public</span> oatpp<span class="token operator">::</span>async<span class="token operator">::</span>Coroutine<span class="token operator">&lt;</span>MyCoroutine<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+
+  Action <span class="token function">act</span><span class="token punctuation">(</span><span class="token punctuation">)</span> override <span class="token punctuation">{</span>
+    <span class="token function">OATPP_LOGD</span><span class="token punctuation">(</span><span class="token string">&quot;MyCoroutine&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;act()&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> startCoroutineForResult<span class="token operator">&lt;</span>CoroutineWithResult<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>MyCoroutine<span class="token operator">::</span>onResult<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  Action <span class="token function">onResult</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> result<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">OATPP_LOGD</span><span class="token punctuation">(</span><span class="token string">&quot;MyCoroutine&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;result='%s'&quot;</span><span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token function">finish</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+oatpp<span class="token operator">::</span>async<span class="token operator">::</span>Processor processor<span class="token punctuation">;</span>
+processor<span class="token punctuation">.</span><span class="token function">addCoroutine</span><span class="token punctuation">(</span>MyCoroutine<span class="token operator">::</span><span class="token function">getBench</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span>processor<span class="token punctuation">.</span><span class="token function">iterate</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Output:</p> <div class="language- extra-class"><pre class="language-text"><code>MyCoroutine:act()
+CoroutineWithResult:act()
+MyCoroutine:result='&lt;result&gt;'
+</code></pre></div><h2 id="counter"><a href="#counter" aria-hidden="true" class="header-anchor">#</a> Counter</h2> <div class="language-cpp extra-class"><pre class="language-cpp"><code><span class="token keyword">class</span> <span class="token class-name">MyCoroutineCounter</span> <span class="token operator">:</span> <span class="token keyword">public</span> oatpp<span class="token operator">::</span>async<span class="token operator">::</span>Coroutine<span class="token operator">&lt;</span>MyCoroutineCounter<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+<span class="token keyword">private</span><span class="token operator">:</span>
+  <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> m_name<span class="token punctuation">;</span>
+  v_int32 m_counter <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+
+  <span class="token function">MyCoroutineCounter</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> name<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">m_name</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  Action <span class="token function">act</span><span class="token punctuation">(</span><span class="token punctuation">)</span> override <span class="token punctuation">{</span>
+    <span class="token function">OATPP_LOGD</span><span class="token punctuation">(</span>m_name<span class="token punctuation">,</span> <span class="token string">&quot;counter=%d&quot;</span><span class="token punctuation">,</span> m_counter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>m_counter <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      m_counter <span class="token operator">++</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token function">repeat</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token function">finish</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+oatpp<span class="token operator">::</span>async<span class="token operator">::</span>Processor processor<span class="token punctuation">;</span>
+processor<span class="token punctuation">.</span><span class="token function">addCoroutine</span><span class="token punctuation">(</span>MyCoroutineCounter<span class="token operator">::</span><span class="token function">getBench</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token string">&quot;A&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+processor<span class="token punctuation">.</span><span class="token function">addCoroutine</span><span class="token punctuation">(</span>MyCoroutineCounter<span class="token operator">::</span><span class="token function">getBench</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token string">&quot;B&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+processor<span class="token punctuation">.</span><span class="token function">addCoroutine</span><span class="token punctuation">(</span>MyCoroutineCounter<span class="token operator">::</span><span class="token function">getBench</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token string">&quot;C&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span>processor<span class="token punctuation">.</span><span class="token function">iterate</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Output:</p> <div class="language- extra-class"><pre class="language-text"><code>A:counter=0
+B:counter=0
+C:counter=0
+A:counter=1
+B:counter=1
+C:counter=1
+A:counter=2
+B:counter=2
+C:counter=2
+A:counter=3
+B:counter=3
+C:counter=3
+A:counter=4
+B:counter=4
+C:counter=4
+A:counter=5
+B:counter=5
+C:counter=5
+A:counter=6
+B:counter=6
+C:counter=6
+A:counter=7
+B:counter=7
+C:counter=7
+A:counter=8
+B:counter=8
+C:counter=8
+A:counter=9
+B:counter=9
+C:counter=9
+A:counter=10
+B:counter=10
+C:counter=10
+</code></pre></div></div> <div class="page-edit"><div class="edit-link"><a href="https://github.com/oatpp/website/edit/master/docs/docs/oatpp-coroutines/README.md" target="_blank" rel="noopener noreferrer">Edit this page</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/docs/async/" class="prev">
+          Async
+        </a></span> <span class="next"><a href="/docs/components/api-controller/">
+          Api Controller
+        </a>
+        →
+      </span></p></div> </div> <!----></div></div>
+    <script src="/assets/js/app.947cf458.js" defer></script><script src="/assets/js/18.f77c4887.js" defer></script><script src="/assets/js/3.729b3c94.js" defer></script>
+  </body>
+</html>

@@ -4,6 +4,8 @@ module.exports = {
 
     componentsDir: "docs/.vuepress/components",
 
+    ga: "UA-72424701-2",
+
     themeConfig: {
 
         logo: "https://raw.githubusercontent.com/lganzzzo/oatpp-website-res/master/logo.png",
@@ -22,6 +24,7 @@ module.exports = {
         },
 
         nav: [
+            {text: "Benchmark", link: "/benchmark/aws/"},
             {text: "Examples", link: "/examples/crud/"},
             {text: "Docs", link: "/docs/start/"}
         ],
