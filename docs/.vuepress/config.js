@@ -47,7 +47,8 @@ module.exports = {
                     ["/examples/async-api/", "Asynchronous API"],
                     ["/examples/api-client/", "HTTP Requests With ApiClient"],
                     ["/examples/libressl/", "TLS With Libressl"],
-                    ["/examples/consul/", "Consul Integration"]
+                    ["/examples/consul/", "Consul Integration"],
+                    ["/examples/postgresql/", "PostgreSQL Database"]
                 ]
             },{
                 title: "Start",
