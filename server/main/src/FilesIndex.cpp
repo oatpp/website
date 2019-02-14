@@ -78,7 +78,7 @@ void FilesIndex::scanDir(const oatpp::String& relPath, std::list<oatpp::String>&
             if(relPath->getSize() > 0) {
               m_sitemap.addUrl(SitePath::CanonicalBase + oatpp::String("/") + info->key);
             } else {
-              m_sitemap.addUrl(SitePath::CanonicalBase);
+              m_sitemap.addUrl(SitePath::CanonicalBase + info->key);
             }
           } else {
             if(relPath->getSize() > 0) {

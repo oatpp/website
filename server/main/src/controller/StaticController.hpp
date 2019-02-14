@@ -144,18 +144,37 @@ public:
     ENDPOINT_ASYNC_INIT(Static)
     
     Action act() override {
-      auto tail =request->getPathTail();
+      auto tail = request->getPathTail();
       OATPP_ASSERT_HTTP(tail, Status::CODE_400, "Empty filename");
 
       oatpp::parser::ParsingCaret caret(tail);
-      oatpp::parser::ParsingCaret::Label label(caret);
+
+      oatpp::parser::ParsingCaret::Label pathLabel(caret);
       caret.findChar('?');
 
-      tail = label.toString();
+      auto path = pathLabel.toString();
 
-      auto info = controller->filesIndex->getFileInfo(tail);
+      oatpp::parser::ParsingCaret::Label queryLabel(caret);
+      caret.setPosition(tail->getSize());
+
+      oatpp::parser::ParsingCaret pathCaret(path);
+
+      /* redirect from non canonical urls */
+      if(path->getSize() > 0 && path->getData()[path->getSize() - 1] != '/' && !pathCaret.findChar('.')) {
+        auto response = OutgoingResponse::createShared(oatpp::web::protocol::http::Status::CODE_301, nullptr);
+        oatpp::data::stream::ChunkedBuffer stream;
+        stream.OutputStream::write(SitePath::CanonicalBase);
+        stream.write("/", 1);
+        stream.OutputStream::write(path);
+        stream.write("/", 1);
+        stream.OutputStream::write(queryLabel.toString());
+        response->putHeader("Location", stream.toString());
+        return _return(response);
+      }
+
+      auto info = controller->filesIndex->getFileInfo(path);
       if(!info) {
-        info = controller->filesIndex->getFileInfo(tail + "/");
+        info = controller->filesIndex->getFileInfo(path + "/");
       }
       OATPP_ASSERT_HTTP(info, Status::CODE_404, "Page not found");
 
