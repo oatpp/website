@@ -61,7 +61,7 @@ public:
         "Disallow:\n"
         "\n"
         "# Sitemap files\n"
-        "https://oatpp.io/sitemap/\n";
+        "Sitemap: https://oatpp.io/sitemap/\n";
       auto response = controller->createResponse(Status::CODE_200, robots);
       response->putHeader(Header::CONTENT_TYPE, "text/plain; charset=utf-8");
       return _return(response);
