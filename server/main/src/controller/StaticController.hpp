@@ -147,17 +147,17 @@ public:
       auto tail = request->getPathTail();
       OATPP_ASSERT_HTTP(tail, Status::CODE_400, "Empty filename");
 
-      oatpp::parser::ParsingCaret caret(tail);
+      oatpp::parser::Caret caret(tail);
 
-      oatpp::parser::ParsingCaret::Label pathLabel(caret);
+      auto pathLabel = caret.putLabel();
       caret.findChar('?');
 
       auto path = pathLabel.toString();
 
-      oatpp::parser::ParsingCaret::Label queryLabel(caret);
+      auto queryLabel = caret.putLabel();
       caret.setPosition(tail->getSize());
 
-      oatpp::parser::ParsingCaret pathCaret(path);
+      oatpp::parser::Caret pathCaret(path);
 
       /* redirect from non canonical urls */
       if(path->getSize() > 0 && path->getData()[path->getSize() - 1] != '/' && !pathCaret.findChar('.')) {
