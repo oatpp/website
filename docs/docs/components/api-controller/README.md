@@ -171,7 +171,7 @@ Note that endpoint-name in `ENDPOINT_INFO(<endpoint-name>)` block should be exac
 `ENDPOINT` or `ENDPOINT_ASYNC` block.
 
 
-### Endpoint Params Annotation
+### Endpoint Parameters Annotation
 
 There are three types of endpoint params which can be annotated:
 

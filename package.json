@@ -12,5 +12,8 @@
   "license": "ISC",
   "devDependencies": {
     "vuepress": "^0.14.8"
+  },
+  "resolutions": {
+    "webpack-dev-middleware": "3.6.0"
   }
 }
