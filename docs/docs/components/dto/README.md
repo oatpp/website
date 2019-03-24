@@ -6,8 +6,9 @@ sidebarDepth: 0
 
 # Data Transfer Object (DTO) <seo/>
 
-DTO is any object of the class which extends `oatpp::data::mapping::type::Object`. It is a special object which can be Serialized and Deserialized with the help of 
-`oatpp::data::mapping::ObjectMapper`.
+DTO is any object of the class which extends [oatpp::data::mapping::type::Object](/api/latest/oatpp/core/data/mapping/type/Object/). 
+It is a special object which can be Serialized and Deserialized with the help of 
+[oatpp::data::mapping::ObjectMapper](/api/latest/oatpp/core/data/mapping/ObjectMapper/).
  
 DTO objects are generated withing DTO-code-gen section. DTO code generation section must begin with  
 `#include OATPP_CODEGEN_BEGIN(DTO)` and must be closed with `#include OATPP_CODEGEN_END(DTO)`. 

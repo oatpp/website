@@ -6,7 +6,7 @@ sidebarDepth: 1
 
 # Api Controller <seo/>
 
-`ApiController` is the class which extends `oatpp::web::server::api::ApiController`. It implements and manages endpoints. 
+`ApiController` is the class which extends [oatpp::web::server::api::ApiController](/api/latest/oatpp/web/server/api/ApiController/). It implements and manages endpoints. 
 Endpoints are created with the help of code-gen macros.  
 Endpoints code generation section must begin with 
 `#include OATPP_CODEGEN_BEGIN(ApiController)` and must be closed with 
