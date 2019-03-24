@@ -1,3 +1,6 @@
+# mac
+**/.DS_Store
+
 # idea
 .idea/
 
@@ -8,4 +11,7 @@ yarn.lock
 
 # vuepress
 
+# API Docs
+
+docs/api/
 

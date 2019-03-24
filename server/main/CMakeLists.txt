@@ -13,7 +13,11 @@ add_library(${project_name}-lib
         src/controller/StaticController.hpp
         src/StaticFileManager.cpp
         src/StaticFileManager.hpp
-        src/FilesIndex.cpp src/FilesIndex.hpp src/Sitemap.cpp src/Sitemap.hpp)
+        src/FilesIndex.cpp
+        src/FilesIndex.hpp
+        src/Sitemap.cpp
+        src/Sitemap.hpp
+)
 
 ## link libs
 
@@ -27,10 +31,10 @@ target_link_libraries(${project_name}-lib
 )
 
 target_include_directories(${project_name}-lib
-        PUBLIC /usr/local/Cellar/libressl/2.7.4/include
+        PUBLIC /usr/local/include
 )
 
-link_directories(/usr/local/Cellar/libressl/2.7.4/lib)
+link_directories(/usr/local/lib)
 
 target_include_directories(${project_name}-lib PUBLIC src)
 

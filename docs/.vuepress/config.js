@@ -1,14 +1,20 @@
+const API_latest = require('../api/latest/index.json');
+
 module.exports = {
     title: "Oat++",
-    description: "Light, zero-dependency, no-installation web-framework. Create bleedingly-fast web-services. C++",
+    description: "Light, zero-dependency web-framework. Create bleedingly-fast web-services. C++",
 
     componentsDir: "docs/.vuepress/components",
 
     ga: "UA-72424701-2",
 
+    shouldPrefetch: function() {
+      return false;
+    },
+
     themeConfig: {
 
-        logo: "https://raw.githubusercontent.com/lganzzzo/oatpp-website-res/master/logo.png",
+        logo: "https://raw.githubusercontent.com/lganzzzo/oatpp-website-res/master/logo_x400.png",
 
         // Assumes GitHub. Can also be a full GitLab url.
         repo: "https://github.com/oatpp/oatpp",
@@ -91,6 +97,11 @@ module.exports = {
                 children: [
                     ["/status/build/", "Build Status"]
                 ]
+            },
+            {
+                title: "API Reference",
+                collapsable: true,
+                children: API_latest
             }
         ]
 
