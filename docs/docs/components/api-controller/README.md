@@ -157,7 +157,7 @@ Additional endpoint info can be added in `ENDPOINT_INFO(<endpoint-name>)` block.
      ENDPOINT_ASYNC_INIT(CreateUser)
     
      Action act() override {
-       return request->readBodyToDtoAsync<UserDto>(this, &CreateUser::returnResponse, controller->getDefaultObjectMapper());
+       return request->readBodyToDtoAsync<UserDto>(controller->getDefaultObjectMapper()).callbackTo(&CreateUser::returnResponse);
      }
     
      Action returnResponse(const UserDto::ObjectWrapper& body){

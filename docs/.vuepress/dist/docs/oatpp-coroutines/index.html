@@ -7,7 +7,7 @@
     <meta name="description" content="Oatpp coroutines.">
     <link rel='canonical' href='https://oatpp.io/docs/oatpp-coroutines/'/>
     
-    <link rel="preload" href="/assets/css/0.styles.3dd1c339.css" as="style"><link rel="preload" href="/assets/js/app.bdc0261d.js" as="script"><link rel="preload" href="/assets/js/148.ba5fef55.js" as="script"><link rel="preload" href="/assets/js/3.78dc4992.js" as="script">
+    <link rel="preload" href="/assets/css/0.styles.3dd1c339.css" as="style"><link rel="preload" href="/assets/js/app.9279cb53.js" as="script"><link rel="preload" href="/assets/js/148.923592f7.js" as="script"><link rel="preload" href="/assets/js/3.78dc4992.js" as="script">
     <link rel="stylesheet" href="/assets/css/0.styles.3dd1c339.css">
   </head>
   <body>
@@ -43,7 +43,7 @@ Root Coroutine should always be <code>oatpp::async::Coroutine</code>.</p> <h2 id
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
 oatpp<span class="token operator">::</span>async<span class="token operator">::</span>Processor processor<span class="token punctuation">;</span>
-processor<span class="token punctuation">.</span><span class="token function">addCoroutine</span><span class="token punctuation">(</span>MyCoroutine<span class="token operator">::</span><span class="token function">getBench</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+processor<span class="token punctuation">.</span><span class="token function">addCoroutine</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">MyCoroutine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">while</span> <span class="token punctuation">(</span>processor<span class="token punctuation">.</span><span class="token function">iterate</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 <span class="token punctuation">}</span>
 </code></pre></div><p>Output:</p> <div class="language- extra-class"><pre class="language-text"><code>MyCoroutine:act()
@@ -62,13 +62,13 @@ MyCoroutine:step3
 
   Action <span class="token function">act</span><span class="token punctuation">(</span><span class="token punctuation">)</span> override <span class="token punctuation">{</span>
     <span class="token function">OATPP_LOGD</span><span class="token punctuation">(</span><span class="token string">&quot;MyCoroutine&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;act()&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> startCoroutine<span class="token operator">&lt;</span>OtherCoroutine<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token function">finish</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">/* Action to do after OtherCoroutine finished */</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> OtherCoroutine<span class="token operator">::</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token function">finish</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* Action to do after OtherCoroutine finished */</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
 
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
 oatpp<span class="token operator">::</span>async<span class="token operator">::</span>Processor processor<span class="token punctuation">;</span>
-processor<span class="token punctuation">.</span><span class="token function">addCoroutine</span><span class="token punctuation">(</span>MyCoroutine<span class="token operator">::</span><span class="token function">getBench</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+processor<span class="token punctuation">.</span><span class="token function">addCoroutine</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">MyCoroutine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">while</span> <span class="token punctuation">(</span>processor<span class="token punctuation">.</span><span class="token function">iterate</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 <span class="token punctuation">}</span>
 </code></pre></div><p>Output:</p> <div class="language- extra-class"><pre class="language-text"><code>MyCoroutine:act()
@@ -86,7 +86,7 @@ OtherCoroutine:act()
 
   Action <span class="token function">act</span><span class="token punctuation">(</span><span class="token punctuation">)</span> override <span class="token punctuation">{</span>
     <span class="token function">OATPP_LOGD</span><span class="token punctuation">(</span><span class="token string">&quot;MyCoroutine&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;act()&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> startCoroutineForResult<span class="token operator">&lt;</span>CoroutineWithResult<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>MyCoroutine<span class="token operator">::</span>onResult<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> CoroutineWithResult<span class="token operator">::</span><span class="token function">startForResult</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">callbackTo</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>MyCoroutine<span class="token operator">::</span>onResult<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
 
   Action <span class="token function">onResult</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> result<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -97,7 +97,7 @@ OtherCoroutine:act()
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
 oatpp<span class="token operator">::</span>async<span class="token operator">::</span>Processor processor<span class="token punctuation">;</span>
-processor<span class="token punctuation">.</span><span class="token function">addCoroutine</span><span class="token punctuation">(</span>MyCoroutine<span class="token operator">::</span><span class="token function">getBench</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+processor<span class="token punctuation">.</span><span class="token function">addCoroutine</span><span class="token punctuation">(</span><span class="token keyword">new</span> MyCoroutine<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">while</span> <span class="token punctuation">(</span>processor<span class="token punctuation">.</span><span class="token function">iterate</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 <span class="token punctuation">}</span>
 </code></pre></div><p>Output:</p> <div class="language- extra-class"><pre class="language-text"><code>MyCoroutine:act()
@@ -123,9 +123,9 @@ MyCoroutine:result='&lt;result&gt;'
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
 oatpp<span class="token operator">::</span>async<span class="token operator">::</span>Processor processor<span class="token punctuation">;</span>
-processor<span class="token punctuation">.</span><span class="token function">addCoroutine</span><span class="token punctuation">(</span>MyCoroutineCounter<span class="token operator">::</span><span class="token function">getBench</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token string">&quot;A&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-processor<span class="token punctuation">.</span><span class="token function">addCoroutine</span><span class="token punctuation">(</span>MyCoroutineCounter<span class="token operator">::</span><span class="token function">getBench</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token string">&quot;B&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-processor<span class="token punctuation">.</span><span class="token function">addCoroutine</span><span class="token punctuation">(</span>MyCoroutineCounter<span class="token operator">::</span><span class="token function">getBench</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span><span class="token string">&quot;C&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+processor<span class="token punctuation">.</span><span class="token function">addCoroutine</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">MyCoroutineCounter</span><span class="token punctuation">(</span><span class="token string">&quot;A&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+processor<span class="token punctuation">.</span><span class="token function">addCoroutine</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">MyCoroutineCounter</span><span class="token punctuation">(</span><span class="token string">&quot;B&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+processor<span class="token punctuation">.</span><span class="token function">addCoroutine</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">MyCoroutineCounter</span><span class="token punctuation">(</span><span class="token string">&quot;C&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">while</span> <span class="token punctuation">(</span>processor<span class="token punctuation">.</span><span class="token function">iterate</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 <span class="token punctuation">}</span>
 </code></pre></div><p>Output:</p> <div class="language- extra-class"><pre class="language-text"><code>A:counter=0
@@ -170,6 +170,6 @@ C:counter=10
         </a>
         →
       </span></p></div> </div> <!----></div></div>
-    <script src="/assets/js/app.bdc0261d.js" defer></script><script src="/assets/js/148.ba5fef55.js" defer></script><script src="/assets/js/3.78dc4992.js" defer></script>
+    <script src="/assets/js/app.9279cb53.js" defer></script><script src="/assets/js/148.923592f7.js" defer></script><script src="/assets/js/3.78dc4992.js" defer></script>
   </body>
 </html>

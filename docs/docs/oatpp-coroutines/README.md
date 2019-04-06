@@ -39,7 +39,7 @@ public:
 };
 
 oatpp::async::Processor processor;
-processor.addCoroutine(MyCoroutine::getBench().obtain());
+processor.addCoroutine(new MyCoroutine());
 while (processor.iterate(1)) {
 }
 ```
@@ -67,13 +67,13 @@ public:
 
   Action act() override {
     OATPP_LOGD("MyCoroutine", "act()");
-    return startCoroutine<OtherCoroutine>(finish() /* Action to do after OtherCoroutine finished */);
+    return OtherCoroutine::start().next(finish()); /* Action to do after OtherCoroutine finished */);
   }
 
 };
 
 oatpp::async::Processor processor;
-processor.addCoroutine(MyCoroutine::getBench().obtain());
+processor.addCoroutine(new MyCoroutine());
 while (processor.iterate(1)) {
 }
 ```
@@ -100,7 +100,7 @@ public:
 
   Action act() override {
     OATPP_LOGD("MyCoroutine", "act()");
-    return startCoroutineForResult<CoroutineWithResult>(&MyCoroutine::onResult);
+    return CoroutineWithResult::startForResult().callbackTo(&MyCoroutine::onResult);
   }
 
   Action onResult(const char* result) {
@@ -111,7 +111,7 @@ public:
 };
 
 oatpp::async::Processor processor;
-processor.addCoroutine(MyCoroutine::getBench().obtain());
+processor.addCoroutine(new MyCoroutine);
 while (processor.iterate(1)) {
 }
 ```
@@ -147,9 +147,9 @@ public:
 };
 
 oatpp::async::Processor processor;
-processor.addCoroutine(MyCoroutineCounter::getBench().obtain("A"));
-processor.addCoroutine(MyCoroutineCounter::getBench().obtain("B"));
-processor.addCoroutine(MyCoroutineCounter::getBench().obtain("C"));
+processor.addCoroutine(new MyCoroutineCounter("A"));
+processor.addCoroutine(new MyCoroutineCounter("B"));
+processor.addCoroutine(new MyCoroutineCounter("C"));
 while (processor.iterate(1)) {
 }
 ```
