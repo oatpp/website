@@ -40,7 +40,7 @@ public:
 #else
     v_word16 port = 80;
 #endif
-    return oatpp::network::server::SimpleTCPConnectionProvider::createShared(port, true /* true for non_blocking */);
+    return oatpp::network::server::SimpleTCPConnectionProvider::createShared(port);
   }());
   
   OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, serverSecureConnectionProvider)("https-provider", [] {

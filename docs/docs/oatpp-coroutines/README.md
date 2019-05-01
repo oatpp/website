@@ -6,12 +6,54 @@ sidebarDepth: 0
 
 # Oatpp Coroutines <seo/>
 
-In oatpp, Coroutine is the class extended from `oatpp::async::Coroutine` or from 
-`oatpp::async::CoroutineWithResult`.  
-Coroutines are processed in the `oatpp::async::Processor`.
-Root Coroutine should always be `oatpp::async::Coroutine`.
+Oatpp coroutines are not regular coroutines.  
+Oatpp implements custom stateless coroutines with scheduling. 
+Scheduling gives additional space for optimization and better CPU utilization.
 
-## Example
+Oatpp-coroutines are executed via [oatpp::async::Executor](/api/latest/oatpp/core/async/Executor/). On each iteration coroutine
+returns [oatpp::async::Action](/api/latest/oatpp/core/async/Coroutine/#action) which tells executor what to do next.
+Based on the `Action` coroutine may be rescheduled to corresponding worker.
+
+## Async Executor
+
+[oatpp::async::Executor](/api/latest/oatpp/core/async/Executor/) allocates three groups of workers with specified number threads
+for each group.
+
+```cpp
+oatpp::async::Executor executor(
+    1 /* processor threads */, 
+    1 /* I/O threads */, 
+    1 /* timer threads */
+);
+```
+
+All coroutines initially are placed to "processor" worker-group and may be rescheduled to I/O or Timer workers - 
+depending on the [oatpp::async::Action](/api/latest/oatpp/core/async/Coroutine/#action) returned in Coroutine iteration.
+
+<img src="https://raw.githubusercontent.com/lganzzzo/oatpp-website-res/master/diagram/oatpp_async_executor.svg?sanitize=true" width="700px">
+
+::: tip
+Despite the fact that coroutines may be rescheduled to different threads - coroutine is guaranteed to be destroyed on the same thread as it was created.
+:::
+
+### I/O Worker
+
+For I/O `oatpp::async::Executor` uses [IOEventWorker](/api/latest/oatpp/core/async/worker/IOEventWorker/) 
+with event-based I/O implementations:
+
+- kqueue based implementation - for Mac/BSD systems.
+- epoll based implementation - for Linux systems.
+
+When coroutine returns Action of type [TYPE_IO_WAIT](/api/latest/oatpp/core/async/Coroutine/#action-type-io-wait), 
+it gets rescheduled to I/O worker placing file-descriptor provided in Action to kqueue/epoll.  
+**Thus oatpp-coroutines are not wasting CPU resources spinning and polling long-waiting connections.**
+
+
+## API
+
+In oatpp, Coroutine is the class extended from [oatpp::async::Coroutine](/api/latest/oatpp/core/async/Coroutine/#coroutine) or from 
+[oatpp::async::CoroutineWithResult](/api/latest/oatpp/core/async/Coroutine/#coroutinewithresult).  
+Coroutines are processed in the [oatpp::async::Executor](/api/latest/oatpp/core/async/Executor/).
 
 ```cpp
 class MyCoroutine : public oatpp::async::Coroutine<MyCoroutine> {
@@ -38,10 +80,13 @@ public:
 
 };
 
-oatpp::async::Processor processor;
-processor.addCoroutine(new MyCoroutine());
-while (processor.iterate(1)) {
-}
+oatpp::async::Executor executor();
+
+executor.execute<MyCoroutine>();
+
+executor.waitTasksFinished();
+executor.stop();
+executor.join();
 ```
 
 Output:
@@ -72,10 +117,13 @@ public:
 
 };
 
-oatpp::async::Processor processor;
-processor.addCoroutine(new MyCoroutine());
-while (processor.iterate(1)) {
-}
+oatpp::async::Executor executor();
+
+executor.execute<MyCoroutine>();
+
+executor.waitTasksFinished();
+executor.stop();
+executor.join();
 ```
 
 Output:
@@ -110,10 +158,13 @@ public:
 
 };
 
-oatpp::async::Processor processor;
-processor.addCoroutine(new MyCoroutine);
-while (processor.iterate(1)) {
-}
+oatpp::async::Executor executor();
+
+executor.execute<MyCoroutine>();
+
+executor.waitTasksFinished();
+executor.stop();
+executor.join();
 ```
 
 Output:
@@ -146,15 +197,18 @@ public:
 
 };
 
-oatpp::async::Processor processor;
-processor.addCoroutine(new MyCoroutineCounter("A"));
-processor.addCoroutine(new MyCoroutineCounter("B"));
-processor.addCoroutine(new MyCoroutineCounter("C"));
-while (processor.iterate(1)) {
-}
+oatpp::async::Executor executor();
+
+executor.execute<MyCoroutineCounter>("A");
+executor.execute<MyCoroutineCounter>("B");
+executor.execute<MyCoroutineCounter>("C");
+
+executor.waitTasksFinished();
+executor.stop();
+executor.join();
 ```
 
-Output:
+Possible Output:
 
 ```
 A:counter=0

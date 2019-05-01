@@ -15,10 +15,10 @@ If you go with Async approach you should always make sure:
 - That you are using NON-BLOCKING I/O.
 - Calls that you make from within Async methods are NON-BLOCKING.
 
-All asynchronous logic in oatpp is based on `oatpp::async::Processor` and `oatpp::async::Coroutine`. 
+All asynchronous logic in oatpp is based on [oatpp::async::Executor](/api/latest/oatpp/core/async/Executor/) and [oatpp coroutines](/docs/oatpp-coroutines/). 
 
 Entities that provide Async API are named "**Async**Entity", Async methods are named "doSomething**Async**", 
 code-gen macros that generate Async code are named "MACRO_**ASYNC**"
  
-For better understanding and examples see [oatpp Coroutines](/docs/oatpp-coroutines/)
+For better understanding and examples see [oatpp coroutines](/docs/oatpp-coroutines/)
 

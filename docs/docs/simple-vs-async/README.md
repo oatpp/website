@@ -11,24 +11,26 @@ sidebarDepth: 0
 **Simple** - (multithreading plus blocking-IO approach) smaller latency, simple API, less coding. Disadvantages - comparable smaller limit of max simultaneous connections.   
 **Async** - (oatpp-coroutines plus non-blocking-IO approach) High performance, ability to handle tens of thousand simultaneous connections, less resources needed. Disadvantages - comparable higher latency, more complex API, more coding.
 
-## Thread usage
+## Thread Usage
 
 **Simple** - (1 thread) / (1 connection) + (1 thread for accepting connections)   
 **Async** - (1 thread) / (1 AsyncProcessor) + (1 thread for accepting connections)
 
-## Configuration difference
+## Api Difference
 
 - Simple 
-   - `SimpleTCPConnectionProvider::createShared(8000, false /* Non-Blocking */)`
    - `ConnectionHandler = HttpConnectionHandler`
+   - In `ApiController` - use [ENDPOINT](/docs/components/api-controller/#endpoint-specifics)
  
 - Async 
-   - `SimpleTCPConnectionProvider::createShared(8000, true /* Non-Blocking */)`
    - `ConnectionHandler = AsyncHttpConnectionHandler`
+   - In `ApiController` - use [ENDPOINT_ASYNC](/docs/components/api-controller/#endpoint-async-specifics)
    
 ### Simple
 
-```cpp{1,14,29}
+#### Config
+
+```cpp{1,29}
 #include "oatpp/web/server/HttpConnectionHandler.hpp"
 #include "oatpp/web/server/HttpRouter.hpp"
 #include "oatpp/network/server/SimpleTCPConnectionProvider.hpp"
@@ -42,7 +44,7 @@ public:
    *  Create ConnectionProvider component which listens on the port
    */
   OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, serverConnectionProvider)([] {
-    return oatpp::network::server::SimpleTCPConnectionProvider::createShared(8000, false /* Non-Blocking */);
+    return oatpp::network::server::SimpleTCPConnectionProvider::createShared(8000);
   }());
 
   /**
@@ -62,10 +64,20 @@ public:
 
 };
 ```
+
+#### Controller
+
+```cpp
+ENDPOINT("POST", "demo/api/json", postJson,
+         BODY_DTO(MyDto::ObjectWrapper, dto)) {
+  auto dtoMessage = dto->message;
+  return createResponse(Status::CODE_200, "dtoMessage: " + dtoMessage);
+}
+```
  
 ### Async
 
-```cpp{1,14,29}
+```cpp{1,29}
 #include "oatpp/web/server/AsyncHttpConnectionHandler.hpp"
 #include "oatpp/web/server/HttpRouter.hpp"
 #include "oatpp/network/server/SimpleTCPConnectionProvider.hpp"
@@ -79,7 +91,7 @@ public:
    *  Create ConnectionProvider component which listens on the port
    */
   OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, serverConnectionProvider)([] {
-    return oatpp::network::server::SimpleTCPConnectionProvider::createShared(8000, true /* Non-Blocking */);
+    return oatpp::network::server::SimpleTCPConnectionProvider::createShared(8000);
   }());
 
   /**
@@ -96,6 +108,25 @@ public:
     OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router); // get Router component
     return oatpp::web::server::AsyncHttpConnectionHandler::createShared(router);
   }());
+
+};
+```
+
+#### Controller
+
+```cpp
+ENDPOINT_ASYNC("POST", "demo/api_async/json", PostJSONAsync) {
+
+  ENDPOINT_ASYNC_INIT(PostJSONAsync)
+
+  Action act() override {
+    return request->readBodyToDtoAsync<MyDto>(controller->getDefaultObjectMapper())
+                   .callbackTo(&PostJSONAsync::onBodyObtained);
+  }
+
+  Action onBodyObtained(const MyDto::ObjectWrapper& dto) {
+    return _return(controller->createResponse(Status::CODE_200, "dtoMessage: " + dto->message));
+  }
 
 };
 ```
