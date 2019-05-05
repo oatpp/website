@@ -68,6 +68,6 @@ API_CALL("<http-method>", "<path>", <method-name>, <optional param-mappings>)
    ```
    
 ## Examples of code
-- [https://github.com/oatpp/oatpp-examples/tree/master/ApiClient-Demo](https://github.com/oatpp/oatpp-examples/tree/master/ApiClient-Demo)
+- [https://github.com/oatpp/example-api-client](https://github.com/oatpp/example-api-client)
 - [https://github.com/oatpp/oatpp-consul/blob/master/src/oatpp-consul/rest/Client.hpp](https://github.com/oatpp/oatpp-consul/blob/master/src/oatpp-consul/rest/Client.hpp)
  

@@ -41,6 +41,8 @@ ENDPOINT("POST", "demo/api/users", createUser,
 }
 ```
 
+More about endpoint annotation and API documentation [read here](/docs/components/api-controller/#endpoint-annotation-and-api-documentation).
+
 ### How to add Swagger UI to your project
 
 1) Add ```oatpp::swagger::DocumentInfo``` and ```oatpp::swagger::Resources``` components to your AppComponents:
