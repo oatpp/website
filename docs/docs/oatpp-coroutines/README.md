@@ -21,13 +21,13 @@ for each group.
 
 ```cpp
 oatpp::async::Executor executor(
-    1 /* processor threads */, 
-    1 /* I/O threads */, 
-    1 /* timer threads */
+    1 /* data-processing workers */, 
+    1 /* I/O workers */, 
+    1 /* timer workers */
 );
 ```
 
-All coroutines initially are placed to "processor" worker-group and may be rescheduled to I/O or Timer workers - 
+All coroutines initially are placed to "data-processing" worker-group and may be rescheduled to I/O or Timer workers - 
 depending on the [oatpp::async::Action](/api/latest/oatpp/core/async/Coroutine/#action) returned in Coroutine iteration.
 
 <img src="https://raw.githubusercontent.com/lganzzzo/oatpp-website-res/master/diagram/oatpp_async_executor.svg?sanitize=true" width="700px">

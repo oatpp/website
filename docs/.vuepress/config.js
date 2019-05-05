@@ -41,7 +41,8 @@ module.exports = {
                 children: [
                     ["/benchmark/info/", "Info"],
                     ["/benchmark/aws/", "Amazon Web Services"],
-                    ["/benchmark/digital-ocean/", "Digital Ocean"]
+                    ["/benchmark/digital-ocean/", "Digital Ocean"],
+                    ["/benchmark/websocket/2-million/", "2 Million WebSockets"]
                 ]
             },
             {
