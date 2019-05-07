@@ -22,7 +22,7 @@ This article describes oatpp benchmark for 2 Million **fully-loaded** concurrent
 (in order to prevent ephemeral ports exhaustion on the client - as we running all 2m clients on the same machine). 
 Once there is a message on WebSocket, server will echo client's message adding `"Hello from oatpp!"` at the beginning.  
 
-**Client application** opens 20k connections on each port, waits all coonections are ready (all WebSocket handshakes are done) then starts the load.
+**Client application** opens 20k connections on each port, waits all connections are ready (all WebSocket handshakes are done) then starts the load.
 Each of 2-million websocket clients continuously sends messages to server. Once message is sent client sends another one.  
 
 Both server and client applications are running asynchronous oatpp server/client based on [oatpp coroutines](/docs/oatpp-coroutines/).  
@@ -37,7 +37,7 @@ Server showed stable performance through all the benchmark test delivering about
 
 #### Resource consumption
 
-Server memory consumption was stable at about 15Gb.
+Server memory consumption was stable at about 15GB.
   
 <img alt="Server resource consumption" border="1" src="https://raw.githubusercontent.com/lganzzzo/oatpp-website-res/master/benchmark/websocket/2m/top-server.png" width="800px">
 
@@ -55,7 +55,7 @@ MESSAGES_PER_MIN: 9194998.122585   # - Messages received rate per minute
 
 #### Resource consumption
 
-Client memory consumption was stable at about 10Gb.
+Client memory consumption was stable at about 10GB.
   
 <img alt="Server resource consumption" border="1" src="https://raw.githubusercontent.com/lganzzzo/oatpp-website-res/master/benchmark/websocket/2m/top-client.png" width="800px">
 
@@ -153,7 +153,7 @@ where:
 `--si 1000 --sf 50` - control how fast clients will connect to server. Here - each `1000` iterations sleep for `50` milliseconds.
 
 **Note** - clients will not start load until all clients are connected.  
-**Note** - client app will fail with assertion if any of clients is failed.
+**Note** - client app will fail with assertion if any of clients has failed.
 
 ## Links
 
