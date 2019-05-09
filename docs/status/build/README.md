@@ -1,6 +1,7 @@
 ---
 title: Build status
 description: Build status of oatpp repos.
+sidebarDepth: 0
 ---
 
 # Project build status <seo/>

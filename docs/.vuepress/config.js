@@ -32,7 +32,8 @@ module.exports = {
         nav: [
             {text: "Benchmark", link: "/benchmark/websocket/2-million/"},
             {text: "Examples", link: "/examples/crud/"},
-            {text: "Docs", link: "/docs/start/"}
+            {text: "Docs", link: "/docs/start/"},
+            {text: "Contributing", link: "/contributing/"}
         ],
         sidebar: [
             {
@@ -67,6 +68,17 @@ module.exports = {
                     ["/docs/start/project-async-api/", "Async API - Starter Project"],
                     ["/docs/start/module/", "Oatpp Module - Starter Project"],
                 ]
+            },            {
+                title: "Overview",
+                collapsable: true,
+                children: [
+                    ["/docs/simple-vs-async/", "Simple vs Async"],
+                    ["/docs/async/", "Async"],
+                    ["/docs/oatpp-coroutines/", "Oatpp Coroutines"],
+                    ["/docs/components/api-controller/", "Api Controller"],
+                    ["/docs/components/api-client/", "Api Client"],
+                    ["/docs/components/dto/", "Data Transfer Object (DTO)"]
+                ]
             },
             {
                 title: "Modules",
@@ -78,18 +90,6 @@ module.exports = {
                     ["/docs/modules/oatpp-libressl/", "oatpp-libressl"],
                     ["/docs/modules/oatpp-swagger/", "oatpp-swagger"],
                     ["/docs/modules/oatpp-websocket/", "oatpp-websocket"]
-                ]
-            },
-            {
-                title: "Overview",
-                collapsable: true,
-                children: [
-                    ["/docs/simple-vs-async/", "Simple vs Async"],
-                    ["/docs/async/", "Async"],
-                    ["/docs/oatpp-coroutines/", "Oatpp Coroutines"],
-                    ["/docs/components/api-controller/", "Api Controller"],
-                    ["/docs/components/api-client/", "Api Client"],
-                    ["/docs/components/dto/", "Data Transfer Object (DTO)"]
                 ]
             },
             {
