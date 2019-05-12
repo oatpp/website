@@ -41,7 +41,8 @@ module.exports = {
                 collapsable: true,
                 children: [
                     ["/about/", "About"],
-                    ["/contributing/", "Contributing"]
+                    ["/contributing/", "Contributing"],
+                    ["/status/build/", "Build Status"]
                 ]
             },
             {
@@ -98,13 +99,6 @@ module.exports = {
                     ["/docs/modules/oatpp-libressl/", "oatpp-libressl"],
                     ["/docs/modules/oatpp-swagger/", "oatpp-swagger"],
                     ["/docs/modules/oatpp-websocket/", "oatpp-websocket"]
-                ]
-            },
-            {
-                title: "Project Status",
-                collapsable: true,
-                children: [
-                    ["/status/build/", "Build Status"]
                 ]
             },
             {

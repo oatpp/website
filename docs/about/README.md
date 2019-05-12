@@ -1,7 +1,7 @@
 ---
 title: About
 description: about oatpp web framework. 
-sidebarDepth: 0
+sidebarDepth: 1
 ---
 
 # About Oat++ <seo/>
@@ -11,8 +11,6 @@ Latest version `0.19.4`
 Project is in alpha phase. 
 No compatibility between versions is maintained. 
 :::
-
-[[toc]]
 
 ## Maintainers
 
