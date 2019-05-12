@@ -33,9 +33,17 @@ module.exports = {
             {text: "Benchmark", link: "/benchmark/websocket/2-million/"},
             {text: "Examples", link: "/examples/crud/"},
             {text: "Docs", link: "/docs/start/"},
-            {text: "Contributing", link: "/contributing/"}
+            {text: "About", link: "/about/"}
         ],
         sidebar: [
+            {
+                title: "About",
+                collapsable: true,
+                children: [
+                    ["/about/", "About"],
+                    ["/contributing/", "Contributing"]
+                ]
+            },
             {
                 title: "Benchmark",
                 collapsable: true,
