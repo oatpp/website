@@ -11,9 +11,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "vuepress": "^0.14.8"
+    "vuepress": "^0.14.11"
   },
   "resolutions": {
     "webpack-dev-middleware": "3.6.0"
+  },
+  "dependencies": {
+    "axios": "^0.18.0"
   }
 }

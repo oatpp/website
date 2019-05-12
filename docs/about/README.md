@@ -7,25 +7,47 @@ sidebarDepth: 0
 # About Oat++ <seo/>
 
 Latest version `0.19.4`  
-Warning - project is in alpha phase. 
+::: warning
+Project is in alpha phase. 
 No compatibility between versions is maintained. 
-All project modules (extensions) are compatible within the same version.
+:::
+
+[[toc]]
 
 ## Maintainers
 
 <br>
-<img src="https://github.com/lganzzzo.png" alt="Leonid Stryzhevskyi - Creator/Owner" width="90px"> 
-
-<a href="https://github.com/lganzzzo">
-    <img src="https://raw.githubusercontent.com/lganzzzo/oatpp-website-res/master/GitHub-Mark-64px.png" width="24px">
+<img src="https://github.com/lganzzzo.png" alt="Leonid Stryzhevskyi - Creator/Owner" width="120px"> 
+<br>
+<a href="https://github.com/lganzzzo" class="contact_icon">
+    <img src="https://raw.githubusercontent.com/lganzzzo/oatpp-website-res/master/GitHub-Mark-64px.png" width="21px">
 </a>
 
-**Leonid Stryzhevskyi**  
+<p class="maintainer_name">Leonid Stryzhevskyi</p>
 Creator, Owner. 
+
+## Contributors
+<br>
+<contributors/>
+
+## Contacts
+
+- Developers chat on **Gitter**. [oat++ framework/Lobby](https://gitter.im/oatpp-framework/Lobby)
+- Follow us on **Twitter** for latest news. [@oatpp_io](https://twitter.com/oatpp_io)
+- Join community on **Reddit**. [r/oatpp](https://www.reddit.com/r/oatpp/)
 
 ## Requirements
 
 - Operating System:  
-Linux, BSD, Mac. 
+Linux, BSD, MacOS. 
 
 - C++ Version >= 11.
+
+## Versioning
+
+Currently no compatibility between versions is maintained.  
+All project modules (extensions) are compatible within the same version only.  
+
+**Example:**  
+module `oatpp-swagger` version `0.19.4` will work with `oatpp` version `0.19.4` only.  
+module `oatpp-swagger` version `0.19.1` will work with `oatpp` version `0.19.1` only.
