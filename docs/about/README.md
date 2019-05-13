@@ -1,25 +1,25 @@
 ---
 title: About
 description: about oatpp web framework. 
-sidebarDepth: 1
+sidebarDepth: 0
 ---
 
 # About Oat++ <seo/>
 
-Latest version `0.19.4`  
-::: warning
-Project is in alpha phase. 
-No compatibility between versions is maintained. 
-:::
+<br>
+<div>
+    <iframe src="https://ghbtns.com/github-btn.html?user=oatpp&repo=oatpp&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+    <iframe src="https://ghbtns.com/github-btn.html?user=oatpp&repo=oatpp&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>
+</div>
+
+Latest version `0.19.4` - Alpha
 
 ## Maintainers
 
 <br>
-<img src="https://github.com/lganzzzo.png" alt="Leonid Stryzhevskyi - Creator/Owner" width="120px"> 
+<img src="https://github.com/lganzzzo.png" alt="Leonid Stryzhevskyi - Creator/Owner" width="122px"> 
 <br>
-<a href="https://github.com/lganzzzo" class="contact_icon">
-    <img src="https://raw.githubusercontent.com/lganzzzo/oatpp-website-res/master/GitHub-Mark-64px.png" width="21px">
-</a>
+<iframe src="https://ghbtns.com/github-btn.html?user=lganzzzo&type=follow" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
 
 <p class="maintainer_name">Leonid Stryzhevskyi</p>
 Creator, Owner. 
