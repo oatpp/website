@@ -17,7 +17,7 @@ actionLink: /docs/start/
   </div>
   <div class="feature">
     <h2>High Performance</h2>
-    <p>Handle over 2 Million simultaneous WebSocket connections on a single server. <a href="/benchmark/websocket/2-million/">See benchmark</a>.</p>
+    <p>Handle over 5 Million simultaneous WebSocket connections on a single server. <a href="/benchmark/websocket/5-million/">See benchmark</a>.</p>
   </div>
   <div class="feature">
     <h2>Easy to Start</h2>

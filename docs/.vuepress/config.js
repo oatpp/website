@@ -52,6 +52,7 @@ module.exports = {
                     ["/benchmark/info/", "Info"],
                     ["/benchmark/aws/", "Amazon Web Services"],
                     ["/benchmark/digital-ocean/", "Digital Ocean"],
+                    ["/benchmark/websocket/5-million/", "5 Million WebSockets"],
                     ["/benchmark/websocket/2-million/", "2 Million WebSockets"]
                 ]
             },

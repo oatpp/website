@@ -6,7 +6,7 @@ sidebarDepth: 0
 
 # 2 Million WebSockets <seo/>
 
-Data - `May 5, 2019`  
+Date - `May 5, 2019`  
 Oatpp version - `0.19.4`
 
 This article describes oatpp benchmark for 2 Million **fully-loaded** concurrent websocket connections. 
