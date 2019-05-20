@@ -30,7 +30,7 @@ module.exports = {
         },
 
         nav: [
-            {text: "Benchmark", link: "/benchmark/websocket/2-million/"},
+            {text: "Benchmark", link: "/benchmark/websocket/5-million/"},
             {text: "Examples", link: "/examples/crud/"},
             {text: "Docs", link: "/docs/start/"},
             {text: "About", link: "/about/"}
