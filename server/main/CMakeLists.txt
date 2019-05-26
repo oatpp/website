@@ -8,7 +8,6 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_library(${project_name}-lib
         src/AppComponent.hpp
-        src/Logger.hpp
         src/SitePath.hpp
         src/controller/StaticController.hpp
         src/StaticFileManager.cpp

@@ -12,6 +12,10 @@ module.exports = {
       return false;
     },
 
+    head: [
+        ['link', { rel: 'icon', href: '/logo_x64.png' }]
+    ],
+
     themeConfig: {
 
         logo: "https://raw.githubusercontent.com/lganzzzo/oatpp-website-res/master/logo_x400.png",
