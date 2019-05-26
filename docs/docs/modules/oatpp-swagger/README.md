@@ -6,12 +6,12 @@ sidebarDepth: 0
 
 # oatpp-swagger <seo/>
 
-[Swagger-UI](https://swagger.io/tools/swagger-ui/) for oatpp services.
+[Github Repository](https://github.com/oatpp/oatpp-swagger)  
+[Example Project](/examples/crud/)
 
-::: tip
-- [Github Repo](https://github.com/oatpp/oatpp-swagger)
-- [Example Project](/examples/crud/)
-:::
+**oatpp-swagger** - extension of [oatpp](/docs/modules/oatpp/) module.  
+It provides [Swagger-UI](https://swagger.io/tools/swagger-ui/) for oatpp applications.  
+Supports both "Simple" and "Async" oatpp APIs.
 
 ## Brief
 

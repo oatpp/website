@@ -6,11 +6,9 @@ sidebarDepth: 0
 
 # Module oatpp <seo/>
 
-`oatpp` - Main module. Other modules depend on it.
+[Github Repository](https://github.com/oatpp/oatpp)
 
-::: tip
-- [Github Repo](https://github.com/oatpp/oatpp)
-:::
+`oatpp` - Main module. Other modules depend on it.
 
 ## Inside
 

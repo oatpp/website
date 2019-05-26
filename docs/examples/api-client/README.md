@@ -6,28 +6,26 @@ sidebarDepth: 0
 
 # ApiClient Example <seo/>
 
-Example project how-to use oatpp ```ApiClient``` and how it works
+[Github Repository](https://github.com/oatpp/example-api-client)
 
-::: tip
-[Github Repo](https://github.com/oatpp/example-api-client)
-:::
+Example project how-to use oatpp [ApiClient](/docs/components/api-client/) and how it works
 
 ## About ApiClient
 
-oatpp ```ApiClient``` is a mechanism which enables you to generate Web Api Clients in declarative manner.
-Under the hood it uses provided ```RequestExecutor``` to perform http requests. Thus you are abstracted from the low-level http-client library implementation and can substitute any other http-client library at any time with zero code changes.
-*Roughly you may treat oatpp ```ApiClient``` as Java Retrofit for C++.*
+Oatpp [ApiClient](/docs/components/api-client/) is a mechanism which enables you to generate Web Api Clients in declarative manner.
+Under the hood it uses provided [RequestExecutor](/api/latest/oatpp/web/client/RequestExecutor/) to perform http requests. Thus you are abstracted from the low-level http-client library implementation and can substitute any other http-client library at any time with zero code changes.
+*Roughly you may treat oatpp [ApiClient](/docs/components/api-client/) as Java Retrofit for C++.*
 
 In this example you can configure to use such RequestExecutors:
-- [oatpp-curl](https://github.com/oatpp/oatpp-curl) - RequestExecutor for oatpp's ApiClient based on libcurl.
-- ```oatpp::web::client::HttpRequestExecutor``` - oatpp out-of-the-box provided RequestExecutor
+- [oatpp::curl::RequestExecutor](/api/latest/oatpp-curl/RequestExecutor/) - RequestExecutor for oatpp ApiClient based on libcurl.
+- [oatpp::web::client::HttpRequestExecutor](/api/latest/oatpp/web/client/HttpRequestExecutor/) - oatpp out-of-the-box provided [RequestExecutor](/api/latest/oatpp/web/client/RequestExecutor/).
 
 ## Example overview
 
 In this example you will find:
-- ```ApiClient``` built for http://httpbin.org/ web service.
+- ApiClient built for http://httpbin.org/ web service.
 - Simple (Synchronous) API calls example.
-- Async API calls example processed with ```oatpp::async::Processor``` and ```oatpp::async::Coroutine```.
+- Async API calls example processed with `oatpp::async::Executor`. See [Oatpp Coroutines](/docs/oatpp-coroutines/).
 
 ### Project layout
 

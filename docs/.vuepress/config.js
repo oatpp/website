@@ -98,6 +98,7 @@ module.exports = {
                     ["/docs/modules/oatpp-consul/", "oatpp-consul"],
                     ["/docs/modules/oatpp-curl/", "oatpp-curl"],
                     ["/docs/modules/oatpp-libressl/", "oatpp-libressl"],
+                    ["/docs/modules/oatpp-mbedtls/", "oatpp-mbedtls"],
                     ["/docs/modules/oatpp-swagger/", "oatpp-swagger"],
                     ["/docs/modules/oatpp-websocket/", "oatpp-websocket"]
                 ]

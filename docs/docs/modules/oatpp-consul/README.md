@@ -5,14 +5,11 @@ sidebarDepth: 0
 ---
 # oatpp-consul <seo/>
 
-oatpp client for consul
-More about consul API see [https://www.consul.io/api/index.html](https://www.consul.io/api/index.html)
+[Github Repository](https://github.com/oatpp/oatpp-consul)  
+[Example Project](/examples/consul/)
 
-::: tip
-- [Github Repo](https://github.com/oatpp/oatpp-consul)
-- [Example Project](/examples/consul/)
-:::
-
+**oatpp-consul** - extension of [oatpp](/docs/modules/oatpp/) module.  
+It provides [Consul](https://www.consul.io/) integration for oatpp applications.
 
 ### KV
 

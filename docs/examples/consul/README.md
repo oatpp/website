@@ -6,11 +6,9 @@ sidebarDepth: 0
 
 # Consul Integration Example <seo/>
 
-Example project how-to use [oatpp-consul](/docs/modules/oatpp-consul/) module.
+[Github Repository](https://github.com/oatpp/example-consul)
 
-::: tip
-[Github Repo](https://github.com/oatpp/example-consul)
-:::
+Example project how-to use [oatpp-consul](/docs/modules/oatpp-consul/) module.
 
 ## Overview
 This project is using [oatpp](/docs/modules/oatpp/) and [oatpp-consul](/docs/modules/oatpp-consul/) modules.

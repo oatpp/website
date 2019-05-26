@@ -6,13 +6,11 @@ sidebarDepth: 0
 
 # PostgreSQL Example <seo/>
 
+[Github Repository](https://github.com/oatpp/example-postgresql)
+
 Example of a production grade entity service with Swagger-UI and configuration profiles. Storing information in PostgreSQL.
 *Libpq is used to communicate with PostgreSQL database.*  
 *Dockerfile and docker-compose.yaml files included.*
-
-::: tip
-[Github Repo](https://github.com/oatpp/example-postgresql)
-:::
 
 ## Overview
 This project is using `oatpp` and `oatpp-swagger` modules.

@@ -6,11 +6,9 @@ sidebarDepth: 0
 
 # Example-CRUD <seo/>
 
-Example project how-to create basic CRUD endpoints and document them with Swagger-UI and OpenApi 3.0.0
+[Github Repository](https://github.com/oatpp/example-crud)
 
-::: tip
-[Github Repo](https://github.com/oatpp/example-crud)
-:::
+Example project how-to create basic CRUD endpoints and document them with Swagger-UI and OpenApi 3.0.0
 
 ## Overview
 This project is using `oatpp` and `oatpp-swagger` modules.

@@ -5,12 +5,13 @@ sidebarDepth: 0
 ---
 
 # oatpp-libressl <seo/>
-This submodule provides secure server and client connection providers for oatpp applications. Based on LibreSSL.
 
-::: tip
-- [Github Repo](https://github.com/oatpp/oatpp-libressl)
-- [Example Project](/examples/libressl/)
-:::
+[Github Repository](https://github.com/oatpp/oatpp-libressl)  
+[Example Project](/examples/libressl/)  
+
+**oatpp-libressl** - extension of [oatpp](/docs/modules/oatpp/) module.  
+It provides secure server and client connection providers for oatpp applications. Based on [LibreSSL](https://www.libressl.org/).  
+Supports both "Simple" and "Async" oatpp APIs.
 
 ## Requires
 
@@ -74,3 +75,7 @@ oatpp::libressl::Callbacks::setDefaultCallbacks();
 /* ignore SIGPIPE */
 std::signal(SIGPIPE, SIG_IGN);
 ```
+
+## See more
+
+- [oatpp-mbedtls](/docs/modules/oatpp-mbedtls/)

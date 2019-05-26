@@ -6,12 +6,11 @@ sidebarDepth: 0
 
 # oatpp-websocket <seo/>
 
-oatpp-websocket submodule.
-It provides WebSocket functionality. Server/Client + Simple/Async APIs.
+[Github Repository](https://github.com/oatpp/oatpp-websocket)  
 
-::: tip
-- [Github Repo](https://github.com/oatpp/oatpp-websocket)
-:::
+**oatpp-websocket** - extension of [oatpp](/docs/modules/oatpp/) module.    
+It provides WebSocket server and client functionality.  
+Supports both "Simple" and "Async" oatpp APIs.
 
 ## API
 

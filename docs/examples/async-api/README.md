@@ -6,11 +6,9 @@ sidebarDepth: 0
 
 # Async API Example <seo/>
 
-Example project how-to use oatpp asynchronous API.
+[Github Repository](https://github.com/oatpp/example-async-api)
 
-::: tip
-[Github Repo](https://github.com/oatpp/example-async-api)
-:::
+Example project how-to use oatpp asynchronous API.
 
 ## Overview
 
