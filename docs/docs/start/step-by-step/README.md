@@ -4,7 +4,7 @@ description: Step-by-step guide how to setup and build oatpp project from scratc
 sidebarDepth: 0
 ---
 
-# Step by step guide <seo/>
+# Step By Step Guide <seo/>
 
 This is a step-by-step guide to the setting up and building oatpp project from scratch.
 Finishing this guide you will have well-structured and extendable web-service with basic endpoints.
@@ -157,7 +157,7 @@ The format in which DTO is serialized is defined by Object Mapper.
 In this particular example we are using [JSON ObjectMapper](/api/latest/oatpp/parser/json/mapping/ObjectMapper/). So our message
 will be serialized to JSON.
 
-```cpp{1,8,10-26,33,36-42,48-51,58-59,65}
+```cpp{1,8,10-26,33,36-42,48-51,59,65}
 #include "oatpp/parser/json/mapping/ObjectMapper.hpp"
 
 #include "oatpp/web/server/HttpConnectionHandler.hpp"
@@ -274,13 +274,26 @@ it is recommended to follow oatpp-project-structure in order to have easily conf
 |- CMakeLists.txt                        // projects CMakeLists.txt
 |- src/
 |    |
-|    |- dto/                             // DTOs are declared here
+|    |- dto/                             // Folder containing DTOs definitions
+|    |    |
+|    |    |- DTOs.hpp                    // DTOs are declared here
+|    |     
 |    |- controller/                      // Folder containing API Controllers where all endpoints are declared
+|    |    |
+|    |    |- MyController.hpp            // Sample - MyController is declared here
+|    |     
 |    |- AppComponent.hpp                 // Application Components configuration 
 |    |- App.cpp                          // main() is here
 |
 |- test/                                 // test folder
      |
+     |- app/
+     |    |
+     |    |- MyApiTestClient.hpp         // Api client for test API calls is declared here
+     |    |- TestComponent.hpp           // Test application components configuration
+     |                                   
+     |- MyControllerTest.cpp             // MyController test logic is here
+     |- MyControllerTest.hpp             // MyController test header
      |- Tests.cpp                        // tests main() is here
 ```
 
@@ -298,9 +311,184 @@ Create file `AppComponent.hpp` in you projects `src` folder and move there initi
 `AppComponent.hpp`:
 
 ```cpp
+#ifndef AppComponent_hpp
+#define AppComponent_hpp
 
+#include "oatpp/parser/json/mapping/ObjectMapper.hpp"
+
+#include "oatpp/web/server/HttpConnectionHandler.hpp"
+#include "oatpp/network/server/SimpleTCPConnectionProvider.hpp"
+
+#include "oatpp/core/macro/component.hpp"
+
+/**
+ *  Class which creates and holds Application components and registers components in oatpp::base::Environment
+ *  Order of components initialization is from top to bottom
+ */
+class AppComponent {
+public:
+
+  /**
+   *  Create ConnectionProvider component which listens on the port
+   */
+  OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, serverConnectionProvider)([] {
+    return oatpp::network::server::SimpleTCPConnectionProvider::createShared(8000);
+  }());
+
+  /**
+   *  Create Router component
+   */
+  OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, httpRouter)([] {
+    return oatpp::web::server::HttpRouter::createShared();
+  }());
+
+  /**
+   *  Create ConnectionHandler component which uses Router component to route requests
+   */
+  OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::server::ConnectionHandler>, serverConnectionHandler)([] {
+    OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router); // get Router component
+    return oatpp::web::server::HttpConnectionHandler::createShared(router);
+  }());
+
+  /**
+   *  Create ObjectMapper component to serialize/deserialize DTOs in Contoller's API
+   */
+  OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::data::mapping::ObjectMapper>, apiObjectMapper)([] {
+    return oatpp::parser::json::mapping::ObjectMapper::createShared();
+  }());
+
+};
+
+#endif /* AppComponent_hpp */
 ```
  
+Now all major components are initialized in one place which makes it easy to configure application by substituting components.
+
+`App.cpp` (main) can be rewritten as follows:
+
+```cpp{31,49}
+#include "AppComponent.hpp"
+
+#include "oatpp/network/server/Server.hpp"
+
+#include "oatpp/core/macro/codegen.hpp"
+
+/* Begin DTO code-generation */
+#include OATPP_CODEGEN_BEGIN(DTO)
+
+/**
+ * Message Data-Transfer-Object
+ */
+class MessageDto : public oatpp::data::mapping::type::Object {
+
+  DTO_INIT(MessageDto, Object /* Extends */)
+
+  DTO_FIELD(Int32, statusCode);   // Status code field
+  DTO_FIELD(String, message);     // Message field
+
+};
+
+/* End DTO code-generation */
+#include OATPP_CODEGEN_END(DTO)
+
+/**
+ * Custom Request Handler
+ */
+class Handler : public oatpp::web::server::HttpRequestHandler {
+private:
+  /* Inject object mapper component */
+  OATPP_COMPONENT(std::shared_ptr<oatpp::data::mapping::ObjectMapper>, m_objectMapper);
+public:
+
+  /**
+   * Handle incoming request and return outgoing response.
+   */
+  std::shared_ptr<OutgoingResponse> handle(const std::shared_ptr<IncomingRequest>& request) override {
+    auto message = MessageDto::createShared();
+    message->statusCode = 1024;
+    message->message = "Hello DTO!";
+    return ResponseFactory::createResponse(Status::CODE_200, message, m_objectMapper.get());
+  }
+
+};
+
+void run() {
+
+  /* Register Components in scope of run() method */
+  AppComponent components;
+
+  /* Get router component */
+  OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router);
+
+  /* Route GET - "/hello" requests to Handler */
+  router->route("GET", "/hello", std::make_shared<Handler>());
+
+  /* Get connection handler component */
+  OATPP_COMPONENT(std::shared_ptr<oatpp::network::server::ConnectionHandler>, connectionHandler);
+
+  /* Get connection provider component */
+  OATPP_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, connectionProvider);
+
+  /* Create server which takes provided TCP connections and passes them to HTTP connection handler */
+  oatpp::network::server::Server server(connectionProvider, connectionHandler);
+
+  /* Priny info about server port */
+  OATPP_LOGI("MyApp", "Server running on port %s", connectionProvider->getProperty("port").getData());
+
+  /* Run server */
+  server.run();
+}
+
+int main() {
+
+  /* Init oatpp Environment */
+  oatpp::base::Environment::init();
+
+  /* Run App */
+  run();
+
+  /* Destroy oatpp Environment */
+  oatpp::base::Environment::destroy();
+
+  return 0;
+
+}
+```
+
+### Move DTO definitions to a separate file
+
+In folder `src/dto/` create file `DTOs.hpp`.  
+Move `MessageDto` definition to `DTOs.hpp`:
+
+```cpp
+#ifndef DTOs_hpp
+#define DTOs_hpp
+
+#include "oatpp/core/data/mapping/type/Object.hpp"
+#include "oatpp/core/macro/codegen.hpp"
+
+/* Begin DTO code-generation */
+#include OATPP_CODEGEN_BEGIN(DTO)
+
+/**
+ * Message Data-Transfer-Object
+ */
+class MessageDto : public oatpp::data::mapping::type::Object {
+
+  DTO_INIT(MessageDto, Object /* Extends */)
+
+  DTO_FIELD(Int32, statusCode);   // Status code field
+  DTO_FIELD(String, message);     // Message field
+
+};
+
+/* TODO - Add more DTOs here */
+
+/* End DTO code-generation */
+#include OATPP_CODEGEN_END(DTO)
+
+#endif /* DTOs_hpp */
+```
 
 ### Use Api Controller
 
@@ -308,52 +496,44 @@ Instead of using bare HttpRequestHandler creating new Request Handler for every 
 use [Api Controller](/docs/components/api-controller/). 
 
 API Controller makes process of adding new endpoints much easier by generating boilerplate code for you. It also helps 
-you to organize your endpoints grouping them by different API Controllers.
+to organize your endpoints grouping them in different API Controllers.
 
 #### Create Api Controller
 
-In folder `src/controller/` create file `MyController.hpp`.
+In folder `src/controller/` create file `MyController.hpp`.  
 Add the following code to `MyController.hpp`:
 
 ```cpp
 #ifndef MyController_hpp
 #define MyController_hpp
 
-#include "dto/MyDto.hpp"
+#include "dto/DTOs.hpp"
 
 #include "oatpp/web/server/api/ApiController.hpp"
-#include "oatpp/parser/json/mapping/ObjectMapper.hpp"
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/macro/component.hpp"
 
 /**
- *  EXAMPLE ApiController
- *  Basic examples of howto create ENDPOINTs
- *  More details on oatpp.io
+ * Sample Api Controller.
  */
 class MyController : public oatpp::web::server::api::ApiController {
-protected:
-  MyController(const std::shared_ptr<ObjectMapper>& objectMapper)
+public:
+  /**
+   * Constructor with object mapper.
+   * @param objectMapper - default object mapper used to serialize/deserialize DTOs.
+   */
+  MyController(OATPP_COMPONENT(std::shared_ptr<ObjectMapper>, objectMapper))
     : oatpp::web::server::api::ApiController(objectMapper)
   {}
 public:
   
-  /**
-   *  Inject @objectMapper component here as default parameter
-   *  Do not return bare Controllable* object! use shared_ptr!
-   */
-  static std::shared_ptr<MyController> createShared(OATPP_COMPONENT(std::shared_ptr<ObjectMapper>,
-                                                                 objectMapper)){
-    return std::shared_ptr<MyController>(new MyController(objectMapper));
-  }
-  
-  /**
-   *  Begin ENDPOINTs generation ('ApiController' codegen)
-   */
+/**
+ *  Begin ENDPOINTs generation ('ApiController' codegen)
+ */
 #include OATPP_CODEGEN_BEGIN(ApiController)
   
-  ENDPOINT("GET", "/", root) {
-    auto dto = MyDto::createShared();
+  ENDPOINT("GET", "/hello", root) {
+    auto dto = MessageDto::createShared();
     dto->statusCode = 200;
     dto->message = "Hello World!";
     return createDtoResponse(Status::CODE_200, dto);
@@ -361,12 +541,67 @@ public:
   
   // TODO Insert Your endpoints here !!!
   
-  /**
-   *  Finish ENDPOINTs generation ('ApiController' codegen)
-   */
+/**
+ *  Finish ENDPOINTs generation ('ApiController' codegen)
+ */
 #include OATPP_CODEGEN_END(ApiController)
   
 };
 
 #endif /* MyController_hpp */
+```
+
+### Add Controller Endpoints to Router
+
+In order to serve endpoints declared in Api Controller we have to add those endpoints to the Router.    
+And the final look of the App.cpp is as follows:
+
+```cpp{15-16}
+#include "controller/MyController.hpp"
+#include "AppComponent.hpp"
+
+#include "oatpp/network/server/Server.hpp"
+
+void run() {
+
+  /* Register Components in scope of run() method */
+  AppComponent components;
+
+  /* Get router component */
+  OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router);
+
+  /* Create MyController and add all of its endpoints to router */
+  auto myController = std::make_shared<MyController>();
+  myController->addEndpointsToRouter(router);
+
+  /* Get connection handler component */
+  OATPP_COMPONENT(std::shared_ptr<oatpp::network::server::ConnectionHandler>, connectionHandler);
+
+  /* Get connection provider component */
+  OATPP_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, connectionProvider);
+
+  /* Create server which takes provided TCP connections and passes them to HTTP connection handler */
+  oatpp::network::server::Server server(connectionProvider, connectionHandler);
+
+  /* Priny info about server port */
+  OATPP_LOGI("MyApp", "Server running on port %s", connectionProvider->getProperty("port").getData());
+
+  /* Run server */
+  server.run();
+  
+}
+
+int main(int argc, const char * argv[]) {
+
+  /* Init oatpp Environment */
+  oatpp::base::Environment::init();
+
+  /* Run App */
+  run();
+
+  /* Destroy oatpp Environment */
+  oatpp::base::Environment::destroy();
+
+  return 0;
+}
 ```
