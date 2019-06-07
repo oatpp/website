@@ -11,56 +11,56 @@ sidebarDepth: 0
 Example project how-to create basic CRUD endpoints and document them with Swagger-UI and OpenApi 3.0.0
 
 ## Overview
-This project is using `oatpp` and `oatpp-swagger` modules.
+
+This project is using [oatpp](https://github.com/oatpp/oatpp) and [oatpp-swagger](https://github.com/oatpp/oatpp-swagger) modules.
 
 ### Project layout
 
 ```
-
-- CMakeLists.txt          // project loader script. load and build dependencies
-- main/                   // main project directory
-    |
-    |- CMakeLists.txt     // projects CMakeLists.txt
-    |- src/               // source folder
-    |- test/              // test folder
-
-```
-```
-- src/
-    |
-    |- controller/              // Folder containing UserController where all endpoints are declared
-    |- db/                      // Folder with database mock
-    |- dto/                     // DTOs are declared here
-    |- SwaggerComponent.hpp     // Swagger-UI config
-    |- AppComponent.hpp         // Service config
-    |- Logger.hpp               // Application Logger
-    |- App.cpp                  // main() is here
-
+|- CMakeLists.txt                        // projects CMakeLists.txt
+|- src/
+|   |
+|   |- controller/                       // Folder containing UserController where all endpoints are declared
+|   |- db/                               // Folder with database mock
+|   |- dto/                              // DTOs are declared here
+|   |- SwaggerComponent.hpp              // Swagger-UI config
+|   |- AppComponent.hpp                  // Service config
+|   |- App.cpp                           // main() is here
+|
+|- test/                                 // test folder
+|- utility/install-oatpp-modules.sh      // utility script to install required oatpp-modules.
 ```
 
+---
 
-## Build and Run
+### Build and Run
 
-### Using CMake
+#### Using CMake
 
-```bash
+**Requires**
+
+- `oatpp` and `oatpp-swagger` modules installed. You may run `utility/install-oatpp-modules.sh` 
+script to install required oatpp modules.
+
+```
 $ mkdir build && cd build
 $ cmake ..
-$ make run        ## Download, build, and install all dependencies. Run project
-
+$ make 
+$ ./crud-exe        # - run application.
 ```
 
-### In Docker
+#### In Docker
 
-```bash
+```
 $ docker build -t example-crud .
 $ docker run -p 8000:8000 -t example-crud
 ```
 
+---
 
-## Endpoints declaration
+### Endpoints declaration
 
-### Create User
+#### Create User
 
 ```cpp
 ENDPOINT_INFO(createUser) {
@@ -74,7 +74,7 @@ ENDPOINT("POST", "demo/api/users", createUser,
 }
 ```
 
-### Update User
+#### Update User
 
 ```cpp
 ENDPOINT_INFO(putUser) {
@@ -91,7 +91,7 @@ ENDPOINT("PUT", "demo/api/users/{userId}", putUser,
 }
 ```
 
-### Get one User
+#### Get one User
 
 ```cpp
 ENDPOINT_INFO(getUserById) {
@@ -107,7 +107,7 @@ ENDPOINT("GET", "demo/api/users/{userId}", getUserById,
 }
 ```
 
-### Get list of users
+#### Get list of users
 
 ```cpp
 ENDPOINT_INFO(getUsers) {
@@ -119,7 +119,8 @@ ENDPOINT("GET", "demo/api/users", getUsers) {
 }
 ```
 
-### Delete User
+#### Delete User
+
 ```cpp
 ENDPOINT_INFO(deleteUser) {
   info->summary = "Delete User by userId";
@@ -131,5 +132,5 @@ ENDPOINT("DELETE", "demo/api/users/{userId}", deleteUser,
   bool success = m_database->deleteUser(userId);
   OATPP_ASSERT_HTTP(success, Status::CODE_417, "User not deleted. Perhaps no such User in the Database");
   return createResponse(Status::CODE_200, "User successfully deleted");
-}
+}  
 ```

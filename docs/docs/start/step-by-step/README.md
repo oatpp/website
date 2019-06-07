@@ -1,12 +1,12 @@
 ---
 title: Step by step
 description: Step-by-step guide how to setup and build oatpp project from scratch.
-sidebarDepth: 0
+sidebarDepth: 2
 ---
 
 # Step By Step Guide <seo/>
 
-This is a step-by-step guide to the setting up and building oatpp project from scratch.
+This is a step-by-step guide to the setting up and building oatpp project from scratch.  
 Finishing this guide you will have well-structured and extendable web-service with basic endpoints.
 
 [[toc]]
@@ -490,7 +490,7 @@ class MessageDto : public oatpp::data::mapping::type::Object {
 #endif /* DTOs_hpp */
 ```
 
-### Use Api Controller
+### Use API Controller
 
 Instead of using bare HttpRequestHandler creating new Request Handler for every new endpoint, it is recommened to
 use [Api Controller](/docs/components/api-controller/). 
@@ -605,3 +605,268 @@ int main(int argc, const char * argv[]) {
   return 0;
 }
 ```
+
+## Testing Oat++ Application
+
+Testing of a oatpp application generally means the following:
+
+- Create application test configuration in order to run application in test-mode.
+- Define [ApiClient](/docs/components/api-client/) for Application's API.
+- Create test which runs application using test-configuration and makes API calls via test Api Client.
+
+### Application Test Components Configuration
+
+In folder `test/app/` create file `TestComponent.hpp` (similar to `AppComponent`):
+
+```cpp{24,32,40}
+#ifndef TestComponent_htpp
+#define TestComponent_htpp
+
+#include "oatpp/web/server/HttpConnectionHandler.hpp"
+
+#include "oatpp/network/virtual_/client/ConnectionProvider.hpp"
+#include "oatpp/network/virtual_/server/ConnectionProvider.hpp"
+#include "oatpp/network/virtual_/Interface.hpp"
+
+#include "oatpp/parser/json/mapping/ObjectMapper.hpp"
+
+#include "oatpp/core/macro/component.hpp"
+
+/**
+ * Test Components config
+ */
+class TestComponent {
+public:
+
+  /**
+   * Create oatpp virtual network interface for test networking
+   */
+  OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::virtual_::Interface>, virtualInterface)([] {
+    return oatpp::network::virtual_::Interface::createShared("virtualhost");
+  }());
+
+  /**
+   * Create server ConnectionProvider of oatpp virtual connections for test
+   */
+  OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, serverConnectionProvider)([] {
+    OATPP_COMPONENT(std::shared_ptr<oatpp::network::virtual_::Interface>, interface);
+    return oatpp::network::virtual_::server::ConnectionProvider::createShared(interface);
+  }());
+
+  /**
+   * Create client ConnectionProvider of oatpp virtual connections for test
+   */
+  OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ClientConnectionProvider>, clientConnectionProvider)([] {
+    OATPP_COMPONENT(std::shared_ptr<oatpp::network::virtual_::Interface>, interface);
+    return oatpp::network::virtual_::client::ConnectionProvider::createShared(interface);
+  }());
+
+  /**
+   *  Create Router component
+   */
+  OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, httpRouter)([] {
+    return oatpp::web::server::HttpRouter::createShared();
+  }());
+
+  /**
+   *  Create ConnectionHandler component which uses Router component to route requests
+   */
+  OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::server::ConnectionHandler>, serverConnectionHandler)([] {
+    OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router); // get Router component
+    return oatpp::web::server::HttpConnectionHandler::createShared(router);
+  }());
+
+  /**
+   *  Create ObjectMapper component to serialize/deserialize DTOs in Contoller's API
+   */
+  OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::data::mapping::ObjectMapper>, apiObjectMapper)([] {
+    return oatpp::parser::json::mapping::ObjectMapper::createShared();
+  }());
+
+};
+
+
+#endif // TestComponent_htpp
+```
+
+Notice usage of: 
+
+- [Network Virtual Interface](/api/latest/oatpp/network/virtual_/Interface/)
+- [Server Virtual ConnectionProvider](/api/latest/oatpp/network/virtual_/server/ConnectionProvider/)
+- [Client Virtual ConnectionProvider](/api/latest/oatpp/network/virtual_/client/ConnectionProvider/)
+
+oatpp virtual network stack enables you to run application tests down to low (protocol) level without occupying the "real"
+port of the host.
+
+### API Test Client
+
+Create test [ApiClient](/docs/components/api-client/) in order to test application API.  
+In folder `test/app/` create file `MyApiTestClient.hpp` with api calls corresponding to application APIs:
+
+```cpp{18}
+#ifndef MyApiTestClient_hpp
+#define MyApiTestClient_hpp
+
+#include "oatpp/web/client/ApiClient.hpp"
+#include "oatpp/core/macro/codegen.hpp"
+
+/* Begin Api Client code generation */
+#include OATPP_CODEGEN_BEGIN(ApiClient)
+
+/**
+ * Test API client.
+ * Use this client to call application APIs.
+ */
+class MyApiTestClient : public oatpp::web::client::ApiClient {
+
+  API_CLIENT_INIT(MyApiTestClient)
+
+  API_CALL("GET", "/hello", getHello)
+
+  // TODO - add more client API calls here
+
+};
+
+/* End Api Client code generation */
+#include OATPP_CODEGEN_END(ApiClient)
+
+#endif // MyApiTestClient_hpp
+
+```
+
+### Create Test
+
+In folder `test/` create file `MyControllerTest.hpp`:
+
+```cpp
+#ifndef MyControllerTest_hpp
+#define MyControllerTest_hpp
+
+#include "oatpp-test/UnitTest.hpp"
+
+class MyControllerTest : public oatpp::test::UnitTest {
+public:
+
+  MyControllerTest() : UnitTest("TEST[MyControllerTest]" /* Test TAG for logs */){}
+  void onRun() override;
+
+};
+
+#endif // MyControllerTest_hpp
+```
+
+In folder `test/` create file `MyControllerTest.cpp`:
+
+```cpp{15,21,40}
+#include "MyControllerTest.hpp"
+
+#include "controller/MyController.hpp"
+
+#include "app/MyApiTestClient.hpp"
+#include "app/TestComponent.hpp"
+
+#include "oatpp/web/client/HttpRequestExecutor.hpp"
+
+#include "oatpp-test/web/ClientServerTestRunner.hpp"
+
+void MyControllerTest::onRun() {
+
+  /* Register test components */
+  TestComponent component;
+
+  /* Create client-server test runner */
+  oatpp::test::web::ClientServerTestRunner runner;
+
+  /* Add MyController endpoints to the router of the test server */
+  runner.addController(std::make_shared<MyController>());
+
+  /* Run test */
+  runner.run([this, &runner] {
+
+    /* Get client connection provider for Api Client */
+    OATPP_COMPONENT(std::shared_ptr<oatpp::network::ClientConnectionProvider>, clientConnectionProvider);
+
+    /* Get object mapper component */
+    OATPP_COMPONENT(std::shared_ptr<oatpp::data::mapping::ObjectMapper>, objectMapper);
+
+    /* Create http request executor for Api Client */
+    auto requestExecutor = oatpp::web::client::HttpRequestExecutor::createShared(clientConnectionProvider);
+
+    /* Create Test API client */
+    auto client = MyApiTestClient::createShared(requestExecutor, objectMapper);
+
+    /* Call server API */
+    /* Call hello endpoint of MyController */
+    auto response = client->getHello();
+
+    /* Assert that server responds with 200 */
+    OATPP_ASSERT(response->getStatusCode() == 200);
+
+    /* Read response body as MessageDto */
+    auto message = response->readBodyToDto<MessageDto>(objectMapper);
+
+    /* Assert that received message is as expected */
+    OATPP_ASSERT(message);
+    OATPP_ASSERT(message->statusCode->getValue() == 200);
+    OATPP_ASSERT(message->message == "Hello World!");
+
+  }, std::chrono::minutes(10) /* test timeout */);
+
+  /* wait all server threads finished */
+  std::this_thread::sleep_for(std::chrono::seconds(1));
+
+}
+```
+
+The test above tests that on API call `GET /hello` server responds with expected message.  
+It uses [ClientServerTestRunner](/api/latest/oatpp-test/web/ClientServerTestRunner/) to run test server.
+
+### Run Tests
+
+In folder `test/` create file `Tests.cpp`:
+
+```cpp
+#include "MyControllerTest.hpp"
+
+#include <iostream>
+
+void runTests() {
+
+  OATPP_RUN_TEST(MyControllerTest);
+  
+  // TODO - Add more tests here:
+  // OATPP_RUN_TEST(MyAnotherTest);
+  
+}
+
+int main() {
+
+  oatpp::base::Environment::init();
+
+  runTests();
+
+  /* Print how much objects were created during app running, and what have left-probably leaked */
+  /* Disable object counting for release builds using '-D OATPP_DISABLE_ENV_OBJECT_COUNTERS' flag for better performance */
+  std::cout << "\nEnvironment:\n";
+  std::cout << "objectsCount = " << oatpp::base::Environment::getObjectsCount() << "\n";
+  std::cout << "objectsCreated = " << oatpp::base::Environment::getObjectsCreated() << "\n\n";
+
+  OATPP_ASSERT(oatpp::base::Environment::getObjectsCount() == 0);
+
+  oatpp::base::Environment::destroy();
+
+  return 0;
+}
+```
+
+At the end of each test (and at the end of all tests) oatpp Environment is checked for leaking objects.  
+Test will fail if objects leaks found (Counts only objects extending [Countable](/api/latest/oatpp/core/base/Countable/)).
+
+::: warning
+Tests binary should NOT be built linking to oatpp built with `-DOATPP_DISABLE_ENV_OBJECT_COUNTERS` flag.
+:::
+
+## Complete Project Code
+
+[Github Repository](https://github.com/oatpp/oatpp-starter)
+

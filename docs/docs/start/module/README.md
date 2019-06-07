@@ -6,8 +6,7 @@ sidebarDepth: 0
 
 # Oatpp Module - Starter Project <seo/>
 
-Starter project for oatpp-module
+[Github Repository](https://github.com/oatpp/oatpp-starter-module)
 
-::: tip
-[Github Repo](https://github.com/oatpp/oatpp-starter-module)
-:::
+Starter project of oatpp-module
+

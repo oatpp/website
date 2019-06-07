@@ -30,69 +30,70 @@ In this example you will find:
 ### Project layout
 
 ```
-- CMakeLists.txt          // project loader script. load and build dependencies
-- main/                   // main project directory
-    |
-    |- CMakeLists.txt     // projects CMakeLists.txt
-    |- src/               // source folder
-    |- test/              // test folder
-
+|- CMakeLists.txt                          // projects CMakeLists.txt
+|- src/
+|   |- DemoApiClient.hpp                   // ApiClient built for http://httpbin.org/ web service
+|   |- DemoApiModels.hpp                   // DTOs objects for DemoApiClient
+|   |- SimpleExample.hpp                   // Simple (Synchronous) API calls example
+|   |- AsyncExample.hpp                    // Async API calls example
+|   |- App.cpp                             // main is here
+|   
+|- test/                                   // test folder
+|- utility/install-oatpp-modules.sh        // utility script to install required oatpp-modules.
 ```
-```
-- src/
-   |- DemoApiClient.hpp     // ApiClient built for http://httpbin.org/ web service
-   |- DemoApiModels.hpp     // DTOs objects for DemoApiClient
-   |- SimpleExample.hpp     // Simple (Synchronous) API calls example
-   |- AsyncExample.hpp      // Async API calls example
-   |- App.cpp               // main is here
+---
 
-```
+### Build and Run
 
-## Build and Run
+#### Using CMake
 
-### Using CMake
+**Requires** 
 
-*Requires* Curl installed. You may refer to this sh script - how to install curl -
-[install-curl.sh](https://github.com/oatpp/oatpp-curl/blob/master/utility/install-deps/install-curl.sh).
+- Curl installed. You may refer to this sh script - how to install curl - 
+[install-curl.sh](https://github.com/oatpp/oatpp-curl/blob/master/utility/install-deps/install-curl.sh).  
 Or try something like ```$ apk add curl-dev```
+
+- `oatpp` and `oatpp-curl` modules installed. You may run `utility/install-oatpp-modules.sh` 
+script to install required oatpp modules.
 
 ```bash
 $ mkdir build && cd build
 $ cmake ..
-$ make run        ## Download, build, and install all dependencies. Run project
-
+$ make 
+$ ./example-api-client-exe      # - run application.
 ```
 
-### In Docker
+#### In Docker
 
 ```bash
 $ docker build -t example-api-client .
 $ docker run -t example-api-client
 ```
+---
 
-## ApiClient declaration overview
+### ApiClient declaration overview
 
-Use ```API_CALL``` for simple (synchronous) calls.
+Use ```API_CALL``` for simple (synchronous) calls.  
 Use ```API_CALL_ASYNC``` for non-blocking Async calls.
 
 ```cpp
 class DemoApiClient : public oatpp::web::client::ApiClient {
 #include OATPP_CODEGEN_BEGIN(ApiClient)
-
+  
   API_CLIENT_INIT(DemoApiClient)
-
+  
   ...
-
+  
   API_CALL("GET", "get", doGet)
   API_CALL("POST", "post", doPost, BODY_STRING(String, body))
-
+  
   ...
-
+  
   API_CALL_ASYNC("GET", "get", doGetAsync)
   API_CALL_ASYNC("POST", "post", doPostAsync, BODY_STRING(String, body))
 
   ...
-
+  
 #include OATPP_CODEGEN_END(ApiClient)
 };
 ```
@@ -124,11 +125,11 @@ public:
   SendCoroutine(const std::shared_ptr<DemoApiClient> client) : m_client(client) {}
 
   Action act() override {
-    return m_client->doPostAsync(this, &SendDtoCoroutine::onResponse, "<POST-DATA-HERE>");
+    return m_client->doPostAsync("<POST-DATA-HERE>").callbackTo(&SendDtoCoroutine::onResponse);
   }
 
   Action onResponse(const std::shared_ptr<Response>& response) {
-    return response->readBodyToStringAsync(this, &SendDtoCoroutine::onBody);
+    return response->readBodyToStringAsync().callbackTo(&SendDtoCoroutine::onBody);
   }
 
   Action onBody(const oatpp::String& body) {
@@ -147,21 +148,21 @@ Try to substitute different ```RequestExecutors``` by switching from Curl to oat
 ```cpp
 
 void run(){
-
+  
   /* Create ObjectMapper for serialization of DTOs  */
   auto objectMapper = oatpp::parser::json::mapping::ObjectMapper::createShared();
-
+  
   /* Create RequestExecutor which will execute ApiClient's requests */
   //auto requestExecutor = createOatppExecutor();  // <-- Uncomment this
   auto requestExecutor = createCurlExecutor();     // <-- Comment this
-
+  
   /* DemoApiClient uses DemoRequestExecutor and json::mapping::ObjectMapper */
   /* ObjectMapper passed here is used for serialization of outgoing DTOs */
   auto client = DemoApiClient::createShared(requestExecutor, objectMapper);
-
+  
   SimpleExample::runExample(client);
   AsyncExample::runExample(client);
-
+  
 }
 
 ```

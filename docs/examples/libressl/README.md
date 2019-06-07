@@ -14,61 +14,62 @@ Example project how-to use [oatpp-libressl](/docs/modules/oatpp-libressl/) modul
 - Using oatpp Async API.
 
 ## Overview
-This project is using [oatpp](/docs/modules/oatpp/) and [oatpp-libressl](/docs/modules/oatpp-libressl/) modules.
+
+This project is using [oatpp](https://github.com/oatpp/oatpp) and [oatpp-libressl](https://github.com/oatpp/oatpp-libressl) modules.
 
 ### Project layout
 
 ```
-
-|- CMakeLists.txt               // project loader script. load and build dependencies
-|- main/                        // main project directory
+|- CMakeLists.txt                        // projects CMakeLists.txt
+|- src/
 |    |
-|    |- CMakeLists.txt          // projects CMakeLists.txt
-|    |- src/                    // source folder
-|    |- test/                   // test folder
-|
-|- cert/                        // folder with test certificates
-
-```
-```
-- src/
-    |
-    |- controller/              // Folder containing Controller where all endpoints are declared
-    |- client/                   // HTTP client is here. Used in "proxy" endpoint /api/get
-    |- dto/                     // DTOs are declared here
-    |- AppComponent.hpp         // Service config
-    |- Logger.hpp               // Application Logger
-    |- App.cpp                  // main() is here
-
+|    |- controller/                      // Folder containing Controller where all endpoints are declared
+|    |- client/                          // HTTP client is here. Used in "proxy" endpoint /api/get
+|    |- dto/                             // DTOs are declared here
+|    |- AppComponent.hpp                 // Service config
+|    |- App.cpp                          // main() is here
+|    
+|- test/                                 // test folder
+|- utility/install-oatpp-modules.sh      // utility script to install required oatpp-modules.
+|- cert/                                 // folder with test certificates 
 ```
 
-## Build and Run
+---
 
-### Using CMake
-*Requires* LibreSSL installed. You may refer to this sh script - how to install libressl -
-[install-libressl.sh](https://github.com/oatpp/oatpp-libressl/blob/master/utility/install-deps/install-libressl.sh).
+### Build and Run
+
+#### Using CMake
+
+**Requires** 
+
+- LibreSSL installed. You may refer to this sh script - how to install libressl - 
+[install-libressl.sh](https://github.com/oatpp/oatpp-libressl/blob/master/utility/install-deps/install-libressl.sh).  
 Or try something like ```$ apk add libressl-dev```
+
+- `oatpp` and `oatpp-libressl` modules installed. You may run `utility/install-oatpp-modules.sh` 
+script to install required oatpp modules.
 
 ```bash
 $ mkdir build && cd build
 $ cmake ..
-$ make run        ## Download, build, and install all dependencies. Run project
-
+$ make 
+$ ././example-libressl-exe  # - run application.
 ```
 
-### In Docker
+#### In Docker
 
 ```bash
 $ docker build -t example-libressl .
 $ docker run -p 8443:8443 -t example-libressl
 ```
 
-## Configure AppComponent
+---
+
+### Configure AppComponent
 
 Configure server secure connection provider
 
 ```cpp
-
 /**
  *  Create ConnectionProvider component which listens on the port
  */
@@ -91,14 +92,17 @@ OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ClientConnectionProvider>
 }());
 ```
 
-## Endpoints
+### Endpoints
+
+---
 
 "Hello Async" root endpoint with json response
+
 ```cpp
 ENDPOINT_ASYNC("GET", "/", Root) {
 
   ENDPOINT_ASYNC_INIT(Root)
-
+  
   Action act() override {
     auto dto = HelloDto::createShared();
     dto->message = "Hello Async!";
@@ -124,11 +128,11 @@ ENDPOINT_ASYNC("GET", "/api/get", TestApiGet) {
   ENDPOINT_ASYNC_INIT(TestApiGet)
 
   Action act() override {
-    return controller->myApiClient->apiGetAsync(this, &TestApiGet::onResponse);
+    return controller->myApiClient->apiGetAsync().callbackTo(&TestApiGet::onResponse);
   }
 
   Action onResponse(const std::shared_ptr<IncomingResponse>& response){
-    return response->readBodyToStringAsync(this, &TestApiGet::returnResult);
+    return response->readBodyToStringAsync().callbackTo(&TestApiGet::returnResult);
   }
 
   Action returnResult(const oatpp::String& body) {
@@ -142,12 +146,12 @@ result:
 ```bash
 $ curl -X GET "https://localhost:8443/api/get" --insecure
 {
-  "args": {},
+  "args": {}, 
   "headers": {
-    "Connection": "close",
+    "Connection": "close", 
     "Host": "httpbin.org"
-  },
-  "origin": "176.37.47.230",
+  }, 
+  "origin": "176.37.47.230", 
   "url": "https://httpbin.org/get"
 }
 ```

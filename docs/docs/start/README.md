@@ -8,13 +8,13 @@ sidebarDepth: 0
 
 ## Recommended way to go
 
-1. Check out [examples](/docs/start/#examples) and starter-projects.
-   - [Simple API - Starter Project](/docs/start/project/)
-   - [Async API - Starter project](/docs/start/project-async-api/)
-
-2. Take a look at:
+1. Take a look at:
    - [Step-by-Step Guide](/docs/start/step-by-step/) - how to create oatpp project from scratch.
 
+2. Check out [examples](/docs/start/#examples) and starter-projects.
+   - [Simple API - Starter Project](/docs/start/project/)
+   - [Async API - Starter project](/docs/start/project-async-api/)
+   
 ## Examples
 
 - [CRUD API + Swagger-UI](/examples/crud/) - Example project how-to create basic CRUD endpoints

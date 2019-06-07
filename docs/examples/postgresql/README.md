@@ -18,52 +18,43 @@ This project is using `oatpp` and `oatpp-swagger` modules.
 ### Project layout
 
 ```
-
-|- CMakeLists.txt               // project loader script. load and build dependencies 
-|- main/                        // main project directory
+|- CMakeLists.txt                        // projects CMakeLists.txt
+|- src/
 |    |
-|    |- CMakeLists.txt          // project's CMakeLists.txt
-|    |- src/                    // source folder
-|    |- test/                   // test folder
-|    |- resources/
-|         |
-|         |- config.json        // configuration file with configuration profiles
-|
-|- Dockerfile                   // Dockerfile
-|- docker-compose.yaml          // Docker-compose with this service and postgresql
-
-```
-```
-- src/
-    |
-    |- controller/              // Folder containing Controller where all endpoints are declared
-    |- db/                      // Database class is here 
-    |- dto/                     // DTOs are declared here
-    |- ServiceComponent.hpp     // Service configuration (port, ObjectMapper, Database)
-    |- SwaggerComponent.hpp     // Configuration for swagger-ui
-    |- AppComponent.hpp         // Service configuration is loaded here
-    |- Logger.hpp               // Application Logger
-    |- App.cpp                  // main() is here
-    
+|    |- controller/                      // Folder containing Controller where all endpoints are declared
+|    |- db/                              // Database class is here 
+|    |- dto/                             // DTOs are declared here
+|    |- ServiceComponent.hpp             // Service configuration (port, ObjectMapper, Database)
+|    |- SwaggerComponent.hpp             // Configuration for swagger-ui
+|    |- AppComponent.hpp                 // Service configuration is loaded here
+|    |- App.cpp                          // main() is here
+|    
+|- test/                                 // test folder
+|- utility/install-oatpp-modules.sh      // utility script to install required oatpp-modules.
+|- resources/config.json                 // configuration file with configuration profiles
+|- Dockerfile                            // Dockerfile
+|- docker-compose.yaml                   // Docker-compose with this service and postgresql
 ```
 
 ## Build and Run
 
 ### Using CMake
 
-*Requires libpq installed*
+**Requires** 
 
-:::tip
-To install libpq:  
-- On Mac `$ brew install libpq`
-- On Alpine `$ apk add postgresql-dev`
-- On Ubuntu - goto [Install PostgreSQL Client From Sources](#install-postgresql-client-from-sources)
-:::
+- libpq installed. To install libpq:  
+   - On Mac `$ brew install libpq`
+   - On Alpine `$ apk add postgresql-dev`
+   - On Ubuntu - goto [Install PostgreSQL Client From Sources](#install-postgresql-client-from-sources)
+   
+- `oatpp` and `oatpp-swagger` modules installed. You may run `utility/install-oatpp-modules.sh` 
+script to install required oatpp modules.   
 
 ```
 $ mkdir build && cd build
 $ cmake ..
-$ make run        ## Download, build, and install all dependencies. Run project
+$ make 
+$ ./example-postgresql-exe  # - run application.
 ```
 
 *PostgreSQL is expected running as for `dev` config profile*
