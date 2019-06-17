@@ -76,7 +76,7 @@ and passes them to `ConnectionHandler`.
 ### Add Request Handler
 
 Application above does nothing but respond `404` to all client requests.  
-To add custom response we have to add [HttpRequestHandler](/api/latest/oatpp/web/server/HttpRequestHandler/) and route
+To add a custom response we have to add [HttpRequestHandler](/api/latest/oatpp/web/server/HttpRequestHandler/) and route
 requests to it via `Router`:
 
 ```cpp{6-19,26-27}
