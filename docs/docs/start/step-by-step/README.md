@@ -6,8 +6,8 @@ sidebarDepth: 2
 
 # Step By Step Guide <seo/>
 
-This is a step-by-step guide to the setting up and building oatpp project from scratch.  
-Finishing this guide you will have well-structured and extendable web-service with basic endpoints.
+This step-by-step guide will help you start developing using oatpp framework.
+After finishing it, you’ll have a well-structured and extendable web-service with basic endpoints.
 
 [[toc]]
 
@@ -64,19 +64,19 @@ int main() {
 Components used:
 
 - [HttpRouter](/api/latest/oatpp/web/server/HttpRouter/) - 
-Router of HTTP requests. It is used to map URLs to endpoint. 
-The App above has no endpoints declared so server will always respond with `404` not found.
-- [HttpConnectionHandler](/api/latest/oatpp/web/server/HttpConnectionHandler/) - This is the "simple" HTTP connection handler.
-It handles incoming connections in multithreaded maner, creating one thread per each connection.
+Router of HTTP requests. It maps URLs to endpoint handlers.
+Our app has no endpoints declared so far hence the server will always return `404 not found`.
+- [HttpConnectionHandler](/api/latest/oatpp/web/server/HttpConnectionHandler/) - This is a simple HTTP connection handler.
+It handles incoming connections in a multi threaded manner, creating one thread per each connection.
 - [SimpleTCPConnectionProvider](/api/latest/oatpp/network/server/SimpleTCPConnectionProvider/) - Provider of `TCP` connections.
-It binds on the specified port.
-- [Server](/api/latest/oatpp/network/server/Server/) - Server runs loop in which it takes connection from `ConnectionProvider` 
-and passes provided connection to `ConnectionHandler`.
+It binds to a specified port.
+- [Server](/api/latest/oatpp/network/server/Server/) - Server runs a loop which takes connections from `ConnectionProvider`
+and passes them to `ConnectionHandler`.
 
 ### Add Request Handler
 
 Application above does nothing but respond `404` to all client requests.  
-To add custom response we have to add [HttpRequestHandler](/api/latest/oatpp/web/server/HttpRequestHandler/) and route
+To add a custom response we have to add [HttpRequestHandler](/api/latest/oatpp/web/server/HttpRequestHandler/) and route
 requests to it via `Router`:
 
 ```cpp{6-19,26-27}
