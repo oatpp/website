@@ -201,7 +201,7 @@ Commands for server instance only:
 - Build server
 
 ```bash
-$ cd server/main/build/
+$ cd server/build/
 $ cmake ..
 $ make
 ```
@@ -209,7 +209,7 @@ $ make
 - Run server
 
 ```bash
-$ ./my-project-exe --tp 16 --tio 8 --pc 500
+$ ./wsb-server-exe --tp 16 --tio 8 --pc 500
 ```
 where:  
 `--tp` - number of data-processing threads.  
@@ -223,7 +223,7 @@ Commands for client instance only:
 - Build client
 
 ```bash
-$ cd client/main/build/
+$ cd client/build/
 $ cmake ..
 $ make
 ```
@@ -231,7 +231,7 @@ $ make
 - Run client
 
 ```bash
-$ ./my-project-exe --tp 16 --tio 8 -h <server-private-ip> --socks-max 5000000 --socks-port 10000 --si 1000 --sf 30 --pc 500
+$ ./wsb-client-exe --tp 16 --tio 8 -h <server-private-ip> --socks-max 5000000 --socks-port 10000 --si 1000 --sf 30 --pc 500
 ```
 where:  
 `--tp` - number of data-processing threads.  

@@ -113,7 +113,7 @@ Commands for server instance only:
 - Build server
 
 ```bash
-$ cd server/main/build/
+$ cd server/build/
 $ cmake ..
 $ make
 ```
@@ -121,7 +121,7 @@ $ make
 - Run server
 
 ```bash
-$ ./my-project-exe --tp 9 --tio 3
+$ ./wsb-server-exe --tp 9 --tio 3
 ```
 where:  
 `--tp` - number of data-processing threads.  
@@ -134,7 +134,7 @@ Commands for client instance only:
 - Build client
 
 ```bash
-$ cd client/main/build/
+$ cd client/build/
 $ cmake ..
 $ make
 ```
@@ -142,7 +142,7 @@ $ make
 - Run client
 
 ```bash
-$ ./my-project-exe --tp 9 --tio 3 -h <server-private-ip> --socks-max 2000000 --socks-port 20000 --si 1000 --sf 50
+$ ./wsb-client-exe --tp 9 --tio 3 -h <server-private-ip> --socks-max 2000000 --socks-port 20000 --si 1000 --sf 50
 ```
 where:  
 `--tp` - number of data-processing threads.  
