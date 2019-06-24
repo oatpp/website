@@ -4,7 +4,7 @@ description: Build status of oatpp repos.
 sidebarDepth: 0
 ---
 
-# Project build status <seo/>
+# Project Build Status <seo/>
 
 ## Modules
 
@@ -37,3 +37,10 @@ sidebarDepth: 0
 |[example-libressl](https://github.com/oatpp/example-libressl)|[![Build Status](https://dev.azure.com/lganzzzo/lganzzzo/_apis/build/status/oatpp.example-libressl?branchName=master)](https://dev.azure.com/lganzzzo/lganzzzo/_build/latest?definitionId=13&branchName=master)|
 |[example-hls-media-stream](https://github.com/oatpp/example-hls-media-stream)|[![Build Status](https://dev.azure.com/lganzzzo/lganzzzo/_apis/build/status/oatpp.example-hls-media-stream?branchName=master)](https://dev.azure.com/lganzzzo/lganzzzo/_build/latest?definitionId=12&branchName=master)|
 |[example-postgresql](https://github.com/oatpp/example-postgresql)|[![Build Status](https://dev.azure.com/lganzzzo/lganzzzo/_apis/build/status/oatpp.example-postgresql?branchName=master)](https://dev.azure.com/lganzzzo/lganzzzo/_build/latest?definitionId=17&branchName=master)|
+|[example-websocket](https://github.com/oatpp/example-websocket)|[![Build Status](https://dev.azure.com/lganzzzo/lganzzzo/_apis/build/status/oatpp.example-websocket?branchName=master)](https://dev.azure.com/lganzzzo/lganzzzo/_build/latest?definitionId=20&branchName=master)|
+
+## Benchmark Projects
+
+|Project|Status|
+|:------|------|
+|[benchmark-websocket](https://github.com/oatpp/benchmark-websocket)|[![Build Status](https://dev.azure.com/lganzzzo/lganzzzo/_apis/build/status/oatpp.benchmark-websocket?branchName=master)](https://dev.azure.com/lganzzzo/lganzzzo/_build/latest?definitionId=19&branchName=master)|

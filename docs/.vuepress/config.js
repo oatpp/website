@@ -53,9 +53,6 @@ module.exports = {
                 title: "Benchmark",
                 collapsable: true,
                 children: [
-                    ["/benchmark/info/", "Info"],
-                    ["/benchmark/aws/", "Amazon Web Services"],
-                    ["/benchmark/digital-ocean/", "Digital Ocean"],
                     ["/benchmark/websocket/5-million/", "5 Million WebSockets"],
                     ["/benchmark/websocket/2-million/", "2 Million WebSockets"]
                 ]
@@ -70,7 +67,8 @@ module.exports = {
                     ["/examples/api-client/", "HTTP Requests With ApiClient"],
                     ["/examples/libressl/", "TLS With Libressl"],
                     ["/examples/consul/", "Consul Integration"],
-                    ["/examples/postgresql/", "PostgreSQL Database"]
+                    ["/examples/postgresql/", "PostgreSQL Database"],
+                    ["/examples/websocket/", "WebSocket Examples"]
                 ]
             },{
                 title: "Start",

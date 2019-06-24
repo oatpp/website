@@ -12,7 +12,7 @@ sidebarDepth: 0
     <iframe src="https://ghbtns.com/github-btn.html?user=oatpp&repo=oatpp&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>
 </div>
 
-Latest version `0.19.4` - Alpha
+Latest version `0.19.6` - Alpha
 
 ## Maintainers
 
