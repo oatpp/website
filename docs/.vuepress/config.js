@@ -89,7 +89,8 @@ module.exports = {
                     ["/docs/oatpp-coroutines/", "Oatpp Coroutines"],
                     ["/docs/components/api-controller/", "Api Controller"],
                     ["/docs/components/api-client/", "Api Client"],
-                    ["/docs/components/dto/", "Data Transfer Object (DTO)"]
+                    ["/docs/components/dto/", "Data Transfer Object (DTO)"],
+                    ["/docs/features/upload-file/", "Upload File"]
                 ]
             },
             {
