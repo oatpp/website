@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Upload File | Oat++</title>
+    <meta name="description" content="How to upload files to server using oatpp web framework.">
+    <link rel="icon" href="/logo_x64.png"><link rel='canonical' href='https://oatpp.io/docs/features/upload-file/'/>
+    
+    <link rel="preload" href="/assets/css/0.styles.49526367.css" as="style"><link rel="preload" href="/assets/js/app.ba9964be.js" as="script"><link rel="preload" href="/assets/js/172.a330b7f2.js" as="script"><link rel="preload" href="/assets/js/5.6d8ed9c4.js" as="script">
+    <link rel="stylesheet" href="/assets/css/0.styles.49526367.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="https://raw.githubusercontent.com/lganzzzo/oatpp-website-res/master/logo_x400.png" alt="Oat++" class="logo"> <span class="site-name can-hide">Oat++</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/benchmark/websocket/5-million/" class="nav-link">Benchmark</a></div><div class="nav-item"><a href="/examples/crud/" class="nav-link">Examples</a></div><div class="nav-item"><a href="/docs/start/" class="nav-link">Docs</a></div><div class="nav-item"><a href="/about/" class="nav-link">About</a></div> <a href="https://github.com/oatpp/oatpp" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/benchmark/websocket/5-million/" class="nav-link">Benchmark</a></div><div class="nav-item"><a href="/examples/crud/" class="nav-link">Examples</a></div><div class="nav-item"><a href="/docs/start/" class="nav-link">Docs</a></div><div class="nav-item"><a href="/about/" class="nav-link">About</a></div> <a href="https://github.com/oatpp/oatpp" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first collapsable"><p class="sidebar-heading"><span>About</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Benchmark</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Examples</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Start</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading open"><span>Overview</span> <span class="arrow down"></span></p> <ul class="sidebar-group-items"><li><a href="/docs/simple-vs-async/" class="sidebar-link">Simple vs Async</a></li><li><a href="/docs/async/" class="sidebar-link">Async</a></li><li><a href="/docs/oatpp-coroutines/" class="sidebar-link">Oatpp Coroutines</a></li><li><a href="/docs/components/api-controller/" class="sidebar-link">Api Controller</a></li><li><a href="/docs/components/api-client/" class="sidebar-link">Api Client</a></li><li><a href="/docs/components/dto/" class="sidebar-link">Data Transfer Object (DTO)</a></li><li><a href="/docs/features/upload-file/" class="active sidebar-link">Upload File</a></li></ul></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Modules</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>API Reference</span> <span class="arrow right"></span></p> <!----></div></li></ul> </div> <div class="page"> <div class="content"><h1 id="upload-file"><a href="#upload-file" aria-hidden="true" class="header-anchor">#</a> Upload File <div data-v-4414e9e8></div></h1> <p></p><div class="table-of-contents"><ul><li><a href="#simple-api-multipart-upload">Simple API Multipart Upload</a><ul><li><a href="#store-part-in-memory">Store Part In Memory</a></li><li><a href="#stream-part-to-file">Stream Part To File</a></li><li><a href="#complete-example">Complete Example</a></li></ul></li><li><a href="#async-api-multipart-upload">Async API Multipart Upload</a><ul><li><a href="#async-store-part-in-memory">Async Store Part In Memory</a></li><li><a href="#async-stream-part-to-file">Async Stream Part To File</a></li><li><a href="#async-complete-example">Async Complete Example</a></li></ul></li></ul></div><p></p> <h2 id="simple-api-multipart-upload"><a href="#simple-api-multipart-upload" aria-hidden="true" class="header-anchor">#</a> Simple API Multipart Upload</h2> <h3 id="store-part-in-memory"><a href="#store-part-in-memory" aria-hidden="true" class="header-anchor">#</a> Store Part In Memory</h3> <div class="language-cpp extra-class"><pre class="language-cpp"><code>
+  <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&quot;oatpp/web/mime/multipart/InMemoryPartReader.hpp&quot;</span></span>
+  <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&quot;oatpp/web/mime/multipart/Reader.hpp&quot;</span></span>
+  
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+  
+  <span class="token keyword">namespace</span> multipart <span class="token operator">=</span> oatpp<span class="token operator">::</span>web<span class="token operator">::</span>mime<span class="token operator">::</span>multipart<span class="token punctuation">;</span>
+  
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+  <span class="token function">ENDPOINT</span><span class="token punctuation">(</span><span class="token string">&quot;POST&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;upload/multipart&quot;</span><span class="token punctuation">,</span> uploadMultipart<span class="token punctuation">,</span>
+           <span class="token function">REQUEST</span><span class="token punctuation">(</span>std<span class="token operator">::</span>shared_ptr<span class="token operator">&lt;</span>IncomingRequest<span class="token operator">&gt;</span><span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+
+    <span class="token comment">/* Prepare multipart container. */</span>
+    <span class="token keyword">auto</span> multipart <span class="token operator">=</span> std<span class="token operator">::</span>make_shared<span class="token operator">&lt;</span>multipart<span class="token operator">::</span>Multipart<span class="token operator">&gt;</span><span class="token punctuation">(</span>request<span class="token operator">-&gt;</span><span class="token function">getHeaders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Create multipart reader. */</span>
+    multipart<span class="token operator">::</span>Reader <span class="token function">multipartReader</span><span class="token punctuation">(</span>multipart<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Configure to read part with name &quot;part1&quot; into memory */</span>
+    multipartReader<span class="token punctuation">.</span><span class="token function">setPartReader</span><span class="token punctuation">(</span><span class="token string">&quot;part1&quot;</span><span class="token punctuation">,</span> multipart<span class="token operator">::</span><span class="token function">createInMemoryPartReader</span><span class="token punctuation">(</span><span class="token number">256</span> <span class="token comment">/* max-data-size */</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Read multipart body */</span>
+    request<span class="token operator">-&gt;</span><span class="token function">transferBody</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>multipartReader<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Print value of &quot;part1&quot; */</span>
+    <span class="token keyword">auto</span> part1 <span class="token operator">=</span> multipart<span class="token operator">-&gt;</span><span class="token function">getNamedPart</span><span class="token punctuation">(</span><span class="token string">&quot;part1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Assert part is not null */</span>
+    <span class="token function">OATPP_ASSERT_HTTP</span><span class="token punctuation">(</span>part1<span class="token punctuation">,</span> Status<span class="token operator">::</span>CODE_400<span class="token punctuation">,</span> <span class="token string">&quot;part1 is null&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Print part value */</span>
+    <span class="token function">OATPP_LOGD</span><span class="token punctuation">(</span><span class="token string">&quot;Multipart&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;part1='%s'&quot;</span><span class="token punctuation">,</span> part1<span class="token operator">-&gt;</span><span class="token function">getInMemoryData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-&gt;</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token function">createResponse</span><span class="token punctuation">(</span>Status<span class="token operator">::</span>CODE_200<span class="token punctuation">,</span> <span class="token string">&quot;OK&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token punctuation">}</span>
+
+</code></pre></div><h3 id="stream-part-to-file"><a href="#stream-part-to-file" aria-hidden="true" class="header-anchor">#</a> Stream Part To File</h3> <div class="language-cpp extra-class"><pre class="language-cpp"><code>
+  <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&quot;oatpp/web/mime/multipart/FileStreamProvider.hpp&quot;</span></span>
+  <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&quot;oatpp/web/mime/multipart/Reader.hpp&quot;</span></span>
+  
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+  
+  <span class="token keyword">namespace</span> multipart <span class="token operator">=</span> oatpp<span class="token operator">::</span>web<span class="token operator">::</span>mime<span class="token operator">::</span>multipart<span class="token punctuation">;</span>
+  
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+  <span class="token function">ENDPOINT</span><span class="token punctuation">(</span><span class="token string">&quot;POST&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;upload/multipart&quot;</span><span class="token punctuation">,</span> uploadMultipart<span class="token punctuation">,</span>
+           <span class="token function">REQUEST</span><span class="token punctuation">(</span>std<span class="token operator">::</span>shared_ptr<span class="token operator">&lt;</span>IncomingRequest<span class="token operator">&gt;</span><span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+
+    <span class="token comment">/* Prepare multipart container. */</span>
+    <span class="token keyword">auto</span> multipart <span class="token operator">=</span> std<span class="token operator">::</span>make_shared<span class="token operator">&lt;</span>multipart<span class="token operator">::</span>Multipart<span class="token operator">&gt;</span><span class="token punctuation">(</span>request<span class="token operator">-&gt;</span><span class="token function">getHeaders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Create multipart reader. */</span>
+    multipart<span class="token operator">::</span>Reader <span class="token function">multipartReader</span><span class="token punctuation">(</span>multipart<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Configure to stream part with name &quot;part1&quot; to file */</span>
+    multipartReader<span class="token punctuation">.</span><span class="token function">setPartReader</span><span class="token punctuation">(</span><span class="token string">&quot;part1&quot;</span><span class="token punctuation">,</span> multipart<span class="token operator">::</span><span class="token function">createFilePartReader</span><span class="token punctuation">(</span><span class="token string">&quot;/path/to/file&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Read multipart body */</span>
+    request<span class="token operator">-&gt;</span><span class="token function">transferBody</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>multipartReader<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Print value of &quot;part1&quot; */</span>
+    <span class="token keyword">auto</span> part1 <span class="token operator">=</span> multipart<span class="token operator">-&gt;</span><span class="token function">getNamedPart</span><span class="token punctuation">(</span><span class="token string">&quot;part1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Assert part is not null */</span>
+    <span class="token function">OATPP_ASSERT_HTTP</span><span class="token punctuation">(</span>part1<span class="token punctuation">,</span> Status<span class="token operator">::</span>CODE_400<span class="token punctuation">,</span> <span class="token string">&quot;part1 is null&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Get part data input stream */</span>
+    <span class="token keyword">auto</span> inputStream <span class="token operator">=</span> filePart<span class="token operator">-&gt;</span><span class="token function">getInputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// TODO - process file stream.</span>
+
+    <span class="token keyword">return</span> <span class="token function">createResponse</span><span class="token punctuation">(</span>Status<span class="token operator">::</span>CODE_200<span class="token punctuation">,</span> <span class="token string">&quot;OK&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token punctuation">}</span>
+
+</code></pre></div><h3 id="complete-example"><a href="#complete-example" aria-hidden="true" class="header-anchor">#</a> Complete Example</h3> <div class="language-cpp extra-class"><pre class="language-cpp"><code>
+  <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&quot;oatpp/web/mime/multipart/FileStreamProvider.hpp&quot;</span></span>
+  <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&quot;oatpp/web/mime/multipart/InMemoryPartReader.hpp&quot;</span></span>
+  <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&quot;oatpp/web/mime/multipart/Reader.hpp&quot;</span></span>
+  
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+  
+  <span class="token keyword">namespace</span> multipart <span class="token operator">=</span> oatpp<span class="token operator">::</span>web<span class="token operator">::</span>mime<span class="token operator">::</span>multipart<span class="token punctuation">;</span>
+  
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+  <span class="token function">ENDPOINT</span><span class="token punctuation">(</span><span class="token string">&quot;POST&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;test/multipart-all&quot;</span><span class="token punctuation">,</span> uploadMultipart<span class="token punctuation">,</span>
+           <span class="token function">REQUEST</span><span class="token punctuation">(</span>std<span class="token operator">::</span>shared_ptr<span class="token operator">&lt;</span>IncomingRequest<span class="token operator">&gt;</span><span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+
+    <span class="token comment">/* Prepare multipart container. */</span>
+    <span class="token keyword">auto</span> multipart <span class="token operator">=</span> std<span class="token operator">::</span>make_shared<span class="token operator">&lt;</span>multipart<span class="token operator">::</span>Multipart<span class="token operator">&gt;</span><span class="token punctuation">(</span>request<span class="token operator">-&gt;</span><span class="token function">getHeaders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Create multipart reader. */</span>
+    multipart<span class="token operator">::</span>Reader <span class="token function">multipartReader</span><span class="token punctuation">(</span>multipart<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Configure to read part with name &quot;part1&quot; into memory */</span>
+    multipartReader<span class="token punctuation">.</span><span class="token function">setPartReader</span><span class="token punctuation">(</span><span class="token string">&quot;part1&quot;</span><span class="token punctuation">,</span> multipart<span class="token operator">::</span><span class="token function">createInMemoryPartReader</span><span class="token punctuation">(</span><span class="token number">256</span> <span class="token comment">/* max-data-size */</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Configure to stream part with name &quot;part2&quot; to file */</span>
+    multipartReader<span class="token punctuation">.</span><span class="token function">setPartReader</span><span class="token punctuation">(</span><span class="token string">&quot;part2&quot;</span><span class="token punctuation">,</span> multipart<span class="token operator">::</span><span class="token function">createFilePartReader</span><span class="token punctuation">(</span><span class="token string">&quot;/path/to/file&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Configure to read all other parts into memory */</span>
+    multipartReader<span class="token punctuation">.</span><span class="token function">setDefaultPartReader</span><span class="token punctuation">(</span>multipart<span class="token operator">::</span><span class="token function">createInMemoryPartReader</span><span class="token punctuation">(</span><span class="token number">16</span> <span class="token operator">*</span> <span class="token number">1024</span> <span class="token comment">/* max-data-size */</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Read multipart body */</span>
+    request<span class="token operator">-&gt;</span><span class="token function">transferBody</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>multipartReader<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Print number of uploaded parts */</span>
+    <span class="token function">OATPP_LOGD</span><span class="token punctuation">(</span><span class="token string">&quot;Multipart&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;parts_count=%d&quot;</span><span class="token punctuation">,</span> multipart<span class="token operator">-&gt;</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Get part by name &quot;part1&quot; */</span>
+    <span class="token keyword">auto</span> part1 <span class="token operator">=</span> multipart<span class="token operator">-&gt;</span><span class="token function">getNamedPart</span><span class="token punctuation">(</span><span class="token string">&quot;part1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Assert part is not null */</span>
+    <span class="token function">OATPP_ASSERT_HTTP</span><span class="token punctuation">(</span>part1<span class="token punctuation">,</span> Status<span class="token operator">::</span>CODE_400<span class="token punctuation">,</span> <span class="token string">&quot;part1 is null&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Print in-memory value of &quot;part1&quot; */</span>
+    <span class="token function">OATPP_LOGD</span><span class="token punctuation">(</span><span class="token string">&quot;Multipart&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;part1='%s'&quot;</span><span class="token punctuation">,</span> part1<span class="token operator">-&gt;</span><span class="token function">getInMemoryData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-&gt;</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Get part by name &quot;part2&quot;*/</span>
+    <span class="token keyword">auto</span> filePart <span class="token operator">=</span> multipart<span class="token operator">-&gt;</span><span class="token function">getNamedPart</span><span class="token punctuation">(</span><span class="token string">&quot;part2&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Assert part is not null */</span>
+    <span class="token function">OATPP_ASSERT_HTTP</span><span class="token punctuation">(</span>filePart<span class="token punctuation">,</span> Status<span class="token operator">::</span>CODE_400<span class="token punctuation">,</span> <span class="token string">&quot;part2 is null&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Get part data input stream */</span>
+    <span class="token keyword">auto</span> inputStream <span class="token operator">=</span> filePart<span class="token operator">-&gt;</span><span class="token function">getInputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// TODO - process file stream.</span>
+
+    <span class="token keyword">return</span> <span class="token function">createResponse</span><span class="token punctuation">(</span>Status<span class="token operator">::</span>CODE_200<span class="token punctuation">,</span> <span class="token string">&quot;OK&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token punctuation">}</span>
+
+</code></pre></div><h2 id="async-api-multipart-upload"><a href="#async-api-multipart-upload" aria-hidden="true" class="header-anchor">#</a> Async API Multipart Upload</h2> <h3 id="async-store-part-in-memory"><a href="#async-store-part-in-memory" aria-hidden="true" class="header-anchor">#</a> Async Store Part In Memory</h3> <div class="language-cpp extra-class"><pre class="language-cpp"><code>  <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&quot;oatpp/web/mime/multipart/InMemoryPartReader.hpp&quot;</span></span>
+  <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&quot;oatpp/web/mime/multipart/Reader.hpp&quot;</span></span>
+  
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+  
+  <span class="token keyword">namespace</span> multipart <span class="token operator">=</span> oatpp<span class="token operator">::</span>web<span class="token operator">::</span>mime<span class="token operator">::</span>multipart<span class="token punctuation">;</span>
+  
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+  <span class="token function">ENDPOINT_ASYNC</span><span class="token punctuation">(</span><span class="token string">&quot;POST&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;test/multipart-all&quot;</span><span class="token punctuation">,</span> MultipartUpload<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token function">ENDPOINT_ASYNC_INIT</span><span class="token punctuation">(</span>MultipartUpload<span class="token punctuation">)</span>
+
+    <span class="token comment">/* Coroutine State */</span>
+    std<span class="token operator">::</span>shared_ptr<span class="token operator">&lt;</span>multipart<span class="token operator">::</span>Multipart<span class="token operator">&gt;</span> m_multipart<span class="token punctuation">;</span>
+
+    Action <span class="token function">act</span><span class="token punctuation">(</span><span class="token punctuation">)</span> override <span class="token punctuation">{</span>
+
+      m_multipart <span class="token operator">=</span> std<span class="token operator">::</span>make_shared<span class="token operator">&lt;</span>multipart<span class="token operator">::</span>Multipart<span class="token operator">&gt;</span><span class="token punctuation">(</span>request<span class="token operator">-&gt;</span><span class="token function">getHeaders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">auto</span> multipartReader <span class="token operator">=</span> std<span class="token operator">::</span>make_shared<span class="token operator">&lt;</span>multipart<span class="token operator">::</span>AsyncReader<span class="token operator">&gt;</span><span class="token punctuation">(</span>m_multipart<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">/* Configure to read part with name &quot;part1&quot; into memory */</span>
+      multipartReader<span class="token operator">-&gt;</span><span class="token function">setPartReader</span><span class="token punctuation">(</span><span class="token string">&quot;part1&quot;</span><span class="token punctuation">,</span> multipart<span class="token operator">::</span><span class="token function">createAsyncInMemoryPartReader</span><span class="token punctuation">(</span><span class="token number">256</span> <span class="token comment">/* max-data-size */</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">/* Read multipart body */</span>
+      <span class="token keyword">return</span> request<span class="token operator">-&gt;</span><span class="token function">transferBodyAsync</span><span class="token punctuation">(</span>multipartReader<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token function">yieldTo</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>MultipartUpload<span class="token operator">::</span>onUploaded<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+
+    Action <span class="token function">onUploaded</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+      <span class="token comment">/* Get multipart by name */</span>
+      <span class="token keyword">auto</span> part1 <span class="token operator">=</span> m_multipart<span class="token operator">-&gt;</span><span class="token function">getNamedPart</span><span class="token punctuation">(</span><span class="token string">&quot;part1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">/* Asser part not-null */</span>
+      <span class="token function">OATPP_ASSERT_HTTP</span><span class="token punctuation">(</span>part1<span class="token punctuation">,</span> Status<span class="token operator">::</span>CODE_400<span class="token punctuation">,</span> <span class="token string">&quot;part1 is null&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">/* Print value of &quot;part1&quot; */</span>
+      <span class="token function">OATPP_LOGD</span><span class="token punctuation">(</span><span class="token string">&quot;Multipart&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;part1='%s'&quot;</span><span class="token punctuation">,</span> part1<span class="token operator">-&gt;</span><span class="token function">getInMemoryData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-&gt;</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">return</span> <span class="token function">_return</span><span class="token punctuation">(</span>controller<span class="token operator">-&gt;</span><span class="token function">createResponse</span><span class="token punctuation">(</span>Status<span class="token operator">::</span>CODE_200<span class="token punctuation">,</span> <span class="token string">&quot;OK&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="async-stream-part-to-file"><a href="#async-stream-part-to-file" aria-hidden="true" class="header-anchor">#</a> Async Stream Part To File</h3> <div class="language-cpp extra-class"><pre class="language-cpp"><code>  <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&quot;oatpp/web/mime/multipart/FileStreamProvider.hpp&quot;</span></span>
+  <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&quot;oatpp/web/mime/multipart/Reader.hpp&quot;</span></span>
+  
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+  
+  <span class="token keyword">namespace</span> multipart <span class="token operator">=</span> oatpp<span class="token operator">::</span>web<span class="token operator">::</span>mime<span class="token operator">::</span>multipart<span class="token punctuation">;</span>
+  
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+  <span class="token function">ENDPOINT_ASYNC</span><span class="token punctuation">(</span><span class="token string">&quot;POST&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;test/multipart-all&quot;</span><span class="token punctuation">,</span> MultipartUpload<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token function">ENDPOINT_ASYNC_INIT</span><span class="token punctuation">(</span>MultipartUpload<span class="token punctuation">)</span>
+
+    <span class="token comment">/* Coroutine State */</span>
+    std<span class="token operator">::</span>shared_ptr<span class="token operator">&lt;</span>multipart<span class="token operator">::</span>Multipart<span class="token operator">&gt;</span> m_multipart<span class="token punctuation">;</span>
+
+    Action <span class="token function">act</span><span class="token punctuation">(</span><span class="token punctuation">)</span> override <span class="token punctuation">{</span>
+
+      m_multipart <span class="token operator">=</span> std<span class="token operator">::</span>make_shared<span class="token operator">&lt;</span>multipart<span class="token operator">::</span>Multipart<span class="token operator">&gt;</span><span class="token punctuation">(</span>request<span class="token operator">-&gt;</span><span class="token function">getHeaders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">auto</span> multipartReader <span class="token operator">=</span> std<span class="token operator">::</span>make_shared<span class="token operator">&lt;</span>multipart<span class="token operator">::</span>AsyncReader<span class="token operator">&gt;</span><span class="token punctuation">(</span>m_multipart<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">/* Configure to stream part with name &quot;part1&quot; to file */</span>
+      multipartReader<span class="token operator">-&gt;</span><span class="token function">setPartReader</span><span class="token punctuation">(</span><span class="token string">&quot;part1&quot;</span><span class="token punctuation">,</span> multipart<span class="token operator">::</span><span class="token function">createAsyncFilePartReader</span><span class="token punctuation">(</span><span class="token string">&quot;/path/to/file&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">/* Read multipart body */</span>
+      <span class="token keyword">return</span> request<span class="token operator">-&gt;</span><span class="token function">transferBodyAsync</span><span class="token punctuation">(</span>multipartReader<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token function">yieldTo</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>MultipartUpload<span class="token operator">::</span>onUploaded<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+
+    Action <span class="token function">onUploaded</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+      <span class="token comment">/* Get multipart by name */</span>
+      <span class="token keyword">auto</span> filePart <span class="token operator">=</span> m_multipart<span class="token operator">-&gt;</span><span class="token function">getNamedPart</span><span class="token punctuation">(</span><span class="token string">&quot;part1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">/* Asser part not-null */</span>
+      <span class="token function">OATPP_ASSERT_HTTP</span><span class="token punctuation">(</span>filePart<span class="token punctuation">,</span> Status<span class="token operator">::</span>CODE_400<span class="token punctuation">,</span> <span class="token string">&quot;part1 is null&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">/* Get part data input stream */</span>
+      <span class="token keyword">auto</span> inputStream <span class="token operator">=</span> filePart<span class="token operator">-&gt;</span><span class="token function">getInputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// TODO - process file stream.</span>
+
+      <span class="token keyword">return</span> <span class="token function">_return</span><span class="token punctuation">(</span>controller<span class="token operator">-&gt;</span><span class="token function">createResponse</span><span class="token punctuation">(</span>Status<span class="token operator">::</span>CODE_200<span class="token punctuation">,</span> <span class="token string">&quot;OK&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="async-complete-example"><a href="#async-complete-example" aria-hidden="true" class="header-anchor">#</a> Async Complete Example</h3> <div class="language-cpp extra-class"><pre class="language-cpp"><code>  <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&quot;oatpp/web/mime/multipart/FileStreamProvider.hpp&quot;</span></span>
+  <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&quot;oatpp/web/mime/multipart/InMemoryPartReader.hpp&quot;</span></span>
+  <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&quot;oatpp/web/mime/multipart/Reader.hpp&quot;</span></span>
+  
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+  
+  <span class="token keyword">namespace</span> multipart <span class="token operator">=</span> oatpp<span class="token operator">::</span>web<span class="token operator">::</span>mime<span class="token operator">::</span>multipart<span class="token punctuation">;</span>
+  
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+  <span class="token function">ENDPOINT_ASYNC</span><span class="token punctuation">(</span><span class="token string">&quot;POST&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;test/multipart-all&quot;</span><span class="token punctuation">,</span> MultipartUpload<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token function">ENDPOINT_ASYNC_INIT</span><span class="token punctuation">(</span>MultipartUpload<span class="token punctuation">)</span>
+
+    <span class="token comment">/* Coroutine State */</span>
+    std<span class="token operator">::</span>shared_ptr<span class="token operator">&lt;</span>multipart<span class="token operator">::</span>Multipart<span class="token operator">&gt;</span> m_multipart<span class="token punctuation">;</span>
+
+    Action <span class="token function">act</span><span class="token punctuation">(</span><span class="token punctuation">)</span> override <span class="token punctuation">{</span>
+
+      m_multipart <span class="token operator">=</span> std<span class="token operator">::</span>make_shared<span class="token operator">&lt;</span>multipart<span class="token operator">::</span>Multipart<span class="token operator">&gt;</span><span class="token punctuation">(</span>request<span class="token operator">-&gt;</span><span class="token function">getHeaders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">auto</span> multipartReader <span class="token operator">=</span> std<span class="token operator">::</span>make_shared<span class="token operator">&lt;</span>multipart<span class="token operator">::</span>AsyncReader<span class="token operator">&gt;</span><span class="token punctuation">(</span>m_multipart<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">/* Configure to read part with name &quot;part1&quot; into memory */</span>
+      multipartReader<span class="token operator">-&gt;</span><span class="token function">setPartReader</span><span class="token punctuation">(</span><span class="token string">&quot;part1&quot;</span><span class="token punctuation">,</span> multipart<span class="token operator">::</span><span class="token function">createAsyncInMemoryPartReader</span><span class="token punctuation">(</span><span class="token number">256</span> <span class="token comment">/* max-data-size */</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">/* Configure to stream part with name &quot;part2&quot; to file */</span>
+      multipartReader<span class="token operator">-&gt;</span><span class="token function">setPartReader</span><span class="token punctuation">(</span><span class="token string">&quot;part2&quot;</span><span class="token punctuation">,</span> multipart<span class="token operator">::</span><span class="token function">createAsyncFilePartReader</span><span class="token punctuation">(</span><span class="token string">&quot;/path/to/file&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">/* Configure to read all other parts into memory */</span>
+      multipartReader<span class="token operator">-&gt;</span><span class="token function">setDefaultPartReader</span><span class="token punctuation">(</span>multipart<span class="token operator">::</span><span class="token function">createAsyncInMemoryPartReader</span><span class="token punctuation">(</span><span class="token number">16</span> <span class="token operator">*</span> <span class="token number">1024</span> <span class="token comment">/* max-data-size */</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">/* Read multipart body */</span>
+      <span class="token keyword">return</span> request<span class="token operator">-&gt;</span><span class="token function">transferBodyAsync</span><span class="token punctuation">(</span>multipartReader<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token function">yieldTo</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>MultipartUpload<span class="token operator">::</span>onUploaded<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+
+    Action <span class="token function">onUploaded</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+      <span class="token comment">/* Print number of uploaded parts */</span>
+      <span class="token function">OATPP_LOGD</span><span class="token punctuation">(</span><span class="token string">&quot;Multipart&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;parts_count=%d&quot;</span><span class="token punctuation">,</span> m_multipart<span class="token operator">-&gt;</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">/* Get multipart by name */</span>
+      <span class="token keyword">auto</span> part1 <span class="token operator">=</span> m_multipart<span class="token operator">-&gt;</span><span class="token function">getNamedPart</span><span class="token punctuation">(</span><span class="token string">&quot;part1&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">/* Asser part not-null */</span>
+      <span class="token function">OATPP_ASSERT_HTTP</span><span class="token punctuation">(</span>part1<span class="token punctuation">,</span> Status<span class="token operator">::</span>CODE_400<span class="token punctuation">,</span> <span class="token string">&quot;part1 is null&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">/* Print value of &quot;part1&quot; */</span>
+      <span class="token function">OATPP_LOGD</span><span class="token punctuation">(</span><span class="token string">&quot;Multipart&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;part1='%s'&quot;</span><span class="token punctuation">,</span> part1<span class="token operator">-&gt;</span><span class="token function">getInMemoryData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-&gt;</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">/* Get multipart by name */</span>
+      <span class="token keyword">auto</span> filePart <span class="token operator">=</span> m_multipart<span class="token operator">-&gt;</span><span class="token function">getNamedPart</span><span class="token punctuation">(</span><span class="token string">&quot;part2&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">/* Asser part not-null */</span>
+      <span class="token function">OATPP_ASSERT_HTTP</span><span class="token punctuation">(</span>filePart<span class="token punctuation">,</span> Status<span class="token operator">::</span>CODE_400<span class="token punctuation">,</span> <span class="token string">&quot;part2 is null&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">/* Get part data input stream */</span>
+      <span class="token keyword">auto</span> inputStream <span class="token operator">=</span> filePart<span class="token operator">-&gt;</span><span class="token function">getInputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// TODO - process file stream.</span>
+
+      <span class="token keyword">return</span> <span class="token function">_return</span><span class="token punctuation">(</span>controller<span class="token operator">-&gt;</span><span class="token function">createResponse</span><span class="token punctuation">(</span>Status<span class="token operator">::</span>CODE_200<span class="token punctuation">,</span> <span class="token string">&quot;OK&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div></div> <div class="page-edit"><div class="edit-link"><a href="https://github.com/oatpp/website/edit/master/docs/docs/features/upload-file/README.md" target="_blank" rel="noopener noreferrer">Edit this page</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/docs/components/dto/" class="prev">
+          Data Transfer Object (DTO)
+        </a></span> <span class="next"><a href="/docs/modules/oatpp/">
+          oatpp
+        </a>
+        →
+      </span></p></div> </div> <!----></div></div>
+    <script src="/assets/js/app.ba9964be.js" defer></script><script src="/assets/js/172.a330b7f2.js" defer></script><script src="/assets/js/5.6d8ed9c4.js" defer></script>
+  </body>
+</html>
