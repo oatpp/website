@@ -15,9 +15,9 @@ sidebarDepth: 0
 
 **Known builds:**
 
-- **Android** - see story in the [issue](https://github.com/oatpp/oatpp/issues/9)
-- **iOS** - see story in the [issue](https://github.com/oatpp/oatpp/issues/9)
+- **Android** - see story on Github - <https://github.com/oatpp/oatpp/issues/9>
+- **iOS** - see story on Github - <https://github.com/oatpp/oatpp/issues/9>
 - **iOS 8 and earlier** - with special `-DOATPP_COMPAT_BUILD_NO_THREAD_LOCAL` flag. 
-See story in the [issue](https://github.com/oatpp/oatpp/issues/81)
-- **Nvidia Jetson Xavier** - see story in the [issue](https://github.com/oatpp/oatpp/issues/83)
+See story on Github - <https://github.com/oatpp/oatpp/issues/81>
+- **Nvidia Jetson Xavier** - see story on Github - <https://github.com/oatpp/oatpp/issues/83>
 - **Odroid XU4(Ubuntu)**
