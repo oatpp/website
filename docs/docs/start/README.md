@@ -15,6 +15,8 @@ sidebarDepth: 0
    - [Simple API - Starter Project](/docs/start/project/)
    - [Async API - Starter project](/docs/start/project-async-api/)
    
+3. :point_right:Join dev community and don't hesitate to ask questions - [chat on gitter](https://gitter.im/oatpp-framework/Lobby):point_left::v:
+   
 ## Examples
 
 - [CRUD API + Swagger-UI](/examples/crud/) - Example project how-to create basic CRUD endpoints

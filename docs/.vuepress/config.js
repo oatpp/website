@@ -46,6 +46,7 @@ module.exports = {
                 children: [
                     ["/about/", "About"],
                     ["/contributing/", "Contributing"],
+                    ["/supported-platforms/", "Supported Platforms"],
                     ["/status/build/", "Build Status"]
                 ]
             },

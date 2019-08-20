@@ -18,18 +18,18 @@ export default {
       }
   },
   beforeMount() {
-    axios.get('https://api.github.com/repos/oatpp/oatpp/stats/contributors')
+    axios.get('https://api.github.com/repos/oatpp/oatpp/contributors')
     .then(response => {
 
        var arr = response.data;
        var items = [];
        for (var item of response.data) {
-         if(item.author.type != "Bot") {
+         if(item.type != "Bot") {
            var author = {
-              total: item.total,
-              login: item.author.login,
-              url: item.author.html_url,
-              img: item.author.html_url + ".png"
+              total: item.contributions,
+              login: item.login,
+              url: item.html_url,
+              img: item.html_url + ".png"
            };
            items.push(author);
          }
