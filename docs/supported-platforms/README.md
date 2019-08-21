@@ -17,7 +17,9 @@ sidebarDepth: 0
 
 - **Android** - see story on Github - <https://github.com/oatpp/oatpp/issues/9>
 - **iOS** - see story on Github - <https://github.com/oatpp/oatpp/issues/9>
-- **iOS 8 and earlier** - with special `-DOATPP_COMPAT_BUILD_NO_THREAD_LOCAL` flag. 
+- **iOS 8 and earlier** - with special `-DOATPP_COMPAT_BUILD_NO_THREAD_LOCAL` flag.  
 See story on Github - <https://github.com/oatpp/oatpp/issues/81>
 - **Nvidia Jetson Xavier** - see story on Github - <https://github.com/oatpp/oatpp/issues/83>
 - **Odroid XU4(Ubuntu)**
+- **Onion Omega2S+ running OpenWRT (600mhz RAMIPS with 128mb RAM)** - with `-DOATPP_DISABLE_POOL_ALLOCATIONS` flag.  
+OpenWRT Makefile - <https://gist.github.com/bhorn/c6a5825734fb3eb51c23a33d0f8c83f4>.
