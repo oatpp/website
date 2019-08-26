@@ -14,6 +14,7 @@ All kind of contributions are very welcome.
 
 ### Join the community
 
+- Any questions, propositions, etc. **Email**. [contact@oatpp.io](mailto:contact@oatpp.io)
 - Join discussion on **Gitter**. [oat++ framework/Lobby](https://gitter.im/oatpp-framework/Lobby)
 - Follow us on **Twitter** for latest news. [@oatpp_io](https://twitter.com/oatpp_io)
 - Join community on **Reddit**. [r/oatpp](https://www.reddit.com/r/oatpp/)

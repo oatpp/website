@@ -12,7 +12,7 @@ sidebarDepth: 0
     <iframe src="https://ghbtns.com/github-btn.html?user=oatpp&repo=oatpp&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>
 </div>
 
-Latest version `0.19.7`
+Latest version `0.19.8`
 
 ## Maintainers
 
@@ -27,12 +27,6 @@ Creator, Owner.
 ## Contributors
 <br>
 <contributors/>
-
-## Contacts
-
-- Developers chat on **Gitter**. [oat++ framework/Lobby](https://gitter.im/oatpp-framework/Lobby)
-- Follow us on **Twitter** for latest news. [@oatpp_io](https://twitter.com/oatpp_io)
-- Join community on **Reddit**. [r/oatpp](https://www.reddit.com/r/oatpp/)
 
 ## Requirements
 

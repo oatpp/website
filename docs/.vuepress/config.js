@@ -35,9 +35,9 @@ module.exports = {
 
         nav: [
             {text: "Benchmark", link: "/benchmark/websocket/5-million/"},
-            {text: "Examples", link: "/examples/crud/"},
             {text: "Docs", link: "/docs/start/"},
-            {text: "About", link: "/about/"}
+            {text: "About", link: "/about/"},
+            {text: "Contacts", link: "/contact/"}
         ],
         sidebar: [
             {
@@ -45,6 +45,7 @@ module.exports = {
                 collapsable: true,
                 children: [
                     ["/about/", "About"],
+                    ["/contact/", "Contacts"],
                     ["/contributing/", "Contributing"],
                     ["/supported-platforms/", "Supported Platforms"],
                     ["/status/build/", "Build Status"]
