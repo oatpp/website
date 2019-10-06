@@ -1,29 +1,21 @@
 ---
-title: Getting started
-description: Getting started with oatpp
+title: Installation on Windows
+description: Installing oatpp on Windows
 sidebarDepth: 0
 ---
 
-# Getting Started <seo/>
+# Installation on Windows <seo/>
 
-## Recommended way to go
+## Requirements 
 
-1. Take a look at:
-   - [Step-by-Step Guide](/docs/start/step-by-step/) - how to create oatpp project from scratch.
+- Microsoft Visual Studio (Tested with Visual Studio 2017)
+- CMake (Latest version recommended)
 
-2. Check out [examples](/docs/start/#examples) and starter-projects:
-   - [Simple API - Starter Project](/docs/start/project/)
-   - [Async API - Starter project](/docs/start/project-async-api/)
-   
-3. :point_right:Join dev community and don't hesitate to ask questions - [chat on gitter](https://gitter.im/oatpp-framework/Lobby):point_left::v:
-   
-## Examples
+## Build
 
-- [CRUD API + Swagger-UI](/examples/crud/) - Example project how-to create basic CRUD endpoints
-- [HTTP Live Streaming Server](/examples/hls-media-stream/) - Example project how-to build HLS-streaming server using oat++ Async-API.
-- [Asynchronous API](/examples/async-api/) - Example project how-to use asynchronous API for handling large number of simultaneous connections
-- [HTTP Requests with ApiClient](/examples/api-client/) - Example project how-to use Retrofit-like client wrapper (ApiClient) and how it works
-- [TLS with Libressl](/examples/libressl/) - Example project how-to setup secure connection and serve via HTTPS.
-- [Consul Integration](/examples/consul/) - Example project how-to use `oatpp::consul::Client`. Integration with Consul.
-- [PostgreSQL](https://github.com/oatpp/example-postgresql) - Example of a production grade entity service storing information in PostgreSQL. With Swagger-UI and configuration profiles.
-- [WebSocket](https://github.com/oatpp/example-websocket) - Collection of oatpp WebSocket examples.
+```
+> git clone https://github.com/oatpp/oatpp.git
+> cd oatpp && mkdir build
+> cmake ..
+> cmake --build . --target INSTALL
+```
