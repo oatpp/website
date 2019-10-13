@@ -1,6 +1,6 @@
 ---
 title: Installation on Windows
-description: Installing oatpp on Windows
+description: Installing oatpp web framework on Windows
 sidebarDepth: 0
 ---
 
@@ -10,12 +10,16 @@ sidebarDepth: 0
 
 - Microsoft Visual Studio (Tested with Visual Studio 2017)
 - CMake (Latest version recommended)
+- Git
 
 ## Build
 
-```
-> git clone https://github.com/oatpp/oatpp.git
-> cd oatpp && mkdir build
-> cmake ..
-> cmake --build . --target INSTALL
+```bash
+$ git clone https://github.com/oatpp/oatpp.git
+$ cd oatpp\
+$ MD build
+$ cd build\
+
+$ cmake ..
+$ cmake --build . --target INSTALL
 ```

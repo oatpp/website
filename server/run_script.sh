@@ -2,5 +2,5 @@
 
 (while true; do 
 	echo "starting app..."
-	./run_site
+	./main/build/oatpp-website-exe
 done) &> log.txt

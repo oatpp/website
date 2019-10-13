@@ -1,9 +1,9 @@
 ---
 title: oat++
 home: true
-heroText: Oat++
 heroImage: https://raw.githubusercontent.com/lganzzzo/oatpp-website-res/master/logo.png
-tagline: Light, zero-dependency, performance oriented Web Framework. Organic. Pure C++.
+heroText: Oat++
+tagline: Modern Web Framework for C++. High performance, simple API, cross platform, zero dependency.
 actionText: Get Started
 actionLink: /docs/start/
 ---
@@ -22,5 +22,9 @@ actionLink: /docs/start/
   <div class="feature">
     <h2>Swagger-UI</h2>
     <p>Automatically document endpoints with Swagger-UI and OpenAPI 3.0.0. <a href="/docs/components/api-controller/#endpoint-annotation-and-api-documentation">Read more</a>.</p>
+  </div>
+  <div class="feature">
+    <h2>Zero Dependency</h2>
+    <p>Oat++ uses no third party libraries. <a href="/docs/installation/unix-linux/">Easy to install</a>.</p>
   </div>
 </div>

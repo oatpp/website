@@ -73,6 +73,13 @@ module.exports = {
                     ["/examples/websocket/", "WebSocket Examples"]
                 ]
             },{
+                title: "Installation",
+                collapsable: true,
+                children: [
+                    ["/docs/installation/unix-linux/", "Unix/Linux"],
+                    ["/docs/installation/windows/", "Windows"]
+                ]
+            },{
                 title: "Start",
                 collapsable: true,
                 children: [
