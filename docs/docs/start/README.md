@@ -6,16 +6,19 @@ sidebarDepth: 0
 
 # Getting Started <seo/>
 
+Welcome to :seedling:Oat++ 
+
 ## Recommended way to go
 
-1. Take a look at:
-   - [Step-by-Step Guide](/docs/start/step-by-step/) - how to create oatpp project from scratch.
+1. :point_right:Get [High Level Overview](/docs/start/high-level-overview/). :point_left:
+2. Take a look at:
+   - [Step By Step Guide](/docs/start/step-by-step/) - How to create oatpp project from scratch. More low level details. 
 
-2. Check out [examples](/docs/start/#examples) and starter-projects:
-   - [Simple API - Starter Project](/docs/start/project/)
-   - [Async API - Starter project](/docs/start/project-async-api/)
+3. Check out [examples](/docs/start/#examples) and starter-projects:
+   - [Starter Project - Simple API](/docs/start/project/)
+   - [Starter project - Async API](/docs/start/project-async-api/)
    
-3. :point_right:Join dev community and don't hesitate to ask questions - [chat on gitter](https://gitter.im/oatpp-framework/Lobby):point_left::v:
+4. :point_right:Join dev community and don't hesitate to ask questions - [chat on gitter](https://gitter.im/oatpp-framework/Lobby):point_left::v:
    
 ## Examples
 

@@ -13,7 +13,7 @@ After finishing it, you’ll have a well-structured and extendable web-service w
 
 ## Simplest Project
 
-### Components Overview
+### API - Low Level Components Overview
 
 To get basic components overview let's take a look at the simplest oatpp server application first.
 
@@ -61,7 +61,7 @@ int main() {
 
 ```
 
-Components used:
+Classes used:
 
 - [HttpRouter](/api/latest/oatpp/web/server/HttpRouter/) - 
 Router of HTTP requests. It maps URLs to endpoint handlers.
@@ -863,7 +863,7 @@ At the end of each test (and at the end of all tests) oatpp Environment is check
 Test will fail if objects leaks found (Counts only objects extending [Countable](/api/latest/oatpp/core/base/Countable/)).
 
 ::: warning
-Tests binary should NOT be built linking to oatpp built with `-DOATPP_DISABLE_ENV_OBJECT_COUNTERS` flag.
+Tests binary should NOT be built linking oatpp built with `-DOATPP_DISABLE_ENV_OBJECT_COUNTERS` flag.
 :::
 
 ## Complete Project Code

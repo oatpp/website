@@ -1,12 +1,17 @@
 ---
 title: ApiController
 description: Oatpp REST-API Controller. Endpoints for simple and async APIs.
-sidebarDepth: 1
+sidebarDepth: 2
 ---
 
 # Api Controller <seo/>
 
-`ApiController` is the class which extends [oatpp::web::server::api::ApiController](/api/latest/oatpp/web/server/api/ApiController/). It implements and manages endpoints. 
+`ApiController` is the class which extends [oatpp::web::server::api::ApiController](/api/latest/oatpp/web/server/api/ApiController/). It implements and manages endpoints.
+
+[[toc]]
+
+## Declaration
+ 
 Endpoints are created with the help of code-gen macros.  
 Endpoints code generation section must begin with 
 `#include OATPP_CODEGEN_BEGIN(ApiController)` and must be closed with 
@@ -17,37 +22,31 @@ Endpoints code generation section must begin with
 #include "oatpp/web/server/api/ApiController.hpp"
 #include "oatpp/core/macro/codegen.hpp"
 
+#include OATPP_CODEGEN_BEGIN(ApiController) ///< Begin ApiController codegen section
+
 class MyController : public oatpp::web::server::api::ApiController {
+public:
 
-  ...
-  ...
-
-  /**
-   *  Begin ENDPOINTs generation ('ApiController' codegen)
-   */
-  #include OATPP_CODEGEN_BEGIN(ApiController)
+  MyController(OATPP_COMPONENT(std::shared_ptr<ObjectMapper>, objectMapper) /* Inject object mapper */)
+    : oatpp::web::server::api::ApiController(objectMapper) 
+  {}
 
   ENDPOINT("GET", "/", root) {
     return createResponse(Status::CODE_200, "Hello World!");
   }
 
-  // TODO Insert Your endpoints here !!!
-
-  /**
-   *  Finish ENDPOINTs generation ('ApiController' codegen)
-   */
-  #include OATPP_CODEGEN_END(ApiController)
-
 };
 
+#include OATPP_CODEGEN_END(ApiController) ///< End ApiController codegen section
 ``` 
 
 ## Endpoint Types
 
 There are two types of generated endpoints:
 
-- `ENDPOINT` - generates method which returns `std::shared_ptr<OutgoingResponse>`
-- `ENDPOINT_ASYNC` - generates `oatpp::async::CoroutineWithResult` with `std::shared_ptr<OutgoingResponse>`return type. See oatpp coroutines for more info
+- `ENDPOINT` - Used with **Simple API** (multithreaded API). Generates method which returns `std::shared_ptr<OutgoingResponse>`
+- `ENDPOINT_ASYNC` - Used with **Async API**. Generates `oatpp::async::CoroutineWithResult` with `std::shared_ptr<OutgoingResponse>` return type. 
+See [oatpp coroutines](/docs/oatpp-coroutines/) for more information.
 
 ## ENDPOINT Specifics
 
@@ -57,39 +56,353 @@ There are two types of generated endpoints:
 ENDPOINT("<http-method>", "<path>", <method-name>, <optional param-mappings>)
 ```
 
+### Path Variables Mapping
 
-### Possible Param Mappings:
+```cpp
+ENDPOINT("GET", "/users/{userId}", getUserById,
+         PATH(Int64, userId)) 
+{
+  OATPP_LOGD("Test", "userId=%d", userId->getValue());
+  return createResponse(Status::CODE_200, "OK");
+}
+```
 
-- Map header of the incoming request to a method parameter:
+#### Path Variable Name Qualifier
 
-   ```cpp
-   HEADER(<data-type>, <param-name>, "<optional header-name>")
-   ```
+```cpp
+ENDPOINT("GET", "/users/{my-path-variable}", getUserById,
+         PATH(Int64, userId, "my-path-variable")) 
+{
+  OATPP_LOGD("Test", "userId=%d", userId->getValue());
+  return createResponse(Status::CODE_200, "OK");
+}
+```
 
-- Map path variable to a method parameter:
-   ```cpp
-   PATH(<data-type>, <param-name>, "<optional path-variable-name>")
-   ```
-   
-- Map query parameter to a method parameter:
-  ```cpp
-  QUERY(<data-type>, <param-name>, "<optional path-variable-name>")
-  ```
+### Headers Mapping
 
-- Map body of the incoming request to a method parameter. Body will be decoded as `oatpp::String`. Data type must be String:
-   ```cpp
-   BODY_STRING(String, <param-name>)
-   ```
+```cpp
+ENDPOINT("GET", "/users", getUsers,
+         HEADER(String, userAgent, "User-Agent")) 
+{
+  OATPP_LOGD("Test", "userAgent=%s", userAgent->getData());
+  return createResponse(Status::CODE_200, "OK");
+}
+```
 
-- Map body of the incoming request to a method parameter. Body will be decoded as `oatpp::String` and then deserialized using Controller's default `ObjectMapper`:
-   ```cpp
-   BODY_DTO(<DTO-class>::ObjectWrapper, <param-name>)
-   ```
+### Query Parameters Mapping
 
-- Map entire `IncomingRequest` object to the method parameter:
-   ```cpp
-   REQUEST(std::shared_ptr<IncomingRequest>, request)
-   ```
+```cpp
+ENDPOINT("GET", "/users", getUsers,
+         QUERY(Int32, age)) 
+{
+  OATPP_LOGD("Test", "age=%d", age->getValue());
+  return createResponse(Status::CODE_200, "OK");
+}
+```
+
+Note:
+- `age` - is **required** query parameter here. **Case sensitive.**
+- Accessible URL example - `/users?age=21`.
+
+#### Query Parameter Name Qualifier
+
+```cpp
+ENDPOINT("GET", "/users", getUsers,
+         QUERY(Int32, age, "user-age")) 
+{
+  OATPP_LOGD("Test", "age=%d", age->getValue());
+  return createResponse(Status::CODE_200, "OK");
+}
+```
+
+Note:
+- `user-age` - is **required** query parameter here. **Case sensitive.**
+- Accessible URL example - `/users?user-age=21`.
+
+#### Optional Query Parameters
+
+```cpp
+ENDPOINT("GET", "/users", getUsers,
+         QUERIES(const QueryParams&, queryParams)) 
+{
+  for(auto& param : queryParams.getAll()) {
+    OATPP_LOGD("param", "%s=%s", param.first.getData(), param.second.getData());
+  }
+  return createResponse(Status::CODE_200, "OK");
+}
+```
+
+See also [QueryParams](/api/latest/oatpp/web/protocol/http/Http/#queryparams) data type.
+
+### Request Body Mapping
+
+#### Body As String
+
+```cpp
+ENDPOINT("POST", "/users", postUsers,
+         BODY_STRING(String, userInfo))
+{
+  OATPP_LOGD("Test", "body='%s'", userInfo->getData());
+  return createResponse(Status::CODE_200, "OK");
+}
+```
+
+Note:
+- Empty body is allowed here.
+- Binary data is allowed here.
+
+#### Body As DTO
+
+```cpp
+ENDPOINT("POST", "/users", postUsers,
+         BODY_DTO(dto::UserDto::ObjectWrapper, userDto))
+{
+  OATPP_LOGD("Test", "user-name='%s'", userDto->name->getData());
+  return createResponse(Status::CODE_200, "OK");
+}
+```
+
+Note:
+- Body will be parsed using default ObjectMapper (the one passed to constructor of ApiController).
+
+
+### The Whole Request Object Mapping
+
+```cpp
+ENDPOINT("GET", "/test", testEndpoint,
+         REQUEST(const std::shared_ptr<IncomingRequest>&, request))
+{
+  OATPP_LOGD("test", "user-agent='%s'", request->getHeader("user-agent")->getData());
+  return createResponse(Status::CODE_200, "OK");
+}
+```
+
+### Authorization - Basic
+
+#### Default Basic Authorization
+
+```cpp
+using namespace oatpp::web::server::handler;
+
+class MyController : public oatpp::web::server::api::ApiController {
+public:
+
+  MyController(OATPP_COMPONENT(std::shared_ptr<ObjectMapper>, objectMapper) /* Inject object mapper */)
+    : oatpp::web::server::api::ApiController(objectMapper) 
+  {
+    setDefaultAuthorizationHandler(std::make_shared<BasicAuthorizationHandler>("my-realm"));
+  }
+
+  ENDPOINT("GET", "/my/secret/resource", getResource,
+           AUTHORIZATION(std::shared_ptr<DefaultBasicAuthorizationObject>, authObject)) 
+  {
+    OATPP_ASSERT_HTTP(authObject->userId == "Ivan" && authObject->password == "admin", Status::CODE_401, "Unauthorized");
+    return createResponse(Status::CODE_200, "OK");
+  }
+
+};
+```
+
+#### Custom Basic Authorization 
+
+##### Define Authorization Object
+
+```cpp
+class MyAuthorizationObject : public oatpp::web::server::handler::AuthorizationObject {
+public:
+
+  MyAuthorizationObject(const oatpp::String& pUserId)
+    : userId(pUserId)
+  {}
+
+  oatpp::String userId;
+
+};
+```
+
+##### Define Authorization Handler
+
+```cpp
+class MyBasicAuthorizationHandler : public oatpp::web::server::handler::BasicAuthorizationHandler {
+public:
+
+  MyBasicAuthorizationHandler()
+    : BasicAuthorizationHandler("my-realm")
+  {}
+
+  std::shared_ptr<AuthorizationObject> authorize(const oatpp::String& userId, const oatpp::String& password) override {
+    if(userId == "admin" && password == "admin") {
+      return std::make_shared<MyAuthorizationObject>("uid-admin");
+    }
+    return nullptr;
+  }
+
+};
+```
+
+##### Endpoint With Custom Basic Authorization
+
+```cpp
+class MyController : public oatpp::web::server::api::ApiController {
+public:
+
+  MyController(OATPP_COMPONENT(std::shared_ptr<ObjectMapper>, objectMapper) /* Inject object mapper */)
+    : oatpp::web::server::api::ApiController(objectMapper) 
+  {
+    setDefaultAuthorizationHandler(std::make_shared<MyBasicAuthorizationHandler>());
+  }
+
+  ENDPOINT("GET", "/my/secret/resource", getResource,
+           AUTHORIZATION(std::shared_ptr<MyAuthorizationObject>, authObject)) 
+  {
+    OATPP_ASSERT_HTTP(authObject->userId == "uid-admin", Status::CODE_401, "Unauthorized");
+    return createResponse(Status::CODE_200, "OK");
+  }
+
+};
+```
+
+### Authorization - Bearer
+
+#### Default Bearer Authorization
+
+```cpp
+using namespace oatpp::web::server::handler;
+
+class MyController : public oatpp::web::server::api::ApiController {
+public:
+
+  MyController(OATPP_COMPONENT(std::shared_ptr<ObjectMapper>, objectMapper) /* Inject object mapper */)
+    : oatpp::web::server::api::ApiController(objectMapper) 
+  {
+    setDefaultAuthorizationHandler(std::make_shared<BearerAuthorizationHandler>("my-realm"));
+  }
+
+  ENDPOINT("GET", "/my/secret/resource", getResource,
+           AUTHORIZATION(std::shared_ptr<DefaultBearerAuthorizationObject>, authObject)) 
+  {
+    OATPP_ASSERT_HTTP(authObject->token == "4e99e8c12de7e01535248d2bac85e732", Status::CODE_401, "Unauthorized");
+    return createResponse(Status::CODE_200, "OK");
+  }
+
+};
+```
+
+#### Custom Bearer Authorization 
+
+##### Define Authorization Object
+
+```cpp
+class MyAuthorizationObject : public oatpp::web::server::handler::AuthorizationObject {
+public:
+
+  MyAuthorizationObject(const oatpp::String& pUserId)
+    : userId(pUserId)
+  {}
+
+  oatpp::String userId;
+
+};
+```
+
+##### Define Authorization Handler
+
+```cpp
+class MyBearerAuthorizationHandler : public oatpp::web::server::handler::BearerAuthorizationHandler {
+public:
+
+  MyBearerAuthorizationHandler()
+    : BearerAuthorizationHandler("my-realm")
+  {}
+
+  std::shared_ptr<AuthorizationObject> authorize(const oatpp::String& token) override {
+    if(token == "4e99e8c12de7e01535248d2bac85e732") {
+      return std::make_shared<MyAuthorizationObject>("uid-admin");
+    }
+    return nullptr;
+  }
+
+};
+```
+
+##### Endpoint With Custom Bearer Authorization
+
+```cpp
+class MyController : public oatpp::web::server::api::ApiController {
+public:
+
+  MyController(OATPP_COMPONENT(std::shared_ptr<ObjectMapper>, objectMapper) /* Inject object mapper */)
+    : oatpp::web::server::api::ApiController(objectMapper) 
+  {
+    setDefaultAuthorizationHandler(std::make_shared<MyBearerAuthorizationHandler>());
+  }
+
+  ENDPOINT("GET", "/my/secret/resource", getResource,
+           AUTHORIZATION(std::shared_ptr<MyAuthorizationObject>, authObject)) 
+  {
+    OATPP_ASSERT_HTTP(authObject->userId == "uid-admin", Status::CODE_401, "Unauthorized");
+    return createResponse(Status::CODE_200, "OK");
+  }
+
+};
+```
+
+### Authorization - Custom
+
+In order to implement your custom Authorization - you have to extend [AuthorizationHandler](/api/latest/oatpp/web/server/handler/AuthorizationHandler/#authorizationhandler) class.
+
+### Authorization Handler Qualifier 
+
+You may specify the exact `AuthorizationHandler` to be used on endpoint.
+
+```cpp
+class MyController : public oatpp::web::server::api::ApiController {
+private:
+  std::shared_ptr<AuthorizationHandler> m_basicAuthHandler = std::make_shared<BasicAuthorizationHandler>("my-realm");
+  std::shared_ptr<AuthorizationHandler> m_bearerAuthHandler = std::make_shared<BearerAuthorizationHandler>("my-realm");
+public:
+
+  ...
+  
+  ENDPOINT("GET", "/basic/auth/resource", getBasicAuthResource,
+           AUTHORIZATION(std::shared_ptr<DefaultBasicAuthorizationObject>, authObject, m_basicAuthHandler)) 
+  {
+    OATPP_ASSERT_HTTP(authObject->userId == "Ivan" && authObject->password == "admin", Status::CODE_401, "Unauthorized");
+    return createResponse(Status::CODE_200, "OK");
+  }
+
+  ENDPOINT("GET", "/bearer/auth/resource", getBearerAuthResource,
+           AUTHORIZATION(std::shared_ptr<DefaultBearerAuthorizationObject>, authObject, m_bearerAuthHandler)) 
+  {
+    OATPP_ASSERT_HTTP(authObject->token == "4e99e8c12de7e01535248d2bac85e732", Status::CODE_401, "Unauthorized");
+    return createResponse(Status::CODE_200, "OK");
+  }
+
+};
+```
+
+
+### CORS
+
+#### Add CORS To Endpoint 
+
+```cpp
+ADD_CORS(getHello)
+ENDPOINT("GET", "hello", getHello) {
+  return createResponse(Status::CODE_200, "Hello!");
+}
+```
+
+#### ADD_CORS Macro Params
+
+```cpp
+ADD_CORS(<endpoint>, 
+  <allow_origin = "*">, 
+  <allow_methods = "GET, POST, OPTIONS">,
+  <allow_headers = "DNT, User-Agent, X-Requested-With, If-Modified-Since, Cache-Control, Content-Type, Range">,
+  <max_age = "1728000">
+);
+```
 
 ## ENDPOINT_ASYNC Specifics
 

@@ -1,10 +1,10 @@
 ---
 title: Module starter project 
-description: Starter project for oatpp module.
+description: Starter project for Oat++ (AKA oatpp) module.
 sidebarDepth: 0
 ---
 
-# Oatpp Module - Starter Project <seo/>
+# Starter Project - Oat++ Module <seo/>
 
 [Github Repository](https://github.com/oatpp/oatpp-starter-module)
 

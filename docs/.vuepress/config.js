@@ -84,21 +84,22 @@ module.exports = {
                 collapsable: true,
                 children: [
                     ["/docs/start/", "Getting Started"],
-                    ["/docs/start/step-by-step/", "Step-By-Step Guide"],
+                    ["/docs/start/high-level-overview/", "High Level Overview"],
+                    ["/docs/start/step-by-step/", "Step By Step Guide"],
                     ["/docs/start/project/", "Starter Project"],
-                    ["/docs/start/project-async-api/", "Async API - Starter Project"],
-                    ["/docs/start/module/", "Oatpp Module - Starter Project"],
+                    ["/docs/start/project-async-api/", "Starter Project - Async API"],
+                    ["/docs/start/module/", "Starter Project - Module"],
                 ]
             },            {
                 title: "Overview",
                 collapsable: true,
                 children: [
+                    ["/docs/components/dto/", "Data Transfer Object (DTO)"],
+                    ["/docs/components/api-controller/", "Api Controller"],
+                    ["/docs/components/api-client/", "Api Client"],
                     ["/docs/simple-vs-async/", "Simple vs Async"],
                     ["/docs/async/", "Async"],
                     ["/docs/oatpp-coroutines/", "Oatpp Coroutines"],
-                    ["/docs/components/api-controller/", "Api Controller"],
-                    ["/docs/components/api-client/", "Api Client"],
-                    ["/docs/components/dto/", "Data Transfer Object (DTO)"],
                     ["/docs/features/upload-file/", "Upload File"]
                 ]
             },
