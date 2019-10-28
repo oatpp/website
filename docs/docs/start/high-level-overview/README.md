@@ -6,7 +6,7 @@ sidebarDepth: 2
 
 # High Level Overview <seo/>
 
-This is a high level overview of Oat++ API.
+This is the high level overview of Oat++ API.
 
 [[toc]]
 
