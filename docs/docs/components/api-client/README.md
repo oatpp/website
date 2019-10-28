@@ -1,7 +1,7 @@
 ---
 title: ApiClient
 description: HTTP calls with oatpp Api Client.
-sidebarDepth: 0
+sidebarDepth: 2
 ---
 
 # Api Client <seo/>
@@ -22,18 +22,18 @@ ApiClient code generation section must begin with `#include OATPP_CODEGEN_BEGIN(
 #include "oatpp/web/client/ApiClient.hpp"
 #include "oatpp/core/macro/codegen.hpp"
 
-class MyApiClient : public oatpp::web::client::ApiClient {
 #include OATPP_CODEGEN_BEGIN(ApiClient) ///< Begin code-gen section
+
+class MyApiClient : public oatpp::web::client::ApiClient {
 
   API_CLIENT_INIT(MyApiClient) ///< generate constructor
 
   API_CALL("GET", "/resource", getResource) ///< Example of API call
   API_CALL_ASYNC("GET", "/resource", getResourceAsync) ///< Example of Async API call
 
-  /* Define your API calls here */
+};
 
 #include OATPP_CODEGEN_END(ApiClient) ///< End code-gen section
-};
 ```
 
 ## Parameters

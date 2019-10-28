@@ -6,7 +6,7 @@ sidebarDepth: 2
 
 # High Level Overview <seo/>
 
-This is a high level overview of Oat++ APIs.
+This is a high level overview of Oat++ API.
 
 [[toc]]
 
@@ -58,6 +58,8 @@ ENDPOINT("PUT", "/users/{userId}", putUser,
 
 ### Add CORS for Endpoint
 
+For more info see [Api Controller / CORS](/docs/components/api-controller/#cors)
+
 ```cpp
 ADD_CORS(putUser)
 ENDPOINT("PUT", "/users/{userId}", putUser,
@@ -70,6 +72,8 @@ ENDPOINT("PUT", "/users/{userId}", putUser,
 ```
 
 ### Endpoint with Authorization
+
+For more info see [Api Controller / Authorization](/docs/components/api-controller/#authorization-basic)
 
 ```cpp
 using namespace oatpp::web::server::handler;
@@ -135,35 +139,8 @@ ENDPOINT("PUT", "/users/{userId}", putUser,
 }
 ```
 
-## General Project Structure
+## Read Next
 
-For more info see [Well Structured Project](/docs/start/step-by-step/#well-structured-project)
+- [Well Structured Project](/docs/start/step-by-step/#well-structured-project)
 
-
-```
-|- CMakeLists.txt                        // projects CMakeLists.txt
-|- src/
-|    |
-|    |- dto/                             // Folder containing DTOs definitions
-|    |    |
-|    |    |- DTOs.hpp                    // DTOs are declared here
-|    |     
-|    |- controller/                      // Folder containing API Controllers where all endpoints are declared
-|    |    |
-|    |    |- MyController.hpp            // Sample - MyController is declared here
-|    |     
-|    |- AppComponent.hpp                 // Application Components configuration 
-|    |- App.cpp                          // main() is here
-|
-|- test/                                 // test folder
-     |
-     |- app/
-     |    |
-     |    |- MyApiTestClient.hpp         // Api client for test API calls is declared here
-     |    |- TestComponent.hpp           // Test application components configuration
-     |                                   
-     |- MyControllerTest.cpp             // MyController test logic is here
-     |- MyControllerTest.hpp             // MyController test header
-     |- Tests.cpp                        // tests main() is here
-```
 

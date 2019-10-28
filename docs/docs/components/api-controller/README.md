@@ -34,6 +34,8 @@ public:
   ENDPOINT("GET", "/", root) {
     return createResponse(Status::CODE_200, "Hello World!");
   }
+  
+  // TODO - more endpoints here
 
 };
 
