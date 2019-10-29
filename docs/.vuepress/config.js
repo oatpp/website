@@ -100,6 +100,7 @@ module.exports = {
                     ["/docs/simple-vs-async/", "Simple vs Async"],
                     ["/docs/async/", "Async"],
                     ["/docs/oatpp-coroutines/", "Oatpp Coroutines"],
+                    ["/docs/monolithization/", "Monolithization"],
                     ["/docs/features/upload-file/", "Upload File"]
                 ]
             },
