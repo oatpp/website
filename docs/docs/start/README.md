@@ -10,7 +10,7 @@ Welcome to :seedling:Oat++
 
 ## The recommended way to go
 
-1. :point_right:Get a [High Level Overview](/docs/start/high-level-overview/). :point_left:
+1. :point_right:Get the [High Level Overview](/docs/start/high-level-overview/). :point_left:
 2. Take a look at:
    - [Step By Step Guide](/docs/start/step-by-step/) - How to create an Oat++ project from scratch. Get more low-level details. 
 
