@@ -99,7 +99,7 @@ module.exports = {
                     ["/docs/components/api-client/", "Api Client"],
                     ["/docs/simple-vs-async/", "Simple vs Async"],
                     ["/docs/async/", "Async"],
-                    ["/docs/oatpp-coroutines/", "Oatpp Coroutines"],
+                    ["/docs/oatpp-coroutines/", "Coroutines"],
                     ["/docs/monolithization/", "Monolithization"],
                     ["/docs/features/upload-file/", "Upload File"]
                 ]

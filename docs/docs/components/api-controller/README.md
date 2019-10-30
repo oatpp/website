@@ -1,6 +1,6 @@
 ---
 title: ApiController
-description: Oatpp REST-API Controller. Endpoints for simple and async APIs.
+description: Detailed description of REST API controllers in Oat++ Web Framework.
 sidebarDepth: 2
 ---
 
@@ -16,7 +16,7 @@ Endpoints are created with the help of code-gen macros.
 Endpoints code generation section must begin with 
 `#include OATPP_CODEGEN_BEGIN(ApiController)` and must be closed with 
 `#include OATPP_CODEGEN_END(ApiController)`.  
-*Do not forget to close code generation section in order to avoid macro conflicts later in the code!*
+*Do not forget to close the code generation section in order to avoid macro conflicts later in the code!*
 
 ```cpp
 #include "oatpp/web/server/api/ApiController.hpp"
@@ -165,7 +165,7 @@ ENDPOINT("POST", "/users", postUsers,
 ```
 
 Note:
-- Body will be parsed using default ObjectMapper (the one passed to constructor of ApiController).
+- The body is parsed using default ObjectMapper (the one passed to the constructor of ApiController).
 
 
 ### The Whole Request Object Mapping
@@ -351,11 +351,11 @@ public:
 
 ### Authorization - Custom
 
-In order to implement your custom Authorization - you have to extend [AuthorizationHandler](/api/latest/oatpp/web/server/handler/AuthorizationHandler/#authorizationhandler) class.
+To implement your custom Authorization - you have to extend [AuthorizationHandler](/api/latest/oatpp/web/server/handler/AuthorizationHandler/#authorizationhandler) class.
 
 ### Authorization Handler Qualifier 
 
-You may specify the exact `AuthorizationHandler` to be used on endpoint.
+You may specify the exact `AuthorizationHandler` to be used on the endpoint.
 
 ```cpp
 class MyController : public oatpp::web::server::api::ApiController {
@@ -439,9 +439,9 @@ public:
 
 ## Endpoint Annotation And API Documentation
 
-`ApiController` code-gen also supports annotation of endpoints with additional info. This info is then can be used
-to generate API documentation for Swagger-UI or for other API-documentation tools.  
-*For how-to integrate Swagger-UI in oatpp application see [oatpp-swagger](/docs/modules/oatpp-swagger/)*.    
+`ApiController` code-gen also supports the annotation of endpoints with additional info. 
+This info is then can be used to generate API documentation for Swagger-UI or for other API-documentation tools.  
+*For how-to integrate Swagger-UI in oatpp application, see [oatpp-swagger](/docs/modules/oatpp-swagger/)*.    
 
 Additional endpoint info can be added in `ENDPOINT_INFO(<endpoint-name>)` block.
 
@@ -482,19 +482,19 @@ Additional endpoint info can be added in `ENDPOINT_INFO(<endpoint-name>)` block.
    };
    ```
    
-Note that endpoint-name in `ENDPOINT_INFO(<endpoint-name>)` block should be exactly the same as endpoint-name in corresponding
+Note that endpoint-name in `ENDPOINT_INFO(<endpoint-name>)` block should be the same as endpoint-name in corresponding
 `ENDPOINT` or `ENDPOINT_ASYNC` block.
 
 
 ### Endpoint Parameters Annotation
 
-There are three types of endpoint params which can be annotated:
+You can annotate three types of endpoint parameters:
 
 - Headers - can be accessed as `info->headers`
 - Path Parameters - can be accessed as `info->pathParams`
 - Query Parameters - can be accessed as `info->queryParams`
 
-Parameters have next attributes as for [Parameter Object in OpenAPI 3.0.0 specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#parameter-object):
+Parameters have next the attributes as for [Parameter Object in OpenAPI 3.0.0 specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#parameter-object):
 
 |Field Name|Type|Description|
 |---|---|---|

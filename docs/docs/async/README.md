@@ -6,8 +6,8 @@ sidebarDepth: 0
 
 # Async <seo/>
 
-Roughly, Async approach can be described as iterating through NON-BLOCKING operations in the loop. 
-Async operation should NOT block. If async operation blocks it makes the entire loop and the whole Async system wait for that operation to finish.
+Roughly, the Async approach can be described as iterating through NON-BLOCKING operations in the loop. 
+Async operation should NOT block. If async operation blocks, it makes the entire loop and the whole Async system wait for that operation to finish.
 While it brings in some challenges to code-writing, it also leads to better CPU utilization and some performance increase.
 
 If you go with Async approach you should always make sure:

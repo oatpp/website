@@ -1,23 +1,21 @@
 ---
 title: Coroutines
-description: Oatpp coroutines. 
+description: Coroutines and Async Executor in Oat++ (AKA oatpp) web framework. 
 sidebarDepth: 0
 ---
 
-# Oatpp Coroutines <seo/>
+# Coroutines in Oat++ <seo/>
 
-Oatpp coroutines are not regular coroutines.  
-Oatpp implements custom stateless coroutines with scheduling. 
-Scheduling gives additional space for optimization and better CPU utilization.
+Coroutines in Oat++ are not regular coroutines.  
+Oat++ implements custom stateless coroutines with scheduling. Scheduling gives additional space for optimization and better CPU utilization.
 
-Oatpp-coroutines are executed via [oatpp::async::Executor](/api/latest/oatpp/core/async/Executor/). On each iteration coroutine
-returns [oatpp::async::Action](/api/latest/oatpp/core/async/Coroutine/#action) which tells executor what to do next.
-Based on the `Action` coroutine may be rescheduled to corresponding worker.
+Coroutines in Oat++ are executed via [oatpp::async::Executor](/api/latest/oatpp/core/async/Executor/). On each iteration, coroutine returns an
+[oatpp::async::Action](/api/latest/oatpp/core/async/Coroutine/#action) which tells executor what to do next. 
+Based on the Action, the Oat++ async processor reschedules coroutines to the corresponding worker.
 
 ## Async Executor
 
-[oatpp::async::Executor](/api/latest/oatpp/core/async/Executor/) allocates three groups of workers with specified number threads
-for each group.
+The [oatpp::async::Executor](/api/latest/oatpp/core/async/Executor/) allocates three groups of workers with the specified number of threads for each group.
 
 ```cpp
 oatpp::async::Executor executor(
@@ -27,13 +25,13 @@ oatpp::async::Executor executor(
 );
 ```
 
-All coroutines initially are placed to "data-processing" worker-group and may be rescheduled to I/O or Timer workers - 
-depending on the [oatpp::async::Action](/api/latest/oatpp/core/async/Coroutine/#action) returned in Coroutine iteration.
+All coroutines initially are placed to the "data-processing" worker-group and may be rescheduled to the I/O or Timer workers - depending on the 
+[oatpp::async::Action](/api/latest/oatpp/core/async/Coroutine/#action) returned in Coroutine iteration.
 
 <img src="https://raw.githubusercontent.com/lganzzzo/oatpp-website-res/master/diagram/oatpp_async_executor.svg?sanitize=true" width="700px">
 
 ::: tip
-Despite the fact that coroutines may be rescheduled to different threads - coroutine is guaranteed to be destroyed on the same thread as it was created.
+Even though the Oat++ async processor may reschedule coroutine to a different thread - coroutine is guaranteed to be destroyed on the same thread as it was created.
 :::
 
 ### I/O Worker

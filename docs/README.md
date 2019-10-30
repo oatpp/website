@@ -3,7 +3,7 @@ title: oat++
 home: true
 heroImage: https://raw.githubusercontent.com/lganzzzo/oatpp-website-res/master/logo.png
 heroText: Oat++
-tagline: Modern Web Framework for C++. High performance, simple API, cross platform, zero dependency.
+tagline: Modern Web Framework for C++. High performance, simple API, cross-platform, zero-dependency.
 actionText: Get Started
 actionLink: /docs/start/
 ---
@@ -25,6 +25,6 @@ actionLink: /docs/start/
   </div>
   <div class="feature">
     <h2>Zero Dependency</h2>
-    <p>Oat++ uses no third party libraries. <a href="/docs/installation/unix-linux/">Easy to install</a>.</p>
+    <p>Oat++ uses no third-party libraries. <a href="/docs/installation/unix-linux/">Easy to install</a>.</p>
   </div>
 </div>
