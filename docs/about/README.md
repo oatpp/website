@@ -1,6 +1,6 @@
 ---
 title: About
-description: about oatpp web framework. 
+description: About Oat++ (AKA oatpp) web framework for C++. 
 sidebarDepth: 0
 ---
 
@@ -12,7 +12,18 @@ sidebarDepth: 0
     <iframe src="https://ghbtns.com/github-btn.html?user=oatpp&repo=oatpp&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>
 </div>
 
-Latest version `0.19.9`
+Latest version `0.19.10`
+
+Oat++ is the modern web framework for C++.
+It provides all the necessary features and components for production-grade development, including:
+
+- Advanced REST controllers with request mappings and Swagger-UI annotations. See [Api Controller](/docs/components/api-controller/).
+- Retrofit/Feign like client. See [Api Client](/docs/components/api-client/).
+- Object Mapping. See [Data Transfer Object (DTO)](/docs/components/dto/).
+- Dependency Injection
+- Swagger-UI. See [oatpp-swagger](/docs/modules/oatpp-swagger/) module.
+
+It is zero-dependency, easy-portable, and high-performance.
 
 ## Maintainers
 

@@ -2,7 +2,7 @@ const API_latest = require('../api/latest/index.json');
 
 module.exports = {
     title: "Oat++",
-    description: "Light, zero-dependency web-framework. Create bleedingly-fast web-services. C++",
+    description: "Modern Web Framework for C++. High performance, simple API, cross-platform, zero-dependency.",
 
     componentsDir: "docs/.vuepress/components",
 
@@ -68,6 +68,7 @@ module.exports = {
                     ["/examples/async-api/", "Asynchronous API"],
                     ["/examples/api-client/", "HTTP Requests With ApiClient"],
                     ["/examples/libressl/", "TLS With Libressl"],
+                    ["/examples/microservices/", "Microservices"],
                     ["/examples/consul/", "Consul Integration"],
                     ["/examples/postgresql/", "PostgreSQL Database"],
                     ["/examples/websocket/", "WebSocket Examples"]

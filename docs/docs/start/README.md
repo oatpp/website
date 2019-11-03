@@ -1,6 +1,6 @@
 ---
 title: Getting started
-description: Getting started with oatpp
+description: Getting started with Oat++ (AKA oatpp) web framework for C++.
 sidebarDepth: 0
 ---
 
@@ -27,6 +27,8 @@ Welcome to :seedling:Oat++
 - [Asynchronous API](/examples/async-api/) - Example project on how to use asynchronous API to handle a large number of simultaneous connections.
 - [HTTP Requests With ApiClient](/examples/api-client/) - Example project on how to use Retrofit-like client wrapper (ApiClient) and how it works.
 - [TLS With Libressl](/examples/libressl/) - Example project on how to set up a secure connection provider and serve via HTTPS.
+- [Microservices](https://github.com/oatpp/example-microservices) - Example project on how to build microservices with Oat++, 
+and example on how to consolidate those microservices using [monolithization](/docs/monolithization/) technique.
 - [Consul Integration](/examples/consul/) - Example project on how to use [oatpp::consul::Client](/api/latest/oatpp-consul/rest/Client/). Consul integration.
 - [PostgreSQL](https://github.com/oatpp/example-postgresql) - Example of a production-grade entity service storing information in PostgreSQL. With Swagger-UI and configuration profiles.
 - [WebSocket](https://github.com/oatpp/example-websocket) - Collection of Oat++ WebSocket examples.
