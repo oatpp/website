@@ -12,7 +12,7 @@ sidebarDepth: 0
     <iframe src="https://ghbtns.com/github-btn.html?user=oatpp&repo=oatpp&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>
 </div>
 
-Latest version `0.19.10`
+Latest version `0.19.11`
 
 Oat++ is the modern web framework for C++.
 It provides all the necessary features and components for production-grade development, including:

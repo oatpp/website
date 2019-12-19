@@ -367,14 +367,14 @@ public:
   ...
   
   ENDPOINT("GET", "/basic/auth/resource", getBasicAuthResource,
-           AUTHORIZATION(std::shared_ptr<DefaultBasicAuthorizationObject>, authObject, m_basicAuthHandler)) 
+           AUTHORIZATION(std::shared_ptr<DefaultBasicAuthorizationObject>, authObject, m_basicAuthHandler /* qualifier */)) 
   {
     OATPP_ASSERT_HTTP(authObject->userId == "Ivan" && authObject->password == "admin", Status::CODE_401, "Unauthorized");
     return createResponse(Status::CODE_200, "OK");
   }
 
   ENDPOINT("GET", "/bearer/auth/resource", getBearerAuthResource,
-           AUTHORIZATION(std::shared_ptr<DefaultBearerAuthorizationObject>, authObject, m_bearerAuthHandler)) 
+           AUTHORIZATION(std::shared_ptr<DefaultBearerAuthorizationObject>, authObject, m_bearerAuthHandler /* qualifier */)) 
   {
     OATPP_ASSERT_HTTP(authObject->token == "4e99e8c12de7e01535248d2bac85e732", Status::CODE_401, "Unauthorized");
     return createResponse(Status::CODE_200, "OK");

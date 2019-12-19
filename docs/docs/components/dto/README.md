@@ -213,40 +213,68 @@ OATPP_LOGD("json", "value='%s'", json->c_str()); ///< print json
 ```
 
 output:
+
 ```json
 {
-  "additionalNotes": {
-    "Education": "Master of Computer Science"
-  },
+  "First-Name": "Ivan",
   "Family-Name": "Ovsyanochka",
+  "age": 24,
   "familyMembers": {
     "siblings": [
       {
-        "additionalNotes": null,
+        "First-Name": "Yuriy",
         "Family-Name": "Ovsyanochka",
-        "familyMembers": null,
         "age": 30,
-        "First-Name": "Yuriy"
+        "familyMembers": null,
+        "additionalNotes": null
       },
       {
-        "additionalNotes": null,
+        "First-Name": "Kate",
         "Family-Name": "Ovsyanochka",
-        "familyMembers": null,
         "age": 20,
-        "First-Name": "Kate"
+        "familyMembers": null,
+        "additionalNotes": null
       }
     ]
   },
-  "age": 24,
-  "First-Name": "Ivan"
+  "additionalNotes": {
+    "Education": "Master of Computer Science"
+  }
 }
 ```
+*Please note: example of above output is beautified with [oatpp::parser::json::Beautifier](/api/latest/oatpp/parser/json/Beautifier/)*.  
 
 #### Deserizalize from String
 
 ```cpp
 auto cloneOfUser = jsonObjectMapper->readFromString<User>(json);
 ```
+
+### Use JSON Beautifier
+
+Without the use of beautifier the json serializer output will contain no spaces nor newline character:
+
+```json
+{"First-Name":"Ivan","Family-Name":"Ovsyanochka","age":24 ...
+```
+
+In order to beautify json output set `useBeautifier = true` in serializer config:
+
+```cpp
+/* create serializer config */
+auto config = oatpp::parser::json::mapping::Serializer::Config::createShared();
+
+/* enable beautifier */
+config->useBeautifier = true;
+
+/* create json object mapper with serializer config */
+auto jsonObjectMapper = oatpp::parser::json::mapping::ObjectMapper::createShared(config);
+```
+
+More about json object mapper configuration see:
+
+- [Serializer::Config](/api/latest/oatpp/parser/json/mapping/Serializer/#serializer-config)
+- [Deserializer::Config](/api/latest/oatpp/parser/json/mapping/Deserializer/#deserializer-config)
 
 ## Examples of code
 

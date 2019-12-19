@@ -21,5 +21,7 @@ sidebarDepth: 0
 See story on Github - <https://github.com/oatpp/oatpp/issues/81>
 - **Nvidia Jetson Xavier** - see story on Github - <https://github.com/oatpp/oatpp/issues/83>
 - **Odroid XU4(Ubuntu)**
-- **Onion Omega2S+ running OpenWRT (600mhz RAMIPS with 128mb RAM)** - with `-DOATPP_DISABLE_POOL_ALLOCATIONS` flag.  
-OpenWRT Makefile - <https://gist.github.com/bhorn/c6a5825734fb3eb51c23a33d0f8c83f4>.
+- **Onion Omega2S+ (600mhz RAMIPS with 128mb RAM) running OpenWRT** - with `-DOATPP_DISABLE_POOL_ALLOCATIONS` flag.  
+Makefile - <https://gist.github.com/bhorn/c6a5825734fb3eb51c23a33d0f8c83f4>.
+- **Allwinner V3s (cortexa7, 64mb RAM, 1.2GHz) running OpenWRT** - with `-DOATPP_DISABLE_POOL_ALLOCATIONS` flag.  
+Makefile - <https://gist.github.com/bhorn/c6a5825734fb3eb51c23a33d0f8c83f4>

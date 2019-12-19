@@ -15,7 +15,7 @@ Supports both "Simple" and "Async" oatpp APIs.
 
 ## Requires
 
-LibreSSL installed.
+- **LibreSSL** - minimum version 3.0.0
 
 ## Example
 
@@ -30,10 +30,10 @@ See: [Full example project TLS-Libressl](https://github.com/oatpp/example-libres
 
 ...
 
-const char* pemFile = "path/to/file.pem";
 const char* crtFile = "path/to/file.crt";
+const char* pemFile = "path/to/file.pem";
 
-auto config = oatpp::libressl::Config::createDefaultServerConfig(pemFile, crtFile);
+auto config = oatpp::libressl::Config::createDefaultServerConfigShared(crtFile, pemFile /* private key */);
 auto connectionProvider = oatpp::libressl::server::ConnectionProvider::createShared(config, 8443);
 
 ```

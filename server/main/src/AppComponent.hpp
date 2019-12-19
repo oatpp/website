@@ -47,13 +47,15 @@ public:
     /* non_blocking connections should be used with AsyncHttpConnectionHandler for AsyncIO */
 #if !defined(OATPP_TARGET_APP)
     v_word16 port = 8443;
+    const char* keyFile = "/usr/local/include/certificate/oatpp.io.key";
+    const char* certFile = "/usr/local/include/certificate/oatpp.io.crt";
 #else
     v_word16 port = 443;
+    const char* keyFile = "/certificate/oatpp.io.key";
+    const char* certFile = "/certificate/oatpp.io.crt";
 #endif
-    oatpp::String keyFile = "/certificate/oatpp.io.key";
-    oatpp::String certFile = "/certificate/oatpp.io.crt";
-    auto config = oatpp::libressl::Config::createDefaultServerConfig(keyFile, certFile);
-    return oatpp::libressl::server::ConnectionProvider::createShared(config, port, true);
+    auto config = oatpp::libressl::Config::createDefaultServerConfigShared(certFile, keyFile);
+    return oatpp::libressl::server::ConnectionProvider::createShared(config, port);
   }());
   
   /**

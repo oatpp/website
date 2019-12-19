@@ -10,36 +10,6 @@ This is the high level overview of Oat++ API.
 
 [[toc]]
 
-## Object Mapping
-
-For more info see [Data Transfer Object (DTO)](/docs/components/dto/).
-
-### Declare DTO
-
-```cpp
-class UserDto : public oatpp::data::mapping::type::Object {
-
-  DTO_INIT(UserDto, Object)
-
-  DTO_FIELD(Int64, id);
-  DTO_FIELD(String, name);
-
-};
-```
-
-### Serialize DTO Using ObjectMapper
-
-```cpp
-using namespace oatpp::parser::json::mapping;
-
-auto user = UserDto::createShared();
-user->id = 1;
-user->name = "Ivan";
-
-auto objectMapper = ObjectMapper::createShared();
-auto json = objectMapper->writeToString(user);
-```
-
 ## API Controller - Request Mapping
 
 For more info see [Api Controller](/docs/components/api-controller/)
@@ -112,6 +82,36 @@ public:
 ```cpp
 auto response = userService->getUserById(id);
 auto user = response->readBodyToDto<dto::UserDto>(objectMapper);
+```
+
+## Object Mapping
+
+For more info see [Data Transfer Object (DTO)](/docs/components/dto/).
+
+### Declare DTO
+
+```cpp
+class UserDto : public oatpp::data::mapping::type::Object {
+
+  DTO_INIT(UserDto, Object)
+
+  DTO_FIELD(Int64, id);
+  DTO_FIELD(String, name);
+
+};
+```
+
+### Serialize DTO Using ObjectMapper
+
+```cpp
+using namespace oatpp::parser::json::mapping;
+
+auto user = UserDto::createShared();
+user->id = 1;
+user->name = "Ivan";
+
+auto objectMapper = ObjectMapper::createShared();
+auto json = objectMapper->writeToString(user);
 ```
 
 ## Swagger-UI Annotations

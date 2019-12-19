@@ -8,5 +8,5 @@ sidebarDepth: 0
 
 [Github Repository](https://github.com/oatpp/oatpp-starter-module)
 
-Starter project of oatpp-module
+Starter project for oatpp-module
 

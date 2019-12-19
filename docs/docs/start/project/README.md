@@ -8,7 +8,7 @@ sidebarDepth: 0
 
 [Github Repository](https://github.com/oatpp/oatpp-starter)
 
-Starter project of oat++ (AKA oatpp) application. Based on oatpp Multithreaded (Simple) API.
+Starter project for Oat++ (AKA oatpp) application. Based on oatpp Multithreaded (Simple) API.
 
 ## Overview
 

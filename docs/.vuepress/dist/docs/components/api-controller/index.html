@@ -7,7 +7,7 @@
     <meta name="description" content="Detailed description of REST API controllers in Oat++ Web Framework.">
     <link rel="icon" href="/logo_x64.png"><link rel='canonical' href='https://oatpp.io/docs/components/api-controller/'/>
     
-    <link rel="preload" href="/assets/css/0.styles.49526367.css" as="style"><link rel="preload" href="/assets/js/app.e14fd77d.js" as="script"><link rel="preload" href="/assets/js/178.319bee5b.js" as="script"><link rel="preload" href="/assets/js/5.6d8ed9c4.js" as="script">
+    <link rel="preload" href="/assets/css/0.styles.49526367.css" as="style"><link rel="preload" href="/assets/js/app.a2535277.js" as="script"><link rel="preload" href="/assets/js/181.be44c3f9.js" as="script"><link rel="preload" href="/assets/js/5.6d8ed9c4.js" as="script">
     <link rel="stylesheet" href="/assets/css/0.styles.49526367.css">
   </head>
   <body>
@@ -228,14 +228,14 @@ See <a href="/docs/oatpp-coroutines/">oatpp coroutines</a> for more information.
   <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
   
   <span class="token function">ENDPOINT</span><span class="token punctuation">(</span><span class="token string">&quot;GET&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;/basic/auth/resource&quot;</span><span class="token punctuation">,</span> getBasicAuthResource<span class="token punctuation">,</span>
-           <span class="token function">AUTHORIZATION</span><span class="token punctuation">(</span>std<span class="token operator">::</span>shared_ptr<span class="token operator">&lt;</span>DefaultBasicAuthorizationObject<span class="token operator">&gt;</span><span class="token punctuation">,</span> authObject<span class="token punctuation">,</span> m_basicAuthHandler<span class="token punctuation">)</span><span class="token punctuation">)</span> 
+           <span class="token function">AUTHORIZATION</span><span class="token punctuation">(</span>std<span class="token operator">::</span>shared_ptr<span class="token operator">&lt;</span>DefaultBasicAuthorizationObject<span class="token operator">&gt;</span><span class="token punctuation">,</span> authObject<span class="token punctuation">,</span> m_basicAuthHandler <span class="token comment">/* qualifier */</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
   <span class="token punctuation">{</span>
     <span class="token function">OATPP_ASSERT_HTTP</span><span class="token punctuation">(</span>authObject<span class="token operator">-&gt;</span>userId <span class="token operator">==</span> <span class="token string">&quot;Ivan&quot;</span> <span class="token operator">&amp;&amp;</span> authObject<span class="token operator">-&gt;</span>password <span class="token operator">==</span> <span class="token string">&quot;admin&quot;</span><span class="token punctuation">,</span> Status<span class="token operator">::</span>CODE_401<span class="token punctuation">,</span> <span class="token string">&quot;Unauthorized&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token function">createResponse</span><span class="token punctuation">(</span>Status<span class="token operator">::</span>CODE_200<span class="token punctuation">,</span> <span class="token string">&quot;OK&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
 
   <span class="token function">ENDPOINT</span><span class="token punctuation">(</span><span class="token string">&quot;GET&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;/bearer/auth/resource&quot;</span><span class="token punctuation">,</span> getBearerAuthResource<span class="token punctuation">,</span>
-           <span class="token function">AUTHORIZATION</span><span class="token punctuation">(</span>std<span class="token operator">::</span>shared_ptr<span class="token operator">&lt;</span>DefaultBearerAuthorizationObject<span class="token operator">&gt;</span><span class="token punctuation">,</span> authObject<span class="token punctuation">,</span> m_bearerAuthHandler<span class="token punctuation">)</span><span class="token punctuation">)</span> 
+           <span class="token function">AUTHORIZATION</span><span class="token punctuation">(</span>std<span class="token operator">::</span>shared_ptr<span class="token operator">&lt;</span>DefaultBearerAuthorizationObject<span class="token operator">&gt;</span><span class="token punctuation">,</span> authObject<span class="token punctuation">,</span> m_bearerAuthHandler <span class="token comment">/* qualifier */</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
   <span class="token punctuation">{</span>
     <span class="token function">OATPP_ASSERT_HTTP</span><span class="token punctuation">(</span>authObject<span class="token operator">-&gt;</span>token <span class="token operator">==</span> <span class="token string">&quot;4e99e8c12de7e01535248d2bac85e732&quot;</span><span class="token punctuation">,</span> Status<span class="token operator">::</span>CODE_401<span class="token punctuation">,</span> <span class="token string">&quot;Unauthorized&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token function">createResponse</span><span class="token punctuation">(</span>Status<span class="token operator">::</span>CODE_200<span class="token punctuation">,</span> <span class="token string">&quot;OK&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -343,6 +343,6 @@ use <code>add&lt;type&gt;(param-name)</code> instead of <code>[]</code> operator
         </a>
         →
       </span></p></div> </div> <!----></div></div>
-    <script src="/assets/js/app.e14fd77d.js" defer></script><script src="/assets/js/178.319bee5b.js" defer></script><script src="/assets/js/5.6d8ed9c4.js" defer></script>
+    <script src="/assets/js/app.a2535277.js" defer></script><script src="/assets/js/181.be44c3f9.js" defer></script><script src="/assets/js/5.6d8ed9c4.js" defer></script>
   </body>
 </html>
