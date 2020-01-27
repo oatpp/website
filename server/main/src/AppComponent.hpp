@@ -36,9 +36,9 @@ public:
   OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, serverConnectionProvider)("http-provider", [] {
     /* non_blocking connections should be used with AsyncHttpConnectionHandler for AsyncIO */
 #if !defined(OATPP_TARGET_APP)
-    v_word16 port = 8000;
+    v_uint16 port = 8000;
 #else
-    v_word16 port = 80;
+    v_uint16 port = 80;
 #endif
     return oatpp::network::server::SimpleTCPConnectionProvider::createShared(port);
   }());
@@ -46,11 +46,11 @@ public:
   OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, serverSecureConnectionProvider)("https-provider", [] {
     /* non_blocking connections should be used with AsyncHttpConnectionHandler for AsyncIO */
 #if !defined(OATPP_TARGET_APP)
-    v_word16 port = 8443;
+    v_uint16 port = 8443;
     const char* keyFile = "/usr/local/include/certificate/oatpp.io.key";
     const char* certFile = "/usr/local/include/certificate/oatpp.io.crt";
 #else
-    v_word16 port = 443;
+    v_uint16 port = 443;
     const char* keyFile = "/certificate/oatpp.io.key";
     const char* certFile = "/certificate/oatpp.io.crt";
 #endif

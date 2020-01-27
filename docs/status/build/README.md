@@ -17,6 +17,7 @@ sidebarDepth: 0
 |[oatpp-mbedtls](https://github.com/oatpp/oatpp-mbedtls)|[![Build Status](https://dev.azure.com/lganzzzo/lganzzzo/_apis/build/status/oatpp.oatpp-mbedtls?branchName=master)](https://dev.azure.com/lganzzzo/lganzzzo/_build/latest?definitionId=18&branchName=master)|
 |[oatpp-swagger](https://github.com/oatpp/oatpp-swagger)|[![oatpp build status](https://dev.azure.com/lganzzzo/lganzzzo/_apis/build/status/oatpp.oatpp-swagger)](https://dev.azure.com/lganzzzo/lganzzzo/_build/latest?definitionId=2&branchName=master)|
 |[oatpp-websocket](https://github.com/oatpp/oatpp-websocket)|[![Build Status](https://dev.azure.com/lganzzzo/lganzzzo/_apis/build/status/oatpp.oatpp-websocket?branchName=master)](https://dev.azure.com/lganzzzo/lganzzzo/_build/latest?definitionId=6&branchName=master)|
+|[oatpp-zlib](https://github.com/oatpp/oatpp-zlib)|[![Build Status](https://dev.azure.com/lganzzzo/lganzzzo/_apis/build/status/oatpp.oatpp-zlib?branchName=master)](https://dev.azure.com/lganzzzo/lganzzzo/_build/latest?definitionId=23&branchName=master)|
 
 ## Starters
 

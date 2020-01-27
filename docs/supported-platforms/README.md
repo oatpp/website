@@ -13,6 +13,11 @@ sidebarDepth: 0
 - **MacOS**
 - **Windows** - special thanks to Benedikt-Alexander Mokroß - [bhorn](https://github.com/bhorn)
 
+**Special support**
+
+- **OpenWRT** - see [Oat++ OpenWRT feed](https://github.com/oatpp/oatpp-openwrt-feed)
+containing build-scripts, options and patches for applications, modules and libraries provided by Oat++.
+
 **Known builds:**
 
 - **Android** - see story on Github - <https://github.com/oatpp/oatpp/issues/9>

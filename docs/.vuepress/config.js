@@ -115,7 +115,8 @@ module.exports = {
                     ["/docs/modules/oatpp-libressl/", "oatpp-libressl"],
                     ["/docs/modules/oatpp-mbedtls/", "oatpp-mbedtls"],
                     ["/docs/modules/oatpp-swagger/", "oatpp-swagger"],
-                    ["/docs/modules/oatpp-websocket/", "oatpp-websocket"]
+                    ["/docs/modules/oatpp-websocket/", "oatpp-websocket"],
+                    ["/docs/modules/oatpp-zlib/", "oatpp-zlib"]
                 ]
             },
             {

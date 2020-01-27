@@ -14,7 +14,6 @@
 #include "StaticFileManager.hpp"
 
 #include "oatpp/web/server/api/ApiController.hpp"
-#include "oatpp/web/protocol/http/outgoing/ChunkedBufferBody.hpp"
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/macro/component.hpp"
 
@@ -163,11 +162,11 @@ public:
       if(path->getSize() > 0 && path->getData()[path->getSize() - 1] != '/' && !pathCaret.findChar('.')) {
         auto response = OutgoingResponse::createShared(oatpp::web::protocol::http::Status::CODE_301, nullptr);
         oatpp::data::stream::ChunkedBuffer stream;
-        stream.OutputStream::write(SitePath::CanonicalBase);
-        stream.write("/", 1);
-        stream.OutputStream::write(path);
-        stream.write("/", 1);
-        stream.OutputStream::write(queryLabel.toString());
+        stream.writeSimple(SitePath::CanonicalBase);
+        stream.writeSimple("/", 1);
+        stream.writeSimple(path);
+        stream.writeSimple("/", 1);
+        stream.writeSimple(queryLabel.toString());
         response->putHeader("Location", stream.toString());
         return _return(response);
       }
