@@ -3,12 +3,14 @@ title: oat++
 home: true
 heroImage: https://raw.githubusercontent.com/lganzzzo/oatpp-website-res/master/logo.png
 heroText: Oat++
-tagline: Modern Web Framework for C++.
+tagline: Modern Web Framework for C++
 actionText: Get Started
 actionLink: /docs/start/
 ---
 
 <seo/>
+
+version: `1.0.0`
 
 <div class="features">
   <div class="feature">
