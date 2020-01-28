@@ -55,12 +55,16 @@ DTO_FIELD(String, name) = "Ivan";
 #### Predefined primitive types
 
 - `String` - [ObjectWrapper](#objectwrapper) over oatpp::base::StrBuffer. Can be null.
-- `Int8` - [ObjectWrapper](#objectwrapper) over v_int8. Can be null.
-- `Int16` - [ObjectWrapper](#objectwrapper) over v_int16. Can be null.
-- `Int32` - [ObjectWrapper](#objectwrapper) over v_int32. Can be null.
-- `Int64` - [ObjectWrapper](#objectwrapper) over v_int64. Can be null.
-- `Float32` - [ObjectWrapper](#objectwrapper) over v_float32. Can be null.
-- `Float64` - [ObjectWrapper](#objectwrapper) over v_float64. Can be null.
+- `Int8` - Signed 8-bit integer. [ObjectWrapper](#objectwrapper) over v_int8. Can be null.
+- `UInt8` - Unsigned 8-bit integer. [ObjectWrapper](#objectwrapper) over v_uint8. Can be null.
+- `Int16` - Signed 16-bit integer. [ObjectWrapper](#objectwrapper) over v_int16. Can be null.
+- `UInt16` - Unsigned 16-bit integer. [ObjectWrapper](#objectwrapper) over v_uint16. Can be null.
+- `Int32` - Signed 32-bit integer. [ObjectWrapper](#objectwrapper) over v_int32. Can be null.
+- `UInt32` - Unsigned 32-bit integer. [ObjectWrapper](#objectwrapper) over v_uint32. Can be null.
+- `Int64` - Signed 64-bit integer. [ObjectWrapper](#objectwrapper) over v_int64. Can be null.
+- `UInt64` - Unsigned 64-bit integer. [ObjectWrapper](#objectwrapper) over v_uint64. Can be null.
+- `Float32` - 32-bit float. [ObjectWrapper](#objectwrapper) over v_float32. Can be null.
+- `Float64` - 64-bit float. [ObjectWrapper](#objectwrapper) over v_float64. Can be null.
 - `Boolean` - [ObjectWrapper](#objectwrapper) over bool. Can be null.
 
 #### Assign value

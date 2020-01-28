@@ -15,6 +15,8 @@
 
 #include "oatpp-libressl/server/ConnectionProvider.hpp"
 
+#include "oatpp-zlib/EncoderProvider.hpp"
+
 #include "oatpp/web/server/AsyncHttpConnectionHandler.hpp"
 #include "oatpp/web/server/HttpRouter.hpp"
 #include "oatpp/network/server/SimpleTCPConnectionProvider.hpp"
@@ -71,15 +73,27 @@ public:
   OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::server::ConnectionHandler>, serverConnectionHandler)("http-handler", [] {
     OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router); // get Router component
     /* Async ConnectionHandler for Async IO and Coroutine based endpoints */
-    auto handler = oatpp::web::server::AsyncHttpConnectionHandler::createShared(router);
+    auto handler = std::make_shared<oatpp::web::server::AsyncHttpConnectionHandler>(router);
     handler->addRequestInterceptor(std::make_shared<SitePath::RedirectToSecureInterceptor>());
     return handler;
   }());
   
   OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::server::ConnectionHandler>, serverSecureConnectionHandler)("http-provider", [] {
     OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router); // get Router component
+
+    /* Create HttpProcessor::Components */
+    auto components = std::make_shared<oatpp::web::server::HttpProcessor::Components>(router);
+
+    /* Add content encoders */
+    auto encoders = std::make_shared<oatpp::web::protocol::http::encoding::ProviderCollection>();
+
+    encoders->add(std::make_shared<oatpp::zlib::DeflateEncoderProvider>());
+    encoders->add(std::make_shared<oatpp::zlib::GzipEncoderProvider>());
+
+    components->contentEncodingProviders = encoders;
+
     /* Async ConnectionHandler for Async IO and Coroutine based endpoints */
-    auto handler = oatpp::web::server::AsyncHttpConnectionHandler::createShared(router);
+    auto handler = std::make_shared<oatpp::web::server::AsyncHttpConnectionHandler>(components);
     handler->addRequestInterceptor(std::make_shared<SitePath::RedirectInterceptor>());
     return handler;
   }());
