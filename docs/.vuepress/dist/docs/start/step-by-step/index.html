@@ -7,7 +7,7 @@
     <meta name="description" content="Step-by-step guide how to setup and build oatpp project from scratch.">
     <link rel="icon" href="/logo_x64.png"><link rel='canonical' href='https://oatpp.io/docs/start/step-by-step/'/>
     
-    <link rel="preload" href="/assets/css/0.styles.49526367.css" as="style"><link rel="preload" href="/assets/js/app.ff46a055.js" as="script"><link rel="preload" href="/assets/js/207.9e13712e.js" as="script"><link rel="preload" href="/assets/js/5.6d8ed9c4.js" as="script">
+    <link rel="preload" href="/assets/css/0.styles.49526367.css" as="style"><link rel="preload" href="/assets/js/app.5ca94777.js" as="script"><link rel="preload" href="/assets/js/207.88171ec2.js" as="script"><link rel="preload" href="/assets/js/5.6d8ed9c4.js" as="script">
     <link rel="stylesheet" href="/assets/css/0.styles.49526367.css">
   </head>
   <body>
@@ -178,7 +178,7 @@ will be serialized to JSON.</p> <div class="language-cpp extra-class"><div class
     <span class="token keyword">auto</span> message <span class="token operator">=</span> MessageDto<span class="token operator">::</span><span class="token function">createShared</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     message<span class="token operator">-&gt;</span>statusCode <span class="token operator">=</span> <span class="token number">1024</span><span class="token punctuation">;</span>
     message<span class="token operator">-&gt;</span>message <span class="token operator">=</span> <span class="token string">&quot;Hello DTO!&quot;</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> ResponseFactory<span class="token operator">::</span><span class="token function">createResponse</span><span class="token punctuation">(</span>Status<span class="token operator">::</span>CODE_200<span class="token punctuation">,</span> message<span class="token punctuation">,</span> m_objectMapper<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> ResponseFactory<span class="token operator">::</span><span class="token function">createResponse</span><span class="token punctuation">(</span>Status<span class="token operator">::</span>CODE_200<span class="token punctuation">,</span> message<span class="token punctuation">,</span> m_objectMapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
 
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
@@ -341,7 +341,7 @@ and inject it where needed using <a href="/api/latest/oatpp/core/macro/component
     <span class="token keyword">auto</span> message <span class="token operator">=</span> MessageDto<span class="token operator">::</span><span class="token function">createShared</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     message<span class="token operator">-&gt;</span>statusCode <span class="token operator">=</span> <span class="token number">1024</span><span class="token punctuation">;</span>
     message<span class="token operator">-&gt;</span>message <span class="token operator">=</span> <span class="token string">&quot;Hello DTO!&quot;</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> ResponseFactory<span class="token operator">::</span><span class="token function">createResponse</span><span class="token punctuation">(</span>Status<span class="token operator">::</span>CODE_200<span class="token punctuation">,</span> message<span class="token punctuation">,</span> m_objectMapper<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> ResponseFactory<span class="token operator">::</span><span class="token function">createResponse</span><span class="token punctuation">(</span>Status<span class="token operator">::</span>CODE_200<span class="token punctuation">,</span> message<span class="token punctuation">,</span> m_objectMapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
 
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
@@ -723,6 +723,6 @@ Test will fail if objects leaks found (Counts only objects extending <a href="/a
         </a>
         →
       </span></p></div> </div> <!----></div></div>
-    <script src="/assets/js/app.ff46a055.js" defer></script><script src="/assets/js/207.9e13712e.js" defer></script><script src="/assets/js/5.6d8ed9c4.js" defer></script>
+    <script src="/assets/js/app.5ca94777.js" defer></script><script src="/assets/js/207.88171ec2.js" defer></script><script src="/assets/js/5.6d8ed9c4.js" defer></script>
   </body>
 </html>
