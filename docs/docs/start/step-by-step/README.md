@@ -208,7 +208,7 @@ public:
     auto message = MessageDto::createShared();
     message->statusCode = 1024;
     message->message = "Hello DTO!";
-    return ResponseFactory::createResponse(Status::CODE_200, message, m_objectMapper.get());
+    return ResponseFactory::createResponse(Status::CODE_200, message, m_objectMapper);
   }
 
 };
@@ -407,7 +407,7 @@ public:
     auto message = MessageDto::createShared();
     message->statusCode = 1024;
     message->message = "Hello DTO!";
-    return ResponseFactory::createResponse(Status::CODE_200, message, m_objectMapper.get());
+    return ResponseFactory::createResponse(Status::CODE_200, message, m_objectMapper);
   }
 
 };
