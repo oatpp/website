@@ -10,7 +10,7 @@ actionLink: /docs/start/
 
 <seo/>
 
-version: `1.0.0`
+version: `1.1.0`
 
 <div class="features">
   <div class="feature">

@@ -173,7 +173,7 @@ will be serialized to JSON.
 /**
  * Message Data-Transfer-Object
  */
-class MessageDto : public oatpp::data::mapping::type::Object {
+class MessageDto : public oatpp::Object {
 
   DTO_INIT(MessageDto, Object /* Extends */)
 
@@ -379,7 +379,7 @@ Now all major components are initialized in one place which makes it easy to con
 /**
  * Message Data-Transfer-Object
  */
-class MessageDto : public oatpp::data::mapping::type::Object {
+class MessageDto : public oatpp::Object {
 
   DTO_INIT(MessageDto, Object /* Extends */)
 
@@ -473,7 +473,7 @@ Move `MessageDto` definition to `DTOs.hpp`:
 /**
  * Message Data-Transfer-Object
  */
-class MessageDto : public oatpp::data::mapping::type::Object {
+class MessageDto : public oatpp::Object {
 
   DTO_INIT(MessageDto, Object /* Extends */)
 

@@ -24,7 +24,7 @@ DTO objects are generated withing DTO-code-gen section. DTO code generation sect
 
 #include OATPP_CODEGEN_BEGIN(DTO) ///< Begin DTO codegen section
 
-class User : public oatpp::data::mapping::type::Object {
+class User : public oatpp::Object {
 
   DTO_INIT(User, Object /* extends */)
 
@@ -100,13 +100,13 @@ bool bp = b->getValue();
 List of primitives:
 
 ```cpp
-DTO_FIELD(List<Int32>::ObjectWrapper, colors);
+DTO_FIELD(List<Int32>, colors);
 ```
 
 List of Objects:
 
 ```cpp
-DTO_FIELD(List<MyObject::ObjectWrapper>::ObjectWrapper, colors);
+DTO_FIELD(List<MyObject::ObjectWrapper>, colors);
 ```
 
 #### Declare Field As Map
@@ -115,13 +115,13 @@ DTO_FIELD(List<MyObject::ObjectWrapper>::ObjectWrapper, colors);
 Map `String --> Int32`:
 
 ```cpp
-DTO_FIELD(Fields<Int32>::ObjectWrapper, colors);
+DTO_FIELD(Fields<Int32>, colors);
 ```
 
 Map `String --> Object`:
 
 ```cpp
-DTO_FIELD(Fields<MyObject::ObjectWrapper>::ObjectWrapper, colors);
+DTO_FIELD(Fields<MyObject::ObjectWrapper>, colors);
 ```
 
 ### Custom Mapping-Enabled Types
@@ -151,15 +151,15 @@ See [ObjectWrapper](/api/latest/oatpp/core/data/mapping/type/Type/#objectwrapper
 
 #include OATPP_CODEGEN_BEGIN(DTO) ///< Begin DTO codegen section
 
-class User : public oatpp::data::mapping::type::Object {
+class User : public oatpp::Object {
 
   DTO_INIT(User, Object /* extends */)
 
   DTO_FIELD(String, name, "First-Name");
   DTO_FIELD(String, surname, "Family-Name");
   DTO_FIELD(Int32, age);
-  DTO_FIELD(Fields<List<User::ObjectWrapper>::ObjectWrapper>::ObjectWrapper, familyMembers); ///< Map<String, List<User>>
-  DTO_FIELD(Fields<String>::ObjectWrapper, additionalNotes); ///< Map<String, String>
+  DTO_FIELD(Fields<List<User::ObjectWrapper>>, familyMembers); ///< Map<String, List<User>>
+  DTO_FIELD(Fields<String>, additionalNotes); ///< Map<String, String>
 
 };
 

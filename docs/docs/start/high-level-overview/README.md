@@ -91,7 +91,7 @@ For more info see [Data Transfer Object (DTO)](/docs/components/dto/).
 ### Declare DTO
 
 ```cpp
-class UserDto : public oatpp::data::mapping::type::Object {
+class UserDto : public oatpp::Object {
 
   DTO_INIT(UserDto, Object)
 

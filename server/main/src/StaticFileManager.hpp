@@ -7,9 +7,7 @@
 
 #include "oatpp/core/data/share/MemoryLabel.hpp"
 #include "oatpp/core/concurrency/SpinLock.hpp"
-
-#include <unordered_map>
-#include <list>
+#include "oatpp/core/Types.hpp"
 
 class StaticFileManager {
 private:

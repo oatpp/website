@@ -112,7 +112,7 @@ ENDPOINT("GET", "demo/api/users/{userId}", getUserById,
 ```cpp
 ENDPOINT_INFO(getUsers) {
   info->summary = "get all stored users";
-  info->addResponse<List<UserDto::ObjectWrapper>::ObjectWrapper>(Status::CODE_200, "application/json");
+  info->addResponse<List<UserDto::ObjectWrapper>>(Status::CODE_200, "application/json");
 }
 ENDPOINT("GET", "demo/api/users", getUsers) {
   return createDtoResponse(Status::CODE_200, m_database->getUsers());
