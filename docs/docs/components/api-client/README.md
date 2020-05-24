@@ -121,7 +121,7 @@ API_CALL("POST", "/users", createUser, BODY_STRING(String, userInfo))
 *DTO will be serialized using ObjectMapper given to the ApiClient constructor*
 
 ```cpp
-API_CALL("POST", "/users", createUser, BODY_DTO(UserDto::ObjectWrapper, userInfo))
+API_CALL("POST", "/users", createUser, BODY_DTO(Object<UserDto>, userInfo))
 ```
 
 ## Create Api Client

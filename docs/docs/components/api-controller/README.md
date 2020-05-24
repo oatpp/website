@@ -125,7 +125,7 @@ Note:
 
 ```cpp
 ENDPOINT("GET", "/users", getUsers,
-         QUERIES(const QueryParams&, queryParams)) 
+         QUERIES(QueryParams, queryParams)) 
 {
   for(auto& param : queryParams.getAll()) {
     OATPP_LOGD("param", "%s=%s", param.first.getData(), param.second.getData());
@@ -157,7 +157,7 @@ Note:
 
 ```cpp
 ENDPOINT("POST", "/users", postUsers,
-         BODY_DTO(dto::UserDto::ObjectWrapper, userDto))
+         BODY_DTO(Object<UserDto>, userDto))
 {
   OATPP_LOGD("Test", "user-name='%s'", userDto->name->getData());
   return createResponse(Status::CODE_200, "OK");
@@ -451,11 +451,11 @@ Additional endpoint info can be added in `ENDPOINT_INFO(<endpoint-name>)` block.
    ```cpp
    ENDPOINT_INFO(createUser) {
      info->summary = "Create new User";
-     info->addConsumes<UserDto::ObjectWrapper>("application/json");
-     info->addResponse<UserDto::ObjectWrapper>(Status::CODE_200, "application/json");
+     info->addConsumes<Object<UserDto>>("application/json");
+     info->addResponse<Object<UserDto>>(Status::CODE_200, "application/json");
    }
    ENDPOINT("POST", "demo/api/users", createUser,
-            BODY_DTO(UserDto::ObjectWrapper, userDto)) {
+            BODY_DTO(Object<UserDto>, userDto)) {
      return createDtoResponse(Status::CODE_200, m_database->createUser(userDto));
    }
    ```
@@ -464,18 +464,20 @@ Additional endpoint info can be added in `ENDPOINT_INFO(<endpoint-name>)` block.
    ```cpp
    ENDPOINT_INFO(CreateUser) {
      info->summary = "Create new User";
-     info->addConsumes<UserDto::ObjectWrapper>("application/json");
-     info->addResponse<UserDto::ObjectWrapper>(Status::CODE_200, "application/json");
+     info->addConsumes<Object<UserDto>>("application/json");
+     info->addResponse<Object<UserDto>>(Status::CODE_200, "application/json");
    }
    ENDPOINT_ASYNC("POST", "demo/api/users", CreateUser) {
        
      ENDPOINT_ASYNC_INIT(CreateUser)
     
      Action act() override {
-       return request->readBodyToDtoAsync<UserDto>(controller->getDefaultObjectMapper()).callbackTo(&CreateUser::returnResponse);
+       return request->readBodyToDtoAsync<oatpp::Object<UserDto>>(
+           controller->getDefaultObjectMapper()
+       ).callbackTo(&CreateUser::returnResponse);
      }
     
-     Action returnResponse(const UserDto::ObjectWrapper& body){
+     Action returnResponse(const oatpp::Object<UserDto>& body){
        return _return(createDtoResponse(Status::CODE_200, m_database->createUser(userDto)));
      }
     
@@ -511,7 +513,7 @@ Add description to "userId" path parameter:
   ENDPOINT_INFO(getUserById) {
     // general
     info->summary = "Get one User by userId";
-    info->addResponse<UserDto::ObjectWrapper>(Status::CODE_200, "application/json");
+    info->addResponse<Object<UserDto>>(Status::CODE_200, "application/json");
     info->addResponse<String>(Status::CODE_404, "text/plain");
     // params specific
     info->pathParams["userId"].description = "User Identifier";
