@@ -69,7 +69,7 @@ public:
 
 ```cpp
 ENDPOINT("POST", "demo/api/json", postJson,
-         BODY_DTO(MyDto::ObjectWrapper, dto)) {
+         BODY_DTO(Object<MyDto>, dto)) {
   auto dtoMessage = dto->message;
   return createResponse(Status::CODE_200, "dtoMessage: " + dtoMessage);
 }
@@ -120,11 +120,11 @@ ENDPOINT_ASYNC("POST", "demo/api_async/json", PostJSONAsync) {
   ENDPOINT_ASYNC_INIT(PostJSONAsync)
 
   Action act() override {
-    return request->readBodyToDtoAsync<MyDto>(controller->getDefaultObjectMapper())
+    return request->readBodyToDtoAsync<oatpp::Object<MyDto>>(controller->getDefaultObjectMapper())
                    .callbackTo(&PostJSONAsync::onBodyObtained);
   }
 
-  Action onBodyObtained(const MyDto::ObjectWrapper& dto) {
+  Action onBodyObtained(const oatpp::Object<MyDto>& dto) {
     return _return(controller->createResponse(Status::CODE_200, "dtoMessage: " + dto->message));
   }
 

@@ -14,7 +14,7 @@ It is a special object which can be Serialized and Deserialized with the help of
 
 ## Declaration
 
-DTO objects are generated withing DTO-code-gen section. DTO code generation section must begin with  
+DTO objects are generated within DTO-code-gen section. DTO code generation section must begin with  
 `#include OATPP_CODEGEN_BEGIN(DTO)` and must be closed with `#include OATPP_CODEGEN_END(DTO)`. 
 *Do not forget to close code generation section in order to avoid macro conflicts later in the code!*
 
@@ -50,63 +50,22 @@ By default all values are set to `nullptr`. You can override default values by a
 DTO_FIELD(String, name) = "Ivan";
 ```
 
-### Core Types
-
-Types defined in `oatpp/core/Types.hpp`.
-
-#### Predefined primitive types
-
-- `oatpp::String` - [ObjectWrapper](#objectwrapper) over oatpp::base::StrBuffer. Can be null.
-- `oatpp::Int8` - Signed 8-bit integer. [ObjectWrapper](#objectwrapper) over v_int8. Can be null.
-- `oatpp::UInt8` - Unsigned 8-bit integer. [ObjectWrapper](#objectwrapper) over v_uint8. Can be null.
-- `oatpp::Int16` - Signed 16-bit integer. [ObjectWrapper](#objectwrapper) over v_int16. Can be null.
-- `oatpp::UInt16` - Unsigned 16-bit integer. [ObjectWrapper](#objectwrapper) over v_uint16. Can be null.
-- `oatpp::Int32` - Signed 32-bit integer. [ObjectWrapper](#objectwrapper) over v_int32. Can be null.
-- `oatpp::UInt32` - Unsigned 32-bit integer. [ObjectWrapper](#objectwrapper) over v_uint32. Can be null.
-- `oatpp::Int64` - Signed 64-bit integer. [ObjectWrapper](#objectwrapper) over v_int64. Can be null.
-- `oatpp::UInt64` - Unsigned 64-bit integer. [ObjectWrapper](#objectwrapper) over v_uint64. Can be null.
-- `oatpp::Float32` - 32-bit float. [ObjectWrapper](#objectwrapper) over v_float32. Can be null.
-- `oatpp::Float64` - 64-bit float. [ObjectWrapper](#objectwrapper) over v_float64. Can be null.
-- `oatpp::Boolean` - [ObjectWrapper](#objectwrapper) over bool. Can be null.
-
-#### Assign value
+### Additional Field Info
 
 ```cpp
-oatpp::String s = "Hello!";
-oatpp::Int32 a = 32;
-oatpp::Boolean b = true;
+DTO_FIELD_INFO(name) {
+  info->description = "user first name"; //<-- Fields description is integrated with Swagger-UI.
+}
+DTO_FIELD(String, name) = "Ivan";
 ```
 
-Note: By default all values are set to `nullptr`.
-
-#### Get value as primitive
+### Declare Field As Object
 
 ```cpp
-oatpp::Int32 a = 32;
-oatpp::Boolean b = true;
-
-v_int32 ap = *a;
-bool bp = *b;
+DTO_FIELD(Object<User>, user);
 ```
 
-### Collections
-
-#### Predefined collections
-
-- `List<T>` - [List](/api/latest/oatpp/core/data/mapping/type/List/#listobjectwrapper) of T. 
-[ObjectWrapper](#objectwrapper) over `std::list<T>`. Can be null.
-- `Vector<T>` - [Vector](/api/latest/oatpp/core/data/mapping/type/Vector/#vectorobjectwrapper) of T. 
-[ObjectWrapper](#objectwrapper) over `std::vector<T>`. Can be null.
-- `UnorderedSet<T>` - [UnorderedSet](/api/latest/oatpp/core/data/mapping/type/UnorderedSet/#unorderedsetobjectwrapper) of T. 
-[ObjectWrapper](#objectwrapper) over `std::unordered_set<T>`. Can be null.
-- `Fields<T>` - [PairList](/api/latest/oatpp/core/data/mapping/type/PairList/#pairlistobjectwrapper)<oatpp::String, T>.
-[ObjectWrapper](#objectwrapper) over `std::list<std::pair<oatpp::String, T>>`.Can be null.  
-*With `Fields` you always map `oatpp::String` to other type*.
-- `UnorderedFields<T>` - [UnorderedMap](/api/latest/oatpp/core/data/mapping/type/UnorderedMap/#unorderedmapobjectwrapper)<oatpp::String, T>.
-[ObjectWrapper](#objectwrapper) over `std::unordered_map<oatpp::String, T>`.Can be null.  
-*With `UnorderedFields` you always map `oatpp::String` to other type*.
-
-#### Declare Field As List
+### Declare Field As List
 
 List of primitives:
 
@@ -120,7 +79,7 @@ List of Objects:
 DTO_FIELD(List<Object<MyObject>>, colors);
 ```
 
-#### Declare Field As Map
+### Declare Field As Map
  
 
 Map `String --> Int32`:
@@ -135,20 +94,75 @@ Map `String --> Object`:
 DTO_FIELD(Fields<Object<MyObject>>, colors);
 ```
 
+### Core Types
+
+Types defined in `oatpp/core/Types.hpp`.
+
+#### Primitives
+
+|Type|Underlying Type|Default Value|
+|-|-|-|
+|[Int8](/api/latest/oatpp/core/Types/#int8)|`v_int8`|`nullptr`|
+|[UInt8](/api/latest/oatpp/core/Types/#uint8)|`v_uint8`|`nullptr`|
+|[Int16](/api/latest/oatpp/core/Types/#int16)|`v_int16`|`nullptr`|
+|[UInt16](/api/latest/oatpp/core/Types/#uint16)|`v_uint16`|`nullptr`|
+|[Int32](/api/latest/oatpp/core/Types/#int32)|`v_int32`|`nullptr`|
+|[UInt32](/api/latest/oatpp/core/Types/#uint32)|`v_uint32`|`nullptr`|
+|[Int64](/api/latest/oatpp/core/Types/#int64)|`v_int64`|`nullptr`|
+|[UInt64](/api/latest/oatpp/core/Types/#uint64)|`v_uint64`|`nullptr`|
+|[Float32](/api/latest/oatpp/core/Types/#float32)|`v_float32`|`nullptr`|
+|[Float64](/api/latest/oatpp/core/Types/#float64)|`v_float64`|`nullptr`|
+|[Boolean](/api/latest/oatpp/core/Types/#boolean)|`bool`|`nullptr`|
+
+##### Examples
+
+```cpp
+oatpp::Int32 a = 32;
+v_int32 va = *a;
+```
+
+#### Collections
+
+|Type|Underlying Collection|Default Value|
+|-|-|-|
+|[Vector&lt;T&gt;](/api/latest/oatpp/core/Types/#vector)|`std::vector<T>`|`nullptr`|
+|[List&lt;T&gt;](/api/latest/oatpp/core/Types/#list)|`std::list<T>`|`nullptr`|
+|[UnorderedSet&lt;T&gt;](/api/latest/oatpp/core/Types/#unorderedset)|`std::unordered_set<T>`|`nullptr`|
+|[Fields&lt;T&gt;](/api/latest/oatpp/core/Types/#fields)|`std::list<std::pair<Key, Value>>`|`nullptr`|
+|[UnorderedFields&lt;T&gt;](/api/latest/oatpp/core/Types/#unorderedfields)|`std::unordered_map<Key, Value>`|`nullptr`|
+
+##### Examples
+
+```cpp
+oatpp::Vector<oatpp::String> porridges = {"Owsianka", "Stirabout", "Zabkása"};
+for(auto& porridge : *porridges) {
+  ...
+}
+```
+
+#### Special Types
+
+|Type|Underlying Type|Default Value|
+|-|-|-|
+|[String](/api/latest/oatpp/core/Types/#string)|[oatpp::base::StrBuffer](/api/latest/oatpp/core/base/StrBuffer/)|`nullptr`|
+|[Object&lt;T&gt;](/api/latest/oatpp/core/Types/#object)|class which extends [oatpp::DTO](/api/latest/oatpp/core/Types/#dto)|`nullptr`|
+|[Enum&lt;T&gt;](/api/latest/oatpp/core/Types/#enum)|`enum` declared via [ENUM](/api/latest/oatpp/codegen/dto/enum_define/#enum)|`nullptr`|
+|[Any](/api/latest/oatpp/core/Types/#any)|any other mapping-enabled type|`nullptr`|
+
+##### Examples
+
+```cpp
+oatpp::Object<MyDto> dto = MyDto::createShared();
+oatpp::Any any = dto;
+...
+auto dto = any.retrieve<oatpp::Object<MyDto>>(); // throws `std::runtime_error` if stored type doesn't match.
+```
+
 ### Custom Mapping-Enabled Types
 
 *Please note that one can define a custom type to be used in custom ObjectMapper.*  
 *This section is not documented yet.*
 *For information about custom object mapping contact us in [dev-chat](https://gitter.im/oatpp-framework/Lobby)*
-
-## ObjectWrapper
-
-`ObjectWrapper` is a special structure that holds data-type information. In fact all mapping-enabled types in oatpp including 
-`String`, `Int32`, `Int64`, `Float32`, `Float64`, `Boolean` are ObjectWrappers over primitive types and can hold 
-`nullptr` value.
-
-See [ObjectWrapper](/api/latest/oatpp/core/data/mapping/type/Type/#objectwrapper).
-
 
 ## Example
 
@@ -201,12 +215,10 @@ sister->surname = "Ovsyanochka";
 sister->age = 20;
 
 /* create list of siblings */
-auto siblings = {}; // Initialize empty map.
-siblings->pushBack(brother);
-siblings->pushBack(sister);
+oatpp::List<oatpp::Object<User>> siblings = {brother, sister};
 
-user->familyMembers->put("siblings", siblings);
-user->additionalNotes->put("Education", "Master of Computer Science");
+user->familyMembers->insert({"siblings", siblings});
+user->additionalNotes->insert({"Education", "Master of Computer Science"});
 ```
 
 #### Create JSON object mapper

@@ -32,11 +32,11 @@ You may add more information to your endpoint like follows:
 ```cpp
 ENDPOINT_INFO(createUser) {
   info->summary = "Create new User";
-  info->addConsumes<UserDto::ObjectWrapper>("application/json");
-  info->addResponse<UserDto::ObjectWrapper>(Status::CODE_200, "application/json");
+  info->addConsumes<Object<UserDto>>("application/json");
+  info->addResponse<Object<UserDto>>(Status::CODE_200, "application/json");
 }
 ENDPOINT("POST", "demo/api/users", createUser,
-         BODY_DTO(UserDto::ObjectWrapper, userDto)) {
+         BODY_DTO(Object<UserDto>, userDto)) {
   return createDtoResponse(Status::CODE_200, m_database->createUser(userDto));
 }
 ```
