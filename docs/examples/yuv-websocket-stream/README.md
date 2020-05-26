@@ -70,7 +70,7 @@ When you know your image size, you must come up with your own stiching mechanism
 Depending on the used IO method (`read`, `mmap` or `userptr`) between V4L2<->Oat++ some lag can occur or the stream does not work at all.
 The example is programmed to use `mmap` in `src/controller/CamAPIController.cpp:31`.
 
-```c++
+```cpp
 m_grabber = std::make_shared<V4LGrabber>(device, &CamAPIController::handle_frame, m_imageReceivers.get(), V4LGrabber::IO_METHOD_MMAP);
 ```
 

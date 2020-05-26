@@ -62,15 +62,16 @@ module.exports = {
                 title: "Examples",
                 collapsable: true,
                 children: [
-                    ["/examples/crud/", "CRUD API With Swagger-UI"],
-                    ["/examples/hls-media-stream/", "HTTP Live Streaming Server"],
-                    ["/examples/async-api/", "Asynchronous API"],
                     ["/examples/api-client/", "HTTP Requests With ApiClient"],
+                    ["/examples/async-api/", "Asynchronous API"],
+                    ["/examples/crud/", "CRUD API With Swagger-UI"],
+                    ["/examples/consul/", "Consul Integration"],
+                    ["/examples/hls-media-stream/", "HTTP Live Streaming Server"],
                     ["/examples/libressl/", "TLS With Libressl"],
                     ["/examples/microservices/", "Microservices"],
-                    ["/examples/consul/", "Consul Integration"],
                     ["/examples/postgresql/", "PostgreSQL Database"],
-                    ["/examples/websocket/", "WebSocket Examples"]
+                    ["/examples/websocket/", "WebSocket Examples"],
+                    ["/examples/yuv-websocket-stream/", "YUV WebSocket Stream"]
                 ]
             },{
                 title: "Installation",
