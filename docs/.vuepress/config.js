@@ -69,6 +69,7 @@ module.exports = {
                     ["/examples/hls-media-stream/", "HTTP Live Streaming Server"],
                     ["/examples/libressl/", "TLS With Libressl"],
                     ["/examples/microservices/", "Microservices"],
+                    ["/examples/mongodb/", "MongoDB"],
                     ["/examples/postgresql/", "PostgreSQL Database"],
                     ["/examples/websocket/", "WebSocket Examples"],
                     ["/examples/yuv-websocket-stream/", "YUV WebSocket Stream"]
@@ -114,6 +115,7 @@ module.exports = {
                     ["/docs/modules/oatpp-curl/", "oatpp-curl"],
                     ["/docs/modules/oatpp-libressl/", "oatpp-libressl"],
                     ["/docs/modules/oatpp-mbedtls/", "oatpp-mbedtls"],
+                    ["/docs/modules/oatpp-mongo/", "oatpp-mongo"],
                     ["/docs/modules/oatpp-swagger/", "oatpp-swagger"],
                     ["/docs/modules/oatpp-websocket/", "oatpp-websocket"],
                     ["/docs/modules/oatpp-zlib/", "oatpp-zlib"]
