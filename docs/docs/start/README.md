@@ -49,3 +49,5 @@ Welcome to :seedling:Oat++
 - [Microservices](https://github.com/oatpp/example-microservices) - Example project on how to build microservices with Oat++, 
 and example on how to consolidate those microservices using [monolithization](https://oatpp.io/docs/monolithization/) technique.
 - [PostgreSQL](https://github.com/oatpp/example-postgresql) - Example of a production-grade entity service storing information in PostgreSQL. With Swagger-UI and configuration profiles.
+- [MongoDB](https://github.com/oatpp/example-mongodb) - Example project how to work with MongoDB using **oatpp-mongo** mondule. Project is a web-service with basic CRUD and Swagger-UI.
+ 
