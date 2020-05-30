@@ -26,14 +26,8 @@ It provides all the necessary features and components for production-grade devel
 It is zero-dependency, easy-portable, and high-performance.
 
 ## Maintainers
-
 <br>
-<img src="https://github.com/lganzzzo.png" alt="Leonid Stryzhevskyi - Creator/Owner" width="122px"> 
-<br>
-<iframe src="https://ghbtns.com/github-btn.html?user=lganzzzo&type=follow" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
-
-<p class="maintainer_name">Leonid Stryzhevskyi</p>
-Creator, Owner. 
+<maintainers/>
 
 ## Contributors
 <br>
@@ -49,9 +43,10 @@ Linux, BSD, MacOS, Windows.
 
 ## Versioning
 
-Currently no compatibility between versions is maintained.  
+For convenience reasons, no compatibility between versions is maintained.  
 All project modules (extensions) are compatible within the same version only.  
+Thus if you need an extension for your oatpp version X - it's simple, take the same version.
 
 **Example:**  
-module `oatpp-swagger` version `0.19.4` will work with `oatpp` version `0.19.4` only.  
-module `oatpp-swagger` version `0.19.1` will work with `oatpp` version `0.19.1` only.
+module `oatpp-swagger` version `1.1.0` will work with `oatpp` version `1.1.0` only.  
+module `oatpp-swagger` version `1.0.0` will work with `oatpp` version `1.0.0` only.
