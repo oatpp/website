@@ -59,7 +59,7 @@ $ apt-get install build-essential
 
 Install prerequisites:
 
-```cpp
+```bash
 $ yum install git
 $ yum install cmake
 $ yum install gcc gcc-c++ make
@@ -70,7 +70,7 @@ $ yum install libatomic
 
 Install prerequisites:
 
-```cpp
+```bash
 $ yum install git
 $ yum install cmake
 $ yum install gcc gcc-c++ make
@@ -81,7 +81,7 @@ $ yum install libatomic
 
 Install prerequisites:
 
-```cpp
+```bash
 $ apk add git
 $ apk add cmake
 $ apk add g++
