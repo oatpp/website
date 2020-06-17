@@ -4,10 +4,14 @@ description: Example project how-to create an Philips Hue compatible REST-API th
 sidebarDepth: 0
 ---
 
-
 # Example-IoT-Hue <seo/>
 
 Example project how-to create an Philips Hue compatible REST-API that is discovered and controllable by Hue compatible Smart-Home devices like Amazon Alexa or Google Echo.
+
+It demonstrates how Oat++ can be used to develop an Amazon Alexa or Google Home compatible REST-API which emulates Philips Hue bulbs. 
+Oat++ answers to search requests of you favorite SmartHome hub and you can register your fake bulbs to it. 
+After the registration of your fake bulbs to your Hub/Alexa/Google Home, you can control your Oat++ application 
+with 🗣️"Alexa, turn on &lt;your fake device name&gt;"!
 
 For this discoverability, the `oatpp-ssdp` module is used to receive and answer SSDP searches.
 
@@ -43,7 +47,7 @@ Before you run this example you have to edit `src/DeviceDescriptorComponent.hpp`
 Since this is only an example and to keep it simple this is not automated or parameterised!
 You have to come up with your own implementation that fits your environment.
 
-```c++
+```cpp
 OATPP_CREATE_COMPONENT(std::shared_ptr<DeviceDescriptor>, deviceDescriptor)("deviceDescriptor", [] {
 auto desc = std::make_shared<DeviceDescriptor>();
 // ToDo: Add your machines Address and Port here! You have to come up with your own way to automate this...
@@ -94,13 +98,13 @@ All implemented endpoints are compatible to a Philips Hue bridge (V1 and V3).
 **Their path and structure are fixed!**
 
 #### SSDP: Search Responder
-```c++
+```cpp
 ENDPOINT("M-SEARCH", "*", star)
 ```
 This Endpoint accepts and answers to `M-SEARCH` SSDP packets like a Philips Hue hub would do.
 
 #### HTTP: description.xml
-```c++
+```cpp
 ENDPOINT("GET", "/description.xml", description)
 ```
 In the discovery answer, a reference to this endpoint is send back.
@@ -109,7 +113,7 @@ This endpoints emulates a static `desciption.xml` which includes all necessary i
 See [Bridge discovery (burgestrand.se)](http://www.burgestrand.se/hue-api/api/discovery/)
 
 #### HTTP: One-Shot 'user' registration
-```c++
+```cpp
 ENDPOINT("POST", "/api", appRegister, BODY_DTO(oatpp::Object<UserRegisterDto>, userRegister))
 ```
 
@@ -118,7 +122,7 @@ This endpoint just emulates a valid user-registration on a Philips Hue hub.
 See [Application registration (burgestrand.se)](http://www.burgestrand.se/hue-api/api/auth/registration/)
 
 #### HTTP: Get all 'lights'
-```c++
+```cpp
 ENDPOINT("GET", "/api/{username}/lights", getLights, PATH(String, username))
 ```
 
@@ -128,7 +132,7 @@ However, formally this endpoint should just return the names. But returning the 
 See [Lights (burgestrand.se)](http://www.burgestrand.se/hue-api/api/lights/)
 
 #### HTTP: Get state of a specific light
-```c++
+```cpp
 ENDPOINT("GET", "/api/{username}/lights/{hueId}", getLight, PATH(String, username), PATH(Int32, hueId))
 ```
 This endpoint returns the state of the light given in `{hueId}` in a Philips Hue compatible fashion.
@@ -136,15 +140,15 @@ This endpoint returns the state of the light given in `{hueId}` in a Philips Hue
 See [Lights (burgestrand.se)](http://www.burgestrand.se/hue-api/api/lights/)
 
 #### HTTP: Set state of a specific light
-```c++
+```cpp
 ENDPOINT("PUT", "/api/{username}/lights/{hueId}/state", updateState,
-      PATH(String, username),
-      PATH(Int32, hueId),
-      BODY_DTO(Object<HueDeviceStateDto>, state))
+         PATH(String, username),
+         PATH(Int32, hueId),
+         BODY_DTO(Object<HueDeviceStateDto>, state))
 ```
 
 This endpoint accepts a Philips Hue compatible state-object and sets the state in the internal database accordingly.
-It is called e.g. by Alexa if you tell it  "Alexa, turn on <devicename>".
+It is called e.g. by Alexa if you tell it 🗣️"Alexa, turn on &lt;devicename&gt;".
 Finally it returns a "success" or "error" object.
 
 See [Lights (burgestrand.se)](http://www.burgestrand.se/hue-api/api/lights/)

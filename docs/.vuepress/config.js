@@ -67,6 +67,7 @@ module.exports = {
                     ["/examples/crud/", "CRUD API With Swagger-UI"],
                     ["/examples/consul/", "Consul Integration"],
                     ["/examples/hls-media-stream/", "HTTP Live Streaming Server"],
+                    ["/examples/iot-hue-ssdp/", "IoT Hue Emulator"],
                     ["/examples/libressl/", "TLS With Libressl"],
                     ["/examples/microservices/", "Microservices"],
                     ["/examples/mongodb/", "MongoDB"],
@@ -116,6 +117,7 @@ module.exports = {
                     ["/docs/modules/oatpp-libressl/", "oatpp-libressl"],
                     ["/docs/modules/oatpp-mbedtls/", "oatpp-mbedtls"],
                     ["/docs/modules/oatpp-mongo/", "oatpp-mongo"],
+                    ["/docs/modules/oatpp-ssdp/", "oatpp-ssdp"],
                     ["/docs/modules/oatpp-swagger/", "oatpp-swagger"],
                     ["/docs/modules/oatpp-websocket/", "oatpp-websocket"],
                     ["/docs/modules/oatpp-zlib/", "oatpp-zlib"]
