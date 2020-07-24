@@ -67,7 +67,7 @@ void run() {
  */
 int main(int argc, const char * argv[]) {
 
-  oatpp::base::DefaultLogger::Config loggerConfig("%Y-%m-%d %H:%M:%S", false);
+  oatpp::base::DefaultLogger::Config loggerConfig("%Y-%m-%d %H:%M:%S", false, 0xFFFFFFFF);
   oatpp::base::Environment::init(std::make_shared<oatpp::base::DefaultLogger>(loggerConfig));
 
   run();
