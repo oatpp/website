@@ -11,12 +11,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "vuepress": "^0.14.11"
+    "vuepress": "^1.5.2"
   },
   "resolutions": {
     "webpack-dev-middleware": "3.6.0"
   },
   "dependencies": {
+    "@vuepress/plugin-google-analytics": "^1.5.2",
     "axios": "^0.18.0"
   }
 }

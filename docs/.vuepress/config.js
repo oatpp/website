@@ -1,12 +1,18 @@
 const API_latest = require('../api/latest/index.json');
 
 module.exports = {
+
     title: "Oat++",
     description: "Modern Web Framework for C++. High performance, simple API, cross-platform, zero-dependency.",
 
     componentsDir: "docs/.vuepress/components",
 
-    ga: "UA-72424701-2",
+    plugins: [
+        [
+            '@vuepress/google-analytics',
+            { ga: 'UA-72424701-2'}
+        ]
+    ],
 
     shouldPrefetch: function() {
       return false;

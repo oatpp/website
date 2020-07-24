@@ -6,19 +6,19 @@ sidebarDepth: 0
 
 # Supported Platforms <seo/>
 
-**Maintained on regular basis:**
+## Maintained on regular basis
 
 - **Linux**
 - **BSD**
 - **MacOS**
 - **Windows** - special thanks to Benedikt-Alexander Mokroß - [bamkrs](https://github.com/bamkrs)
 
-**Special support**
+## Special Support
 
 - **OpenWRT** - see [Oat++ OpenWRT feed](https://github.com/oatpp/oatpp-openwrt-feed)
 containing build-scripts, options and patches for applications, modules and libraries provided by Oat++.
 
-**Known builds:**
+## Known Builds
 
 - **Android** - see story on Github - <https://github.com/oatpp/oatpp/issues/9>
 - **iOS** - see story on Github - <https://github.com/oatpp/oatpp/issues/9>

@@ -14,8 +14,8 @@ sidebarDepth: 0
 
 Latest version `1.1.0` :tada:
 
-Oat++ is the modern web framework for C++.
-It provides all the necessary features and components for production-grade development, including:
+Oat++ is an open-source modern C++ web framework.   
+It provides all the necessary components and features for production-grade development, including:
 
 - Advanced REST controllers with request mappings and Swagger-UI annotations. See [Api Controller](/docs/components/api-controller/).
 - Retrofit/Feign like client. See [Api Client](/docs/components/api-client/).
@@ -33,20 +33,12 @@ It is zero-dependency, easy-portable, and high-performance.
 <br>
 <contributors/>
 
-## Requirements
+Contribute to Oat++ with us!    
+[Clone Oat++ on Github](https://github.com/oatpp/oatpp) and join our [Dev-Chat on Gitter](https://gitter.im/oatpp-framework/Lobby)
 
-- Operating System:  
-Linux, BSD, MacOS, Windows.  
-*See full list of [supported platforms](/supported-platforms/).*
+## Oat++ Users
 
-- C++ Version >= 11.
+<users/>
 
-## Versioning
-
-For convenience reasons, no compatibility between versions is maintained.  
-All project modules (extensions) are compatible within the same version only.  
-Thus if you need an extension for your oatpp version X - it's simple, take the same version.
-
-**Example:**  
-module `oatpp-swagger` version `1.1.0` will work with `oatpp` version `1.1.0` only.  
-module `oatpp-swagger` version `1.0.0` will work with `oatpp` version `1.0.0` only.
+Join Oat++ user community!  
+Tell us about your use-case - :mailbox_with_mail: [contact@oatpp.io](mailto:contact@oatpp.io)

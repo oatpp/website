@@ -1,6 +1,6 @@
 ---
 title: Getting started
-description: Getting started with Oat++ (AKA oatpp) web framework for C++.
+description: Getting started with Oat++ (AKA oatpp) C++ Web Framework.
 sidebarDepth: 0
 ---
 
@@ -10,15 +10,20 @@ Welcome to :seedling:Oat++
 
 ## The recommended way to go
 
-1. :point_right:Get the [High Level Overview](/docs/start/high-level-overview/). :point_left:
-2. Take a look at:
+1. Install **oatpp**:
+   - [Unix/Linux](/docs/installation/unix-linux/)
+   - [Windows](/docs/installation/windows/)
+   - For exotic platforms look for stories on the [Supported Platforms](/supported-platforms/) page.
+   
+3. Take a look at:
+   - [High Level Overview](/docs/start/high-level-overview/) - Learn about the main components and features of Oat++.
    - [Step By Step Guide](/docs/start/step-by-step/) - How to create an Oat++ project from scratch. Get more low-level details. 
 
-3. Check out [examples](/docs/start/#examples) and starter-projects:
+4. Check out [examples](/docs/start/#examples) and starter-projects:
    - [Starter Project - Simple API](/docs/start/project/)
    - [Starter project - Async API](/docs/start/project-async-api/)
    
-4. :point_right:Join dev community and don't hesitate to ask questions - [chat on Gitter](https://gitter.im/oatpp-framework/Lobby):point_left::v:
+5. :point_right:Join dev community and don't hesitate to ask questions - [chat on Gitter](https://gitter.im/oatpp-framework/Lobby):point_left::v:
    
 ## Examples
 
