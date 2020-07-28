@@ -3,7 +3,7 @@ const API_latest = require('../api/latest/index.json');
 module.exports = {
 
     title: "Oat++",
-    description: "Modern Web Framework for C++. High performance, simple API, cross-platform, zero-dependency.",
+    description: "Oat++ is an open-source C++ web framework to develop highly scalable and resource-efficient web applications. It's zero-dependency and easy-portable.",
 
     componentsDir: "docs/.vuepress/components",
 

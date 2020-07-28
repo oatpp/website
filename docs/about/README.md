@@ -1,6 +1,5 @@
 ---
-title: About
-description: About Oat++ (AKA oatpp) web framework for C++. 
+title: About 
 sidebarDepth: 0
 ---
 
@@ -14,11 +13,12 @@ sidebarDepth: 0
 
 Latest version `1.1.0` :tada:
 
-Oat++ is an open-source modern C++ web framework.   
-It provides all the necessary components and features for production-grade development, including:
+Oat++ is an open-source C++ web framework to develop highly scalable and resource-efficient web applications.  
+It provides all the necessary components for production-grade development, including:
 
-- Advanced REST controllers with request mappings and Swagger-UI annotations. See [Api Controller](/docs/components/api-controller/).
-- Retrofit/Feign like client. See [Api Client](/docs/components/api-client/).
+- Advanced REST framework with request parameters mapping and Swagger-UI annotations. 
+See [Api Controller](/docs/components/api-controller/) and [Api Client](/docs/components/api-client/).
+- WebSocket framework. See [5-million connections benchmark](/benchmark/websocket/5-million/).
 - Object Mapping. See [Data Transfer Object (DTO)](/docs/components/dto/).
 - Dependency Injection
 - Swagger-UI. See [oatpp-swagger](/docs/modules/oatpp-swagger/) module.

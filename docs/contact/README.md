@@ -1,6 +1,6 @@
 ---
 title: Contact
-description: Contact team of oat++ (AKA oatpp) web framework.
+description: Contact team of Oat++ web framework.
 sidebarDepth: 0
 ---
 
@@ -14,5 +14,5 @@ sidebarDepth: 0
 
 ## Mailing
 
-- Questions, propositions, feedback, etc. - [contact@oatpp.io](mailto:contact@oatpp.io)
+- PR, questions, propositions, feedback, etc. - [contact@oatpp.io](mailto:contact@oatpp.io)
 - Request consultancy or a tailored solution - [consultancy@oatpp.io](mailto:consultancy@oatpp.io)
