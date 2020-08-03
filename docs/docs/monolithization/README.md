@@ -96,10 +96,9 @@ Below is the performance comparison of Oat++ microservices(deployed on the same 
 |Oat++ (micro-svc) idle|25|3  |3  |31  |
 |Oat++ (micro-svc) load|45|3.2|3.2|49.4|
 |Oat++ (monolith) idle |- |-  |-  |26.7|
-|Oat++ (monolith) idle |- |-  |-  |37.7|
+|Oat++ (monolith) load |- |-  |-  |37.7|
 
 
 ## Links
 
 [Example Project Repository](https://github.com/oatpp/example-microservices)
-

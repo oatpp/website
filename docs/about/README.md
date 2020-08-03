@@ -13,7 +13,7 @@ sidebarDepth: 0
 
 Latest version `1.1.0` :tada:
 
-Oat++ is an open-source C++ web framework for development of highly scalable and resource-efficient web applications.  
+Oat++ is an open-source C++ web framework for highly scalable and resource-efficient web applications.  
 It provides all the necessary components for production-grade development, including:
 
 - Advanced REST framework with request parameters mapping and Swagger-UI annotations. 

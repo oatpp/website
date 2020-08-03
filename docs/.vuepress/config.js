@@ -40,7 +40,6 @@ module.exports = {
         },
 
         nav: [
-            {text: "Docs", link: "/docs/start/"},
             {text: "About", link: "/about/"},
             {text: "Contacts", link: "/contact/"}
         ],
