@@ -173,9 +173,9 @@ will be serialized to JSON.
 /**
  * Message Data-Transfer-Object
  */
-class MessageDto : public oatpp::Object {
+class MessageDto : public oatpp::DTO {
 
-  DTO_INIT(MessageDto, Object /* Extends */)
+  DTO_INIT(MessageDto, DTO /* Extends */)
 
   DTO_FIELD(Int32, statusCode);   // Status code field
   DTO_FIELD(String, message);     // Message field
@@ -379,9 +379,9 @@ Now all major components are initialized in one place which makes it easy to con
 /**
  * Message Data-Transfer-Object
  */
-class MessageDto : public oatpp::Object {
+class MessageDto : public oatpp::DTO {
 
-  DTO_INIT(MessageDto, Object /* Extends */)
+  DTO_INIT(MessageDto, DTO /* Extends */)
 
   DTO_FIELD(Int32, statusCode);   // Status code field
   DTO_FIELD(String, message);     // Message field
@@ -473,9 +473,9 @@ Move `MessageDto` definition to `DTOs.hpp`:
 /**
  * Message Data-Transfer-Object
  */
-class MessageDto : public oatpp::Object {
+class MessageDto : public oatpp::DTO {
 
-  DTO_INIT(MessageDto, Object /* Extends */)
+  DTO_INIT(MessageDto, DTO /* Extends */)
 
   DTO_FIELD(Int32, statusCode);   // Status code field
   DTO_FIELD(String, message);     // Message field

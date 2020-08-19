@@ -7,7 +7,7 @@
     <meta name="generator" content="VuePress 1.5.2">
     <link rel="icon" href="/logo_x64.png"><link rel='canonical' href='https://oatpp.io/docs/start/step-by-step/'/>
     <meta name="description" content="Step-by-step guide how to setup and build oatpp project from scratch.">
-    <link rel="preload" href="/assets/css/0.styles.2f2dc695.css" as="style"><link rel="preload" href="/assets/js/app.359cd3ce.js" as="script"><link rel="preload" href="/assets/js/3.0e791e97.js" as="script"><link rel="preload" href="/assets/js/249.f63ce379.js" as="script"><link rel="preload" href="/assets/js/7.bc740621.js" as="script">
+    <link rel="preload" href="/assets/css/0.styles.2f2dc695.css" as="style"><link rel="preload" href="/assets/js/app.21c278ca.js" as="script"><link rel="preload" href="/assets/js/3.0e791e97.js" as="script"><link rel="preload" href="/assets/js/249.20299a82.js" as="script"><link rel="preload" href="/assets/js/7.bc740621.js" as="script">
     <link rel="stylesheet" href="/assets/css/0.styles.2f2dc695.css">
   </head>
   <body>
@@ -151,9 +151,9 @@ will be serialized to JSON.</p> <div class="language-cpp extra-class"><div class
 <span class="token comment">/**
  * Message Data-Transfer-Object
  */</span>
-<span class="token keyword">class</span> <span class="token class-name">MessageDto</span> <span class="token operator">:</span> <span class="token keyword">public</span> oatpp<span class="token operator">::</span>Object <span class="token punctuation">{</span>
+<span class="token keyword">class</span> <span class="token class-name">MessageDto</span> <span class="token operator">:</span> <span class="token keyword">public</span> oatpp<span class="token operator">::</span>DTO <span class="token punctuation">{</span>
 
-  <span class="token function">DTO_INIT</span><span class="token punctuation">(</span>MessageDto<span class="token punctuation">,</span> Object <span class="token comment">/* Extends */</span><span class="token punctuation">)</span>
+  <span class="token function">DTO_INIT</span><span class="token punctuation">(</span>MessageDto<span class="token punctuation">,</span> DTO <span class="token comment">/* Extends */</span><span class="token punctuation">)</span>
 
   <span class="token function">DTO_FIELD</span><span class="token punctuation">(</span>Int32<span class="token punctuation">,</span> statusCode<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// Status code field</span>
   <span class="token function">DTO_FIELD</span><span class="token punctuation">(</span>String<span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// Message field</span>
@@ -321,9 +321,9 @@ and inject it where needed using <a href="/api/latest/oatpp/core/macro/component
 <span class="token comment">/**
  * Message Data-Transfer-Object
  */</span>
-<span class="token keyword">class</span> <span class="token class-name">MessageDto</span> <span class="token operator">:</span> <span class="token keyword">public</span> oatpp<span class="token operator">::</span>Object <span class="token punctuation">{</span>
+<span class="token keyword">class</span> <span class="token class-name">MessageDto</span> <span class="token operator">:</span> <span class="token keyword">public</span> oatpp<span class="token operator">::</span>DTO <span class="token punctuation">{</span>
 
-  <span class="token function">DTO_INIT</span><span class="token punctuation">(</span>MessageDto<span class="token punctuation">,</span> Object <span class="token comment">/* Extends */</span><span class="token punctuation">)</span>
+  <span class="token function">DTO_INIT</span><span class="token punctuation">(</span>MessageDto<span class="token punctuation">,</span> DTO <span class="token comment">/* Extends */</span><span class="token punctuation">)</span>
 
   <span class="token function">DTO_FIELD</span><span class="token punctuation">(</span>Int32<span class="token punctuation">,</span> statusCode<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// Status code field</span>
   <span class="token function">DTO_FIELD</span><span class="token punctuation">(</span>String<span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// Message field</span>
@@ -408,9 +408,9 @@ Move <code>MessageDto</code> definition to <code>DTOs.hpp</code>:</p> <div class
 <span class="token comment">/**
  * Message Data-Transfer-Object
  */</span>
-<span class="token keyword">class</span> <span class="token class-name">MessageDto</span> <span class="token operator">:</span> <span class="token keyword">public</span> oatpp<span class="token operator">::</span>Object <span class="token punctuation">{</span>
+<span class="token keyword">class</span> <span class="token class-name">MessageDto</span> <span class="token operator">:</span> <span class="token keyword">public</span> oatpp<span class="token operator">::</span>DTO <span class="token punctuation">{</span>
 
-  <span class="token function">DTO_INIT</span><span class="token punctuation">(</span>MessageDto<span class="token punctuation">,</span> Object <span class="token comment">/* Extends */</span><span class="token punctuation">)</span>
+  <span class="token function">DTO_INIT</span><span class="token punctuation">(</span>MessageDto<span class="token punctuation">,</span> DTO <span class="token comment">/* Extends */</span><span class="token punctuation">)</span>
 
   <span class="token function">DTO_FIELD</span><span class="token punctuation">(</span>Int32<span class="token punctuation">,</span> statusCode<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// Status code field</span>
   <span class="token function">DTO_FIELD</span><span class="token punctuation">(</span>String<span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// Message field</span>
@@ -731,6 +731,6 @@ Test will fail if objects leaks found (Counts only objects extending <a href="/a
       </a>
       →
     </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.359cd3ce.js" defer></script><script src="/assets/js/3.0e791e97.js" defer></script><script src="/assets/js/249.f63ce379.js" defer></script><script src="/assets/js/7.bc740621.js" defer></script>
+    <script src="/assets/js/app.21c278ca.js" defer></script><script src="/assets/js/3.0e791e97.js" defer></script><script src="/assets/js/249.20299a82.js" defer></script><script src="/assets/js/7.bc740621.js" defer></script>
   </body>
 </html>
