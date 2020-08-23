@@ -2,6 +2,7 @@
 
 cd ../../
 
+apt-get install -y zlib1g-dev
 apt-get install -y cmake
 apt-get install -y pkg-config
 apt-get install -y build-essential
@@ -29,6 +30,19 @@ cd oatpp-libressl
 mkdir build && cd build
 
 cmake -DCMAKE_BUILD_TYPE=Release ..
+make install
+
+cd ../../
+
+#####################################################
+
+git clone https://github.com/oatpp/oatpp-zlib
+
+cd oatpp-zlib
+
+mkdir build && cd build
+
+cmake ..
 make install
 
 cd ../../
