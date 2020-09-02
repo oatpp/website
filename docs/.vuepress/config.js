@@ -102,14 +102,15 @@ module.exports = {
                 title: "Overview",
                 collapsable: true,
                 children: [
-                    ["/docs/components/dto/", "Data Transfer Object (DTO)"],
                     ["/docs/components/api-controller/", "Api Controller"],
                     ["/docs/components/api-client/", "Api Client"],
-                    ["/docs/simple-vs-async/", "Simple vs Async"],
-                    ["/docs/async/", "Async"],
-                    ["/docs/oatpp-coroutines/", "Coroutines"],
+                    ["/docs/components/dto/", "Data Transfer Object (DTO)"],
+                    ["/docs/components/orm/", "ORM Framework"],
                     ["/docs/monolithization/", "Monolithization"],
-                    ["/docs/features/upload-file/", "Upload File"]
+                    ["/docs/features/upload-file/", "Upload File"],
+                    ["/docs/oatpp-coroutines/", "Coroutines"],
+                    ["/docs/simple-vs-async/", "Simple vs Async"],
+                    ["/docs/async/", "Async"]
                 ]
             },
             {

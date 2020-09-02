@@ -10,7 +10,8 @@ actionLink: /docs/start/
 
 <seo/>
 
-version: `1.1.0`
+Version: `1.1.0`  
+License: `Apache-2.0 License`
 
 <div class="features">
   <div class="feature">

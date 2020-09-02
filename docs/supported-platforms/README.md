@@ -20,6 +20,8 @@ containing build-scripts, options and patches for applications, modules and libr
 
 ## Known Builds
 
+- **NixOS** - see [Oat++ NixOS feed](https://github.com/oatpp/oatpp-nixos-feed) - collection of patches to properly install
+oatpp on NixOS. Special thanks to David Ibbitson - [dibbitson](https://github.com/dibbitson).
 - **Android** - see story on Github - <https://github.com/oatpp/oatpp/issues/9>
 - **iOS** - see story on Github - <https://github.com/oatpp/oatpp/issues/9>
 - **iOS 8 and earlier** - with special `-DOATPP_COMPAT_BUILD_NO_THREAD_LOCAL` flag.  

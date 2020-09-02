@@ -87,3 +87,13 @@ $ apk add cmake
 $ apk add g++
 $ apk add make
 ```
+
+## Patches
+
+Some platforms may require patching of build-scripts to properly install oatpp. 
+You may find what you need in the following repos: 
+
+- **OpenWRT** - see [Oat++ OpenWRT feed](https://github.com/oatpp/oatpp-openwrt-feed)
+ containing build-scripts, options and patches for applications, modules and libraries provided by Oat++.
+- **NixOS** - see [Oat++ NixOS feed](https://github.com/oatpp/oatpp-nixos-feed) - collection of patches to properly install
+oatpp on NixOS. Special thanks to David Ibbitson - [dibbitson](https://github.com/dibbitson).
