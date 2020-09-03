@@ -25,12 +25,12 @@ Also, it integrates perfectly with other Oat++ components ensuring seamless data
 
 [[toc]]
 
-## How It Looks Like
+## High-Level Overview
 
-The main component you are going to work with is the [DbClient](/api/latest/oatpp/orm/DbClient/).
-Here you declare database queries and manage database schema migrations.
+### Declare DbClient
 
-### Declaration
+The main component you are going to work with is the [DbClient](/api/latest/oatpp/orm/DbClient/). 
+You may treat it as the main point interfacing with your data. Here you declare database queries and manage database schema migrations.
 
 Database queries are declared with the help of code-gen macros.  
 DbClient code generation section must begin with 
@@ -54,7 +54,7 @@ public:
     oatpp::orm::SchemaMigration migration(executor); // Init schema using SchemaMigration
     migration.addFile(1, "sql/initial_schema.sql");
     migration.addFile(2, "sql/schema_fix_1.sql");
-    migration.migrate();
+    migration.migrate(); //<-- Throws an error on migration failure.
   }
 
   /**
@@ -76,17 +76,54 @@ public:
 #include OATPP_CODEGEN_END(DbClient) ///< End code-gen section
 ```
 
-### Usage
+### Create DbClient Component And Connect to Database
+
+DbClient is a heavy object - you want to instantiate it once and then inject it in whatever places you are going to use it.  
+- **Note:** `ConnectionProvider` and `ConnectionPool` objects can be reused by multiple `Executors` unless it's 
+prohibited by a database-specific implementation.
+- **Note:** `Executor` can be reused by multiple DbClients unless it's prohibited by a database-specific implementation.
 
 ```cpp
-/* declare a client */
-auto client = MyClient(executor /* database-specific executor */);
+#include "db/MyClient.hpp"
+#include "oatpp-sqlite/orm.hpp"
+
+class AppComponent {
+public:
+  
+  /**
+   * Create DbClient component.
+   * SQLite is used as an example here. For other databases declaration is similar.
+   */
+  OATPP_CREATE_COMPONENT(std::shared_ptr<db::MyClient>, myDatabaseClient)([] {
+    /* Create database-specific ConnectionProvider */
+    auto connectionProvider = std::make_shared<oatpp::sqlite::ConnectionProvider>("/path/to/database.sqlite");    
+  
+    /* Create database-specific ConnectionPool */
+    auto connectionPool = oatpp::sqlite::ConnectionPool::createShared(connectionProvider, 
+                                                                      10 /* max-connections */, 
+                                                                      std::chrono::seconds(5) /* connection TTL */);
+    
+    /* Create database-specific Executor */
+    auto executor = std::make_shared<oatpp::sqlite::Executor>(connectionPool);
+  
+    /* Create MyClient database client */
+    return std::make_shared<MyClient>(executor);
+  }());
+
+};
+```
+
+### DbClient Usage Example
+
+```cpp
+/* Inject MyClient database client */
+OATPP_COMPONENT(std::shared_ptr<db::MyClient>, client);
 
 /* Create new user in the database */
-client.createUser("admin", "admin@domain.com", UserRoles::ADMIN);
+client->createUser("admin", "admin@domain.com", UserRoles::ADMIN);
 
 /* Find user by name in the database */
-auto result = client.getUserByName("admin");
+auto result = client->getUserByName("admin");
 
 /* Retrieve query result as a vector of UserDto objects */
 /* Of cause, UserDto had to be previously defined */
@@ -125,4 +162,3 @@ you have to link the corresponding adaptor (ex.: **oatpp-sqlite**).
     ...
     ... etc.
 ```
-
