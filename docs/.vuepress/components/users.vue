@@ -31,7 +31,7 @@
                     },
                     {
                         name: "RadioIP",
-                        logo: "https://www.radioip.com/imports/images/en/logo_entete.gif",
+                        logo: "https://radio-ip.com/wp-content/uploads/2019/11/logog.png",
                         website: "https://www.radioip.com/"
                     }
                 ]
