@@ -6,6 +6,7 @@ heroText: Oat++
 tagline: An Open Source C++ Web Framework
 actionText: Get Started
 actionLink: /docs/start/
+footer: The Website is built with VuePress and served by Oat++ server
 ---
 
 <seo/>
@@ -16,7 +17,7 @@ License: `Apache-2.0 License`
 <div class="features">
     <div class="feature">
         <h2>Run It Anywhere</h2>
-        <p>Oat++ is <b>zero-dependency</b> and <b>easy-portable</b>. It has a wide range of <a href="/supported-platforms/">supported platforms</a>.</p>
+        <p>Oat++ has <b>zero-dependencies</b> and it's <b>easy-portable</b> with a wide range of <a href="/supported-platforms/">supported platforms</a>.</p>
     </div>
     <div class="feature">
         <h2>Build Robust APIs</h2>
@@ -65,7 +66,7 @@ ENDPOINT("POST", "/users", createUser,
     </div>
     <div class="feature">
         <h2>Contribute</h2>
-        <p>Oat++ is open-source and your contribution matters. <a href="/contributing/">Contribute!</a></p>
+        <p>Oat++ is an open-source project and your contributions matter. <a href="/contributing/">Contribute!</a></p>
     </div>
     <div class="feature">
         <h2>Connect</h2>
@@ -76,8 +77,8 @@ ENDPOINT("POST", "/users", createUser,
         </ul>
     </div>
     <div class="feature">
-        <h2>I'm Oat++ User</h2>
-        <p>Your company is Oat++ user,- tell us about your use-case. <a href="mailto:contact@oatpp.io">contact@oatpp.io</a></p>
+        <h2>Share Your Feedback</h2>
+        <p>If you are using Oat++, we would love to hear from you! <a href="mailto:contact@oatpp.io">contact@oatpp.io</a></p>
     </div>
 </div>
 
@@ -85,29 +86,37 @@ ENDPOINT("POST", "/users", createUser,
 
 <h3>Q: "Oat++" name?</h3>
 
-- "Oat" - it's something light, organic, and green. It can be easily cooked and consumed with no effort. 
-- "++" gives a hint that this "something" is for C++.
+- "Oat" is something light, organic, and green. It can be easily cooked and consumed with no effort. 
+- "++" gives a hint that it is "something" for C++.
 
 <h3>Q: What is the main area of Oat++ application?</h3>
 
-Oat++ is used for multiple different purposes, from building REST APIs that run on embedded devices to 
+Oat++ is used for many different purposes, from building REST APIs that run on embedded devices to 
 building microservices and highly-loaded cloud applications.
 
-But the majority of use-cases appears to be in **IoT** and **Robotics**.
+But the majority of use cases appears to be in **IoT** and **Robotics**.
 
 <h3>Q: How portable is Oat++?</h3>
 
-Oat++ can be **easily** ported everywhere where you have **threads** and **network stack**.
+Theoretically, Oat++ can be **easily** ported everywhere where you have **threads** and **network stack**.
 With an additional comparably small effort, it can be ported almost everywhere depending on how
 much you strip it and what would be the final binary size.
 
-For additional info see <a href="/supported-platforms/">supported platforms</a>.
+See <a href="/supported-platforms/">supported platforms</a> for additional info.
 
 <h3>Q: What is the size of a minimal Oat++ application?</h3>
 
-About **1Mb** depending on C/C++ std-lib, and oatpp version.
+About **1Mb**, depending on C/C++ std-lib and oatpp version.
 
+<h3>Q: Which Oat++ API to choose, Simple or Async?</h3>
 
-<br>
-<br>
-<br>
+Always choose **Simple API** wherever possible. Simple API is more developed and makes the code cleaner.
+
+Async API is designed for small, specific tasks that run at high concurrency levels ex.:
+- Serving file downloads to a large number of concurrent users (1K users and more).
+- Streaming to a large number of clients (1K or more).
+- Websocket Chat servers.
+
+For all other purposes use simple API.
+
+<div class="footer-margin"></div>
