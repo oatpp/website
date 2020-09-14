@@ -6,12 +6,12 @@ heroText: Oat++
 tagline: An Open Source C++ Web Framework
 actionText: Get Started
 actionLink: /docs/start/
-footer: The Website is built with VuePress and served by Oat++ server
+footer: This website is built with VuePress and served by Oat++ server
 ---
 
 <seo/>
 
-Version: `1.2.0`  
+Version: `1.1.0`  
 License: `Apache-2.0 License`
 
 <div class="features">
