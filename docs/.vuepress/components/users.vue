@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-for="user in users" class="user_root">
-            <a :href="user.website">
+            <a :href="user.website" target="_blank" rel="noopener noreferrer">
                 <img :src="user.logo" :alt="user.name" class="user_logo">
             </a>
         </div>
@@ -32,7 +32,7 @@
                     {
                         name: "RadioIP",
                         logo: "https://radio-ip.com/wp-content/uploads/2019/11/logog.png",
-                        website: "https://www.radioip.com/"
+                        website: "https://www.radio-ip.com/"
                     }
                 ]
             }

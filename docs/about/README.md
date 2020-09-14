@@ -36,7 +36,7 @@ It is zero-dependency, easy-portable, and high-performance.
 Contribute to Oat++ with us!    
 [Clone Oat++ on Github](https://github.com/oatpp/oatpp) and join our [Dev-Chat on Gitter](https://gitter.im/oatpp-framework/Lobby)
 
-## Oat++ Users
+## Oat++ User Community
 
 <users/>
 

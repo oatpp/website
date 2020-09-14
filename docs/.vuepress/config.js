@@ -123,6 +123,7 @@ module.exports = {
                     ["/docs/modules/oatpp-libressl/", "oatpp-libressl"],
                     ["/docs/modules/oatpp-mbedtls/", "oatpp-mbedtls"],
                     ["/docs/modules/oatpp-mongo/", "oatpp-mongo"],
+                    ["/docs/modules/oatpp-sqlite/", "oatpp-sqlite"],
                     ["/docs/modules/oatpp-ssdp/", "oatpp-ssdp"],
                     ["/docs/modules/oatpp-swagger/", "oatpp-swagger"],
                     ["/docs/modules/oatpp-websocket/", "oatpp-websocket"],
