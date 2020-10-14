@@ -447,7 +447,7 @@ Additional endpoint info can be added in `ENDPOINT_INFO(<endpoint-name>)` block.
 
 **example:**
 
-- Simeple API:
+- Simple API:
    ```cpp
    ENDPOINT_INFO(createUser) {
      info->summary = "Create new User";
