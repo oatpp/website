@@ -131,7 +131,7 @@ To create API client you need `network::client::ConnectionProvider`, `web::clien
 ```cpp
 #include "oatpp/web/client/HttpRequestExecutor.hpp"
 #include "oatpp/parser/json/mapping/ObjectMapper.hpp"
-#include "oatpp/network/client/SimpleTCPConnectionProvider.hpp"
+#include "oatpp/network/tcp/client/ConnectionProvider.hpp"
 
 ...
 
@@ -140,7 +140,7 @@ using namespace oatpp::web;
 using namespace oatpp::parser;
 
 /* create connection provider */
-auto connectionProvider = client::SimpleTCPConnectionProvider::createShared("httpbin.org" /* host */, 80 /* port */);
+auto connectionProvider = tcp::client::ConnectionProvider::createShared({"httpbin.org", 80, oatpp::network::Address::IP_4});
 
 /* create HTTP request executor */
 auto requestExecutor = client::HttpRequestExecutor::createShared(connectionProvider);
@@ -165,7 +165,7 @@ using namespace oatpp::network;
 using namespace oatpp::web;
 
 /* create connection provider */
-auto connectionProvider = client::SimpleTCPConnectionProvider::createShared("httpbin.org" /* host */, 80 /* port */);
+auto connectionProvider = tcp::client::ConnectionProvider::createShared({"httpbin.org", 80, oatpp::network::Address::IP_4});
 
 /* create connection pool */
 auto connectionPool = std::make_shared<ClientConnectionPool>(
@@ -196,7 +196,7 @@ using namespace oatpp::network;
 using namespace oatpp::web;
 
 /* create connection provider */
-auto connectionProvider = client::SimpleTCPConnectionProvider::createShared("httpbin.org" /* host */, 80 /* port */);
+auto connectionProvider = tcp::client::ConnectionProvider::createShared({"httpbin.org", 80, oatpp::network::Address::IP_4});
 
 /* create connection pool */
 auto connectionPool = std::make_shared<ClientConnectionPool>(

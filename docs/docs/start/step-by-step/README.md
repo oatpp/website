@@ -20,8 +20,8 @@ To get basic components overview let's take a look at the simplest oatpp server 
 ```cpp
 #include "oatpp/web/server/HttpConnectionHandler.hpp"
 
-#include "oatpp/network/server/Server.hpp"
-#include "oatpp/network/server/SimpleTCPConnectionProvider.hpp"
+#include "oatpp/network/Server.hpp"
+#include "oatpp/network/tcp/server/ConnectionProvider.hpp"
 
 void run() {
 
@@ -32,10 +32,10 @@ void run() {
   auto connectionHandler = oatpp::web::server::HttpConnectionHandler::createShared(router);
 
   /* Create TCP connection provider */
-  auto connectionProvider = oatpp::network::server::SimpleTCPConnectionProvider::createShared(8000 /* port */);
+  auto connectionProvider = oatpp::network::server::tcp::ConnectionProvider::createShared({"localhost", 8000, oatpp::network::Address::IP_4});
 
   /* Create server which takes provided TCP connections and passes them to HTTP connection handler */
-  oatpp::network::server::Server server(connectionProvider, connectionHandler);
+  oatpp::network::Server server(connectionProvider, connectionHandler);
 
   /* Priny info about server port */
   OATPP_LOGI("MyApp", "Server running on port %s", connectionProvider->getProperty("port").getData());
@@ -82,8 +82,8 @@ requests to it via `Router`:
 ```cpp{6-19,26-27}
 #include "oatpp/web/server/HttpConnectionHandler.hpp"
 
-#include "oatpp/network/server/Server.hpp"
-#include "oatpp/network/server/SimpleTCPConnectionProvider.hpp"
+#include "oatpp/network/Server.hpp"
+#include "oatpp/network/tcp/server/ConnectionProvider.hpp"
 
 /** 
  * Custom Request Handler
@@ -112,10 +112,10 @@ void run() {
   auto connectionHandler = oatpp::web::server::HttpConnectionHandler::createShared(router);
 
   /* Create TCP connection provider */
-  auto connectionProvider = oatpp::network::server::SimpleTCPConnectionProvider::createShared(8000 /* port */);
+  auto connectionProvider = oatpp::network::server::tcp::ConnectionProvider::createShared({"localhost", 8000, oatpp::network::Address::IP_4});
 
   /* Create server which takes provided TCP connections and passes them to HTTP connection handler */
-  oatpp::network::server::Server server(connectionProvider, connectionHandler);
+  oatpp::network::Server server(connectionProvider, connectionHandler);
 
   /* Priny info about server port */
   OATPP_LOGI("MyApp", "Server running on port %s", connectionProvider->getProperty("port").getData());
@@ -162,8 +162,8 @@ will be serialized to JSON.
 
 #include "oatpp/web/server/HttpConnectionHandler.hpp"
 
-#include "oatpp/network/server/Server.hpp"
-#include "oatpp/network/server/SimpleTCPConnectionProvider.hpp"
+#include "oatpp/network/Server.hpp"
+#include "oatpp/network/tcp/server/ConnectionProvider.hpp"
 
 #include "oatpp/core/macro/codegen.hpp"
 
@@ -228,10 +228,10 @@ void run() {
   auto connectionHandler = oatpp::web::server::HttpConnectionHandler::createShared(router);
 
   /* Create TCP connection provider */
-  auto connectionProvider = oatpp::network::server::SimpleTCPConnectionProvider::createShared(8000 /* port */);
+  auto connectionProvider = oatpp::network::server::tcp::ConnectionProvider::createShared({"localhost", 8000, oatpp::network::Address::IP_4});
 
   /* Create server which takes provided TCP connections and passes them to HTTP connection handler */
-  oatpp::network::server::Server server(connectionProvider, connectionHandler);
+  oatpp::network::Server server(connectionProvider, connectionHandler);
 
   /* Priny info about server port */
   OATPP_LOGI("MyApp", "Server running on port %s", connectionProvider->getProperty("port").getData());
@@ -317,7 +317,7 @@ Create file `AppComponent.hpp` in you projects `src` folder and move there initi
 #include "oatpp/parser/json/mapping/ObjectMapper.hpp"
 
 #include "oatpp/web/server/HttpConnectionHandler.hpp"
-#include "oatpp/network/server/SimpleTCPConnectionProvider.hpp"
+#include "oatpp/network/tcp/server/ConnectionProvider.hpp"
 
 #include "oatpp/core/macro/component.hpp"
 
@@ -332,7 +332,7 @@ public:
    *  Create ConnectionProvider component which listens on the port
    */
   OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, serverConnectionProvider)([] {
-    return oatpp::network::server::SimpleTCPConnectionProvider::createShared(8000);
+    return oatpp::network::server::tcp::ConnectionProvider::createShared({"localhost", 8000, oatpp::network::Address::IP_4});
   }());
 
   /**
@@ -345,7 +345,7 @@ public:
   /**
    *  Create ConnectionHandler component which uses Router component to route requests
    */
-  OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::server::ConnectionHandler>, serverConnectionHandler)([] {
+  OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, serverConnectionHandler)([] {
     OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router); // get Router component
     return oatpp::web::server::HttpConnectionHandler::createShared(router);
   }());
@@ -369,7 +369,7 @@ Now all major components are initialized in one place which makes it easy to con
 ```cpp{31,49}
 #include "AppComponent.hpp"
 
-#include "oatpp/network/server/Server.hpp"
+#include "oatpp/network/Server.hpp"
 
 #include "oatpp/core/macro/codegen.hpp"
 
@@ -424,13 +424,13 @@ void run() {
   router->route("GET", "/hello", std::make_shared<Handler>());
 
   /* Get connection handler component */
-  OATPP_COMPONENT(std::shared_ptr<oatpp::network::server::ConnectionHandler>, connectionHandler);
+  OATPP_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, connectionHandler);
 
   /* Get connection provider component */
   OATPP_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, connectionProvider);
 
   /* Create server which takes provided TCP connections and passes them to HTTP connection handler */
-  oatpp::network::server::Server server(connectionProvider, connectionHandler);
+  oatpp::network::Server server(connectionProvider, connectionHandler);
 
   /* Priny info about server port */
   OATPP_LOGI("MyApp", "Server running on port %s", connectionProvider->getProperty("port").getData());
@@ -560,7 +560,7 @@ And the final look of the App.cpp is as follows:
 #include "controller/MyController.hpp"
 #include "AppComponent.hpp"
 
-#include "oatpp/network/server/Server.hpp"
+#include "oatpp/network/Server.hpp"
 
 void run() {
 
@@ -575,13 +575,13 @@ void run() {
   myController->addEndpointsToRouter(router);
 
   /* Get connection handler component */
-  OATPP_COMPONENT(std::shared_ptr<oatpp::network::server::ConnectionHandler>, connectionHandler);
+  OATPP_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, connectionHandler);
 
   /* Get connection provider component */
   OATPP_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, connectionProvider);
 
   /* Create server which takes provided TCP connections and passes them to HTTP connection handler */
-  oatpp::network::server::Server server(connectionProvider, connectionHandler);
+  oatpp::network::Server server(connectionProvider, connectionHandler);
 
   /* Priny info about server port */
   OATPP_LOGI("MyApp", "Server running on port %s", connectionProvider->getProperty("port").getData());
@@ -671,7 +671,7 @@ public:
   /**
    *  Create ConnectionHandler component which uses Router component to route requests
    */
-  OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::server::ConnectionHandler>, serverConnectionHandler)([] {
+  OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, serverConnectionHandler)([] {
     OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router); // get Router component
     return oatpp::web::server::HttpConnectionHandler::createShared(router);
   }());
@@ -803,7 +803,7 @@ void MyControllerTest::onRun() {
     OATPP_ASSERT(response->getStatusCode() == 200);
 
     /* Read response body as MessageDto */
-    auto message = response->readBodyToDto<MessageDto>(objectMapper);
+    auto message = response->readBodyToDto<oatpp::Object<MessageDto>>(objectMapper);
 
     /* Assert that received message is as expected */
     OATPP_ASSERT(message);

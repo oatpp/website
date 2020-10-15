@@ -11,7 +11,7 @@ sidebarDepth: 0
     <iframe src="https://ghbtns.com/github-btn.html?user=oatpp&repo=oatpp&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>
 </div>
 
-Latest version `1.1.0` :tada:
+Latest version `1.2.0` :tada:
 
 Oat++ is an open-source C++ web framework for highly scalable and resource-efficient web applications.  
 It provides all the necessary components for production-grade development, including:

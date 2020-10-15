@@ -7,16 +7,12 @@ sidebarDepth: 0
 # oatpp-sqlite <seo/>
 
 [Github Repository](https://github.com/oatpp/oatpp-sqlite)  
+[Example Project](https://github.com/oatpp/example-crud) 
 
 Oat++ ORM adaptor for SQLite.
 
-:::warning Attention 
-Oat++ ORM will be available starting from version `1.2.0`. 
-At the moment this docs are provided for enthusiasts doing beta-testing.   
-For more info ask us a question in the [devs chat on Gitter](https://gitter.im/oatpp-framework/Lobby)
-:::
-
 :::warning WIP 
-This DOC is WIP
+This DOC is WIP  
+Have got any questions - ask them in the [devs chat on Gitter](https://gitter.im/oatpp-framework/Lobby)
 :::
 

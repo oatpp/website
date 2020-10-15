@@ -11,17 +11,11 @@
 
 #include "oatpp-libressl/Callbacks.hpp"
 
-#include "oatpp/network/server/Server.hpp"
+#include "oatpp/network/Server.hpp"
 
 #include <iostream>
 #include <csignal>
 
-/**
- *  run() method.
- *  1) set Environment components.
- *  2) add ApiController's endpoints to router
- *  3) run server
- */
 void run() {
   
   /* ignore SIGPIPE */
@@ -42,16 +36,16 @@ void run() {
   /* create server */
   
   std::thread thread1([&components] {
-    oatpp::network::server::Server server(components.serverConnectionProvider.getObject(),
-                                          components.serverConnectionHandler.getObject());
+    oatpp::network::Server server(components.serverConnectionProvider.getObject(),
+                                  components.serverConnectionHandler.getObject());
     
     OATPP_LOGD("Server", "http-server on port %s...", components.serverConnectionProvider.getObject()->getProperty("port").toString()->c_str());
     server.run();
   });
   
   std::thread thread2([&components] {
-    oatpp::network::server::Server server(components.serverSecureConnectionProvider.getObject(),
-                                          components.serverSecureConnectionHandler.getObject());
+    oatpp::network::Server server(components.serverSecureConnectionProvider.getObject(),
+                                  components.serverSecureConnectionHandler.getObject());
     
     OATPP_LOGD("Server", "https-server on port %s...", components.serverSecureConnectionProvider.getObject()->getProperty("port").toString()->c_str());
     server.run();

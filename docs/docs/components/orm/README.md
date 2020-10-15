@@ -6,16 +6,10 @@ sidebarDepth: 2
 
 # Object-Relational Mapping (ORM) framework <seo/>
 
-:::warning Attention 
-Oat++ ORM will be available starting from version `1.2.0`. 
-At the moment this docs are provided for enthusiasts doing beta-testing.   
-For more info ask us a question in the [devs chat on Gitter](https://gitter.im/oatpp-framework/Lobby)
-:::
-
 :::warning WIP 
-This DOC is WIP
+This DOC is WIP  
+Have got any questions - ask them in the [devs chat on Gitter](https://gitter.im/oatpp-framework/Lobby)
 :::
-
 
 Oat++ ORM framework is a set of generalized interfaces and their implementations to make it easy to work with databases.
 
@@ -162,3 +156,8 @@ you have to link the corresponding adaptor (ex.: **oatpp-sqlite**).
     ...
     ... etc.
 ```
+
+## Examples projects
+
+- [example-crud](https://github.com/oatpp/example-crud) - Using oatpp ORM with SQLite.
+- [example-postgresql](https://github.com/oatpp/example-postgresql) - Using oatpp ORM with PostgreSQL.

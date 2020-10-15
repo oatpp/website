@@ -19,7 +19,7 @@
 
 #include "oatpp/web/server/AsyncHttpConnectionHandler.hpp"
 #include "oatpp/web/server/HttpRouter.hpp"
-#include "oatpp/network/server/SimpleTCPConnectionProvider.hpp"
+#include "oatpp/network/tcp/server/ConnectionProvider.hpp"
 
 #include "oatpp/parser/json/mapping/ObjectMapper.hpp"
 
@@ -42,7 +42,7 @@ public:
 #else
     v_uint16 port = 80;
 #endif
-    return oatpp::network::server::SimpleTCPConnectionProvider::createShared(port);
+    return oatpp::network::tcp::server::ConnectionProvider::createShared({"0.0.0.0", port, oatpp::network::Address::IP_4});
   }());
   
   OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, serverSecureConnectionProvider)("https-provider", [] {
@@ -57,7 +57,7 @@ public:
     const char* certFile = "/certificate/oatpp.io.crt";
 #endif
     auto config = oatpp::libressl::Config::createDefaultServerConfigShared(certFile, keyFile);
-    return oatpp::libressl::server::ConnectionProvider::createShared(config, port);
+    return oatpp::libressl::server::ConnectionProvider::createShared(config, {"0.0.0.0", port, oatpp::network::Address::IP_4});
   }());
   
   /**
@@ -70,7 +70,7 @@ public:
   /**
    *  Create ConnectionHandler component which uses Router component to route requests
    */
-  OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::server::ConnectionHandler>, serverConnectionHandler)("http-handler", [] {
+  OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, serverConnectionHandler)("http-handler", [] {
     OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router); // get Router component
     /* Async ConnectionHandler for Async IO and Coroutine based endpoints */
     auto handler = std::make_shared<oatpp::web::server::AsyncHttpConnectionHandler>(router);
@@ -78,7 +78,7 @@ public:
     return handler;
   }());
   
-  OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::server::ConnectionHandler>, serverSecureConnectionHandler)("http-provider", [] {
+  OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, serverSecureConnectionHandler)("http-provider", [] {
     OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router); // get Router component
 
     /* Create HttpProcessor::Components */

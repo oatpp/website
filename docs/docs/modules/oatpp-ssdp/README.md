@@ -72,7 +72,7 @@ OATPP_COMPONENT(std::shared_ptr<oatpp::ssdp::UdpStreamProvider>, ssdpStreamProvi
 OATPP_COMPONENT(std::shared_ptr<oatpp::ssdp::SsdpStreamHandler>, ssdpStreamHandler, "ssdp");
 
 /* Create server which takes provided streams and passes them to stream handler */
-oatpp::network::server::Server server(ssdpStreamProvider, ssdpStreamHandler);
+oatpp::network::Server server(ssdpStreamProvider, ssdpStreamHandler);
 
 /* Priny info about server port */
 OATPP_LOGD("Server", "Running SSDP on port %s...", ssdpStreamProvider->getProperty("port").getData());
