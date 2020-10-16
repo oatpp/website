@@ -32,7 +32,7 @@ void run() {
   auto connectionHandler = oatpp::web::server::HttpConnectionHandler::createShared(router);
 
   /* Create TCP connection provider */
-  auto connectionProvider = oatpp::network::server::tcp::ConnectionProvider::createShared({"localhost", 8000, oatpp::network::Address::IP_4});
+  auto connectionProvider = oatpp::network::tcp::server::ConnectionProvider::createShared({"localhost", 8000, oatpp::network::Address::IP_4});
 
   /* Create server which takes provided TCP connections and passes them to HTTP connection handler */
   oatpp::network::Server server(connectionProvider, connectionHandler);
@@ -112,7 +112,7 @@ void run() {
   auto connectionHandler = oatpp::web::server::HttpConnectionHandler::createShared(router);
 
   /* Create TCP connection provider */
-  auto connectionProvider = oatpp::network::server::tcp::ConnectionProvider::createShared({"localhost", 8000, oatpp::network::Address::IP_4});
+  auto connectionProvider = oatpp::network::tcp::server::ConnectionProvider::createShared({"localhost", 8000, oatpp::network::Address::IP_4});
 
   /* Create server which takes provided TCP connections and passes them to HTTP connection handler */
   oatpp::network::Server server(connectionProvider, connectionHandler);
@@ -228,7 +228,7 @@ void run() {
   auto connectionHandler = oatpp::web::server::HttpConnectionHandler::createShared(router);
 
   /* Create TCP connection provider */
-  auto connectionProvider = oatpp::network::server::tcp::ConnectionProvider::createShared({"localhost", 8000, oatpp::network::Address::IP_4});
+  auto connectionProvider = oatpp::network::tcp::server::ConnectionProvider::createShared({"localhost", 8000, oatpp::network::Address::IP_4});
 
   /* Create server which takes provided TCP connections and passes them to HTTP connection handler */
   oatpp::network::Server server(connectionProvider, connectionHandler);
@@ -332,7 +332,7 @@ public:
    *  Create ConnectionProvider component which listens on the port
    */
   OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, serverConnectionProvider)([] {
-    return oatpp::network::server::tcp::ConnectionProvider::createShared({"localhost", 8000, oatpp::network::Address::IP_4});
+    return oatpp::network::tcp::server::ConnectionProvider::createShared({"localhost", 8000, oatpp::network::Address::IP_4});
   }());
 
   /**

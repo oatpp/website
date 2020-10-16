@@ -51,7 +51,7 @@ auto config = oatpp::mbedtls::Config::createDefaultServerConfigShared(serverCert
 
 /* Create Transport Stream Provider */
 /* Replace With Your Custom Transport Stream Provider */
-auto transportStreamProvider = oatpp::network::server::tcp::ConnectionProvider::createShared({"localhost", 443, oatpp::network::Address::IP_4});
+auto transportStreamProvider = oatpp::network::tcp::server::ConnectionProvider::createShared({"localhost", 443, oatpp::network::Address::IP_4});
 
 /* Create Secure Connection Provider */
 auto connectionProvider = oatpp::mbedtls::server::ConnectionProvider::createShared(config, transportStreamProvider);
