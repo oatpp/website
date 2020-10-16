@@ -7,7 +7,7 @@
     <meta name="generator" content="VuePress 1.5.2">
     <link rel="icon" href="/logo_x64.png"><link rel='canonical' href='https://oatpp.io/docs/simple-vs-async/'/>
     <meta name="description" content="Simple and Async oatpp APIs. Pros and Cons. Configuration difference.">
-    <link rel="preload" href="/assets/css/0.styles.5f58b113.css" as="style"><link rel="preload" href="/assets/js/app.41fee7da.js" as="script"><link rel="preload" href="/assets/js/3.0e791e97.js" as="script"><link rel="preload" href="/assets/js/282.dc4c1267.js" as="script"><link rel="preload" href="/assets/js/7.a7c042c4.js" as="script">
+    <link rel="preload" href="/assets/css/0.styles.5f58b113.css" as="style"><link rel="preload" href="/assets/js/app.f0b8e7c7.js" as="script"><link rel="preload" href="/assets/js/3.0e791e97.js" as="script"><link rel="preload" href="/assets/js/282.384e5ab9.js" as="script"><link rel="preload" href="/assets/js/7.bc740621.js" as="script">
     <link rel="stylesheet" href="/assets/css/0.styles.5f58b113.css">
   </head>
   <body>
@@ -36,7 +36,7 @@
    *  Create ConnectionProvider component which listens on the port
    */</span>
   <span class="token function">OATPP_CREATE_COMPONENT</span><span class="token punctuation">(</span>std<span class="token operator">::</span>shared_ptr<span class="token operator">&lt;</span>oatpp<span class="token operator">::</span>network<span class="token operator">::</span>ServerConnectionProvider<span class="token operator">&gt;</span><span class="token punctuation">,</span> serverConnectionProvider<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> oatpp<span class="token operator">::</span>network<span class="token operator">::</span>server<span class="token operator">::</span>tcp<span class="token operator">::</span>ConnectionProvider<span class="token operator">::</span><span class="token function">createShared</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&quot;localhost&quot;</span><span class="token punctuation">,</span> <span class="token number">8000</span><span class="token punctuation">,</span> oatpp<span class="token operator">::</span>network<span class="token operator">::</span>Address<span class="token operator">::</span>IP_4<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> oatpp<span class="token operator">::</span>network<span class="token operator">::</span>tcp<span class="token operator">::</span>server<span class="token operator">::</span>ConnectionProvider<span class="token operator">::</span><span class="token function">createShared</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&quot;localhost&quot;</span><span class="token punctuation">,</span> <span class="token number">8000</span><span class="token punctuation">,</span> oatpp<span class="token operator">::</span>network<span class="token operator">::</span>Address<span class="token operator">::</span>IP_4<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
   <span class="token comment">/**
@@ -73,7 +73,7 @@
    *  Create ConnectionProvider component which listens on the port
    */</span>
   <span class="token function">OATPP_CREATE_COMPONENT</span><span class="token punctuation">(</span>std<span class="token operator">::</span>shared_ptr<span class="token operator">&lt;</span>oatpp<span class="token operator">::</span>network<span class="token operator">::</span>ServerConnectionProvider<span class="token operator">&gt;</span><span class="token punctuation">,</span> serverConnectionProvider<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> oatpp<span class="token operator">::</span>network<span class="token operator">::</span>server<span class="token operator">::</span>tcp<span class="token operator">::</span>ConnectionProvider<span class="token operator">::</span><span class="token function">createShared</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&quot;localhost&quot;</span><span class="token punctuation">,</span> <span class="token number">8000</span><span class="token punctuation">,</span> oatpp<span class="token operator">::</span>network<span class="token operator">::</span>Address<span class="token operator">::</span>IP_4<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> oatpp<span class="token operator">::</span>network<span class="token operator">::</span>tcp<span class="token operator">::</span>server<span class="token operator">::</span>ConnectionProvider<span class="token operator">::</span><span class="token function">createShared</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&quot;localhost&quot;</span><span class="token punctuation">,</span> <span class="token number">8000</span><span class="token punctuation">,</span> oatpp<span class="token operator">::</span>network<span class="token operator">::</span>Address<span class="token operator">::</span>IP_4<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
   <span class="token comment">/**
@@ -115,6 +115,6 @@
       </a>
       →
     </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.41fee7da.js" defer></script><script src="/assets/js/3.0e791e97.js" defer></script><script src="/assets/js/282.dc4c1267.js" defer></script><script src="/assets/js/7.a7c042c4.js" defer></script>
+    <script src="/assets/js/app.f0b8e7c7.js" defer></script><script src="/assets/js/3.0e791e97.js" defer></script><script src="/assets/js/282.384e5ab9.js" defer></script><script src="/assets/js/7.bc740621.js" defer></script>
   </body>
 </html>
