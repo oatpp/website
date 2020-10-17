@@ -7,7 +7,7 @@ sidebarDepth: 2
 # Object-Relational Mapping (ORM) framework <seo/>
 
 :::tip 
-Have got any questions - ask them in the [devs chat on Gitter](https://gitter.im/oatpp-framework/Lobby)
+Have got any questions - ask them in the [Devs Chat on Gitter](https://gitter.im/oatpp-framework/Lobby)
 :::
 
 Oat++ ORM framework is a set of generalized interfaces and their implementations to make it easy to work with databases.
@@ -69,9 +69,6 @@ public:
 ### Create DbClient Component And Connect to Database
 
 DbClient is a heavy object - you want to instantiate it once and then inject it in whatever places you are going to use it.  
-- **Note:** `ConnectionProvider` and `ConnectionPool` objects can be reused by multiple `Executors` unless it's 
-prohibited by a database-specific implementation.
-- **Note:** `Executor` can be reused by multiple DbClients unless it's prohibited by a database-specific implementation.
 
 ```cpp
 #include "db/MyClient.hpp"      //< User-declared DbClient
@@ -100,6 +97,12 @@ public:
 };
 ```
 
+**Note:**
+- `ConnectionProvider` and `ConnectionPool` objects can be reused by multiple `Executors` unless it's 
+prohibited by a database-specific implementation.
+- `Executor` can be reused by multiple DbClients unless it's prohibited by a database-specific implementation.
+
+
 ### DbClient Usage Example
 
 ```cpp
@@ -115,7 +118,7 @@ auto result = client->getUserByUsername("admin");
 /* Retrieve query result as a vector of UserDto objects */
 /* Of cause, UserDto had to be previously defined */
 /* You can also use oatpp::Fields<oatpp::Any> - instead of oatpp::Object<UserDto> for any arbitrary result */
-auto dataset = res->fetch<oatpp::Vector<oatpp::Object<UserDto>>>();
+auto dataset = result->fetch<oatpp::Vector<oatpp::Object<UserDto>>>();
 
 /* And we can easily serialize result as a json string using json object mapper */
 auto json = jsonObjectMapper.writeToString(dataset);
@@ -135,6 +138,16 @@ Output:
   }
 ]
 ```
+
+## Supported Databases
+
+### Available Database Adaptors
+
+|Adaptor|Database|Limitations|Example Project|
+|---|---|---|---|
+|[oatpp-sqlite](https://github.com/oatpp/oatpp-sqlite)|SQLite|**Full feature support**|[example-crud](https://github.com/oatpp/example-crud)|
+|[oatpp-postgresql](https://github.com/oatpp/oatpp-postgresql)|PostgreSQL|Doesn't support all postgres types|[example-postgresql](https://github.com/oatpp/example-postgresql)|
+
 
 ### Libraries Hierarchy
 
@@ -204,6 +217,57 @@ For example:
 - SQLite is always using prepared statements to execute queries thus **oatpp-sqlite** will ignore this parameter.
 - PostgreSQL has a special method to execute prepared statements thus **oatpp-postgresql** will not ignore this parameter.
 
+### Execute An Arbitrary Query
+
+To execute an arbitrary query use [DbClient::executeQuery()](/api/latest/oatpp/orm/DbClient/#dbclient-executequery) method.  
+Use this method when it's needed to dynamically build a query.
+
+```cpp
+auto dbResult = client.executeQuery("SELECT * FROM users;", {} /* empty params map */);
+```
+
+You can add parameters using parameters map:
+
+```cpp
+auto dbResult = client.executeQuery(
+  "SELECT * FROM users WHERE id=:id AND username=:username;", 
+  {
+    {"id", oatpp::Int64(23)},             ///< Yes, you have to explicitly specify parameter type here - oatpp::Int64
+    {"username", oatpp::String("admin")}  ///< Yes, you have to explicitly specify parameter type here - oatpp::String
+  }
+);
+```
+
+When building parameters map dynamically you have to use `std::unordered_map::insert()` method.  
+The `[]` operator WON'T work.
+
+```cpp
+std::unordered_map<oatpp::String, oatpp::Void> params;
+params.insert({"id", oatpp::Int64(23)});
+params.insert({"username", oatpp::String("admin")});
+auto dbResult = client.executeQuery("SELECT * FROM users WHERE id=:id AND username=:username;", params);
+```
+
+To build a query string it's recommended to use [oatpp::data::stream::BufferOutputStream](/api/latest/oatpp/core/data/stream/BufferStream/#bufferoutputstream).
+
+```cpp
+#include "oatpp/core/data/stream/BufferStream.hpp"
+
+...
+
+oatpp::data::stream::BufferOutputStream stream;
+stream 
+<< "SELECT * FROM users "
+<< "WHERE "
+<< "id=:id" << " AND " << "username=:username" << ";" 
+
+std::unordered_map<oatpp::String, oatpp::Void> params;
+params.insert({"id", oatpp::Int64(23)});
+params.insert({"username", oatpp::String("admin")});
+
+auto dbResult = client.executeQuery(stream.toString(), params);
+```
+
 ### Enable Type Interpretations
 
 When using custom or non-standard types as parameters in `QUERY` macro, 
@@ -272,6 +336,115 @@ All queries MUST be executed on the same transaction connection.
 Transaction will be automatically rollback if [Transaction::commit()](/api/latest/oatpp/orm/Transaction/#transaction-commit) method
 was not called. 
 
+
+## Executing Queries
+
+```cpp
+/* Execute a query */
+auto queryResult = client.selectAllUsers();
+
+/* Check if the operation was successful */
+if(!queryResult->isSuccess()) {
+  auto message = queryResult->getErrorMessage();
+  OATPP_LOGD("Query", "Error, message=%s", message->c_str());
+}
+
+/* Fetch everything as a vector of User objects */
+auto dataset = queryResult->fetch<oatpp::Vector<oatpp::Object<User>>>();
+```
+
+The `queryResult` here is the [oatpp::orm::QueryResult](/api/latest/oatpp/orm/QueryResult/) object.
+All queries return `oatpp::orm::QueryResult`.
+
+### Mapping Results
+
+Available result mappings depend on the database adapter but here are some examples (that work for oatpp-sqlite and oatpp-postgresql)...
+
+#### Map everything using previously decalred `UserDto` and display results
+
+For more info on how to declare a DTO - see [oatpp::DTO](/docs/components/dto/)
+
+```cpp
+auto dataset = queryResult->fetch<oatpp::Vector<oatpp::Object<oatpp::UserDto>>>();
+
+/* Serialize result as a json string using json object mapper */
+auto json = jsonObjectMapper.writeToString(dataset);
+
+/* Print the resultant json */
+std::cout << json->c_str() << std::endl;
+```
+
+Output:
+
+```json
+[
+  {
+    "name": "admin",
+    "email": "admin@domain.com",
+    "role": "ROLE_ADMIN"
+  },
+  {
+    "name": "ivan",
+    "email": "ivan@domain.com",
+    "role": "ROLE_GUEST"
+  }
+]
+```
+
+#### Map everything using `oatpp::Any` and display results
+
+```cpp
+auto dataset = queryResult->fetch<oatpp::Vector<oatpp::Fields<oatpp::Any>>>();
+
+/* Serialize result as a json string using json object mapper */
+auto json = jsonObjectMapper.writeToString(dataset);
+
+/* Print the resultant json */
+std::cout << json->c_str() << std::endl;
+```
+
+Output:
+
+```json
+[
+  {
+    "name": "admin",
+    "email": "admin@domain.com",
+    "role": "ROLE_ADMIN"
+  },
+  {
+    "name": "ivan",
+    "email": "ivan@domain.com",
+    "role": "ROLE_GUEST"
+  }
+]
+```
+
+### Managing Connections
+
+All declared queries have an [oatpp::orm::Connection](/api/latest/oatpp/orm/Connection/) as the last parameter.  
+If the connection is not specified(`nullptr`), then the new connection will be opened to execute that query.
+
+```cpp
+{
+  auto queryResult = client.selectAllUsers(); //< Open a new connection.
+}
+
+{
+  auto connection = client.getConnection();
+  auto queryResult = client.selectAllUsers(connection); //< Execute using the connection provided.
+}
+
+{
+  auto queryResult = client.selectAllUsers(); //< Open a new connection.
+  ...
+  queryResult = client.insertUser(user, queryResult->getConnection()); //< Execute on the same connection as the last query.
+}
+```
+
+**Note:**
+
+The `queryResult` object holds a connection. The connection won't return to the connection pool until `queryResult` is destroyed.
 
 ## Connection Pool
 

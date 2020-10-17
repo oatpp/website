@@ -68,9 +68,9 @@ Router of HTTP requests. It maps URLs to endpoint handlers.
 Our app has no endpoints declared so far hence the server will always return `404 not found`.
 - [HttpConnectionHandler](/api/latest/oatpp/web/server/HttpConnectionHandler/) - This is a simple HTTP connection handler.
 It handles incoming connections in a multi threaded manner, creating one thread per each connection.
-- [SimpleTCPConnectionProvider](/api/latest/oatpp/network/server/SimpleTCPConnectionProvider/) - Provider of `TCP` connections.
+- [ConnectionProvider](/api/latest/oatpp/network/tcp/server/ConnectionProvider/) - Provider of `TCP` connections.
 It binds to a specified port.
-- [Server](/api/latest/oatpp/network/server/Server/) - Server runs a loop which takes connections from `ConnectionProvider`
+- [Server](/api/latest/oatpp/network/Server/) - Server runs a loop which takes connections from `ConnectionProvider`
 and passes them to `ConnectionHandler`.
 
 ### Add Request Handler
@@ -513,6 +513,8 @@ Add the following code to `MyController.hpp`:
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/macro/component.hpp"
 
+#include OATPP_CODEGEN_BEGIN(ApiController) ///< Begin Codegen
+
 /**
  * Sample Api Controller.
  */
@@ -527,11 +529,6 @@ public:
   {}
 public:
   
-/**
- *  Begin ENDPOINTs generation ('ApiController' codegen)
- */
-#include OATPP_CODEGEN_BEGIN(ApiController)
-  
   ENDPOINT("GET", "/hello", root) {
     auto dto = MessageDto::createShared();
     dto->statusCode = 200;
@@ -541,12 +538,9 @@ public:
   
   // TODO Insert Your endpoints here !!!
   
-/**
- *  Finish ENDPOINTs generation ('ApiController' codegen)
- */
-#include OATPP_CODEGEN_END(ApiController)
-  
 };
+
+#include OATPP_CODEGEN_END(ApiController) ///< End Codegen
 
 #endif /* MyController_hpp */
 ```
@@ -863,7 +857,7 @@ At the end of each test (and at the end of all tests) oatpp Environment is check
 Test will fail if objects leaks found (Counts only objects extending [Countable](/api/latest/oatpp/core/base/Countable/)).
 
 ::: warning
-Tests binary should NOT be built linking oatpp built with `-DOATPP_DISABLE_ENV_OBJECT_COUNTERS` flag.
+Tests binary should NOT link oatpp built with `-DOATPP_DISABLE_ENV_OBJECT_COUNTERS` flag.
 :::
 
 ## Complete Project Code
