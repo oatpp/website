@@ -81,7 +81,7 @@ public:
 
 ```cpp
 auto response = userService->getUserById(id);
-auto user = response->readBodyToDto<dto::UserDto>(objectMapper);
+auto user = response->readBodyToDto<oatpp::Object<UserDto>>(objectMapper);
 ```
 
 ## Object Mapping

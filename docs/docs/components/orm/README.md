@@ -6,8 +6,7 @@ sidebarDepth: 2
 
 # Object-Relational Mapping (ORM) framework <seo/>
 
-:::warning WIP 
-This DOC is WIP  
+:::tip 
 Have got any questions - ask them in the [devs chat on Gitter](https://gitter.im/oatpp-framework/Lobby)
 :::
 
@@ -44,26 +43,23 @@ public:
 
   MyClient(const std::shared_ptr<oatpp::orm::Executor>& executor)
     : oatpp::orm::DbClient(executor)
-  {
-    oatpp::orm::SchemaMigration migration(executor); // Init schema using SchemaMigration
-    migration.addFile(1, "sql/initial_schema.sql");
-    migration.addFile(2, "sql/schema_fix_1.sql");
-    migration.migrate(); //<-- Throws an error on migration failure.
-  }
+  {}
 
   /**
-   * Declare create user method
+   * Create User.
    */
   QUERY(createUser,
-        "INSERT INTO users (name, email, role) VALUES (:name, :email, :role);", // SQL-template
-        PARAM(oatpp::String, name), PARAM(oatpp::String, email), PARAM(oatpp::Enum<UserRoles>::AsString, role)) // Template parameters
+        "INSERT INTO users (username, email, role) VALUES (:username, :email, :role);",
+        PARAM(oatpp::String, username), 
+        PARAM(oatpp::String, email), 
+        PARAM(oatpp::Enum<UserRoles>::AsString, role)) 
 
   /**
-   * Declare get user-by id method
+   * Get User by username.
    */
   QUERY(getUserByName, 
-        "SELECT * FROM users WHERE name=:name;", // SQL-template
-        PARAM(oatpp::String, name)) // Template parameters
+        "SELECT * FROM users WHERE username=:username;", 
+        PARAM(oatpp::String, username)) 
         
 };
 
@@ -76,6 +72,210 @@ DbClient is a heavy object - you want to instantiate it once and then inject it 
 - **Note:** `ConnectionProvider` and `ConnectionPool` objects can be reused by multiple `Executors` unless it's 
 prohibited by a database-specific implementation.
 - **Note:** `Executor` can be reused by multiple DbClients unless it's prohibited by a database-specific implementation.
+
+```cpp
+#include "db/MyClient.hpp"      //< User-declared DbClient
+#include "oatpp-sqlite/orm.hpp" //< SQLite adapter for oatpp ORM
+
+class AppComponent {
+public:
+  
+  /**
+   * Create DbClient component.
+   * SQLite is used as an example here. For other databases declaration is similar.
+   */
+  OATPP_CREATE_COMPONENT(std::shared_ptr<db::MyClient>, myDatabaseClient)([] {
+
+    /* Create database-specific ConnectionProvider */
+    auto connectionProvider = std::make_shared<oatpp::sqlite::ConnectionProvider>("/path/to/database.sqlite");    
+
+    /* Create database-specific Executor */
+    auto executor = std::make_shared<oatpp::sqlite::Executor>(connectionProvider);
+  
+    /* Create MyClient database client */
+    return std::make_shared<MyClient>(executor);
+
+  }());
+
+};
+```
+
+### DbClient Usage Example
+
+```cpp
+/* Inject MyClient database client */
+OATPP_COMPONENT(std::shared_ptr<db::MyClient>, client);
+
+/* Create new user in the database */
+client->createUser("admin", "admin@domain.com", UserRoles::ADMIN);
+
+/* Find user by username in the database */
+auto result = client->getUserByUsername("admin");
+
+/* Retrieve query result as a vector of UserDto objects */
+/* Of cause, UserDto had to be previously defined */
+/* You can also use oatpp::Fields<oatpp::Any> - instead of oatpp::Object<UserDto> for any arbitrary result */
+auto dataset = res->fetch<oatpp::Vector<oatpp::Object<UserDto>>>();
+
+/* And we can easily serialize result as a json string using json object mapper */
+auto json = jsonObjectMapper.writeToString(dataset);
+
+/* Print the resultant json */
+std::cout << json->c_str() << std::endl;
+```
+
+Output:
+
+```json
+[
+  {
+    "name": "admin",
+    "email": "admin@domain.com",
+    "role": "ROLE_ADMIN"
+  }
+]
+```
+
+### Libraries Hierarchy
+
+The main **oatpp** module contains ORM interfaces only. In order to "plug" a specific database, 
+you have to link the corresponding adaptor (ex.: **oatpp-sqlite**).
+
+```
+- oatpp                     # The main oatpp module. ORM interfaces are here.
+    |
+    |- oatpp-sqlite         # Sqlite adapter for oatpp ORM. Sqlite-specific implementation is here.
+    |- oatpp-postgresql     # PostgreSQL adapter for oatpp ORM. PostgreSQL-specific implementation is here.
+    ...
+    ... etc.
+```
+
+## DbClient
+
+### Declare a Query
+
+```cpp
+QUERY(selectAllUsers, "SELECT * FROM users;") 
+```
+
+### Query With Parameters
+
+```cpp
+QUERY(selectUserByUsername, 
+      "SELECT * FROM users WHERE username=:username;",
+      PARAM(oatpp::String, username)) 
+```
+
+During execution the expression `username=:username` will be changed to `username='<username-parameter-value>'` and
+parameter value will be properly escaped according to its type. 
+
+### Query With DTO as a Parameter
+
+For complex queries, it's more convenient to use DTO objects as for parameters set. Thus you ensure the correct order of arguments.
+
+```cpp
+QUERY(insertUser, 
+      "INSERT INTO users "
+      "(username, email, role) VALUES "
+      "(:user.username, :user.email, :user.role);",
+      PARAM(oatpp::Object<UserDto>, user))
+```
+
+**Note:**  
+The query template variable names are now starting with `user`, like `user.username` -
+where `user` is the name of the DTO parameter, and `username` is the name of DTO field.
+
+- **Yes**, you can specify a path to nested DTO fields like `:user.path.to.nested.field`.
+- **Yes**, you can have multiple DTO parameters in the query, and you can mix DTO parameters with regular parameters.
+
+
+### Query With Prepared Statement
+
+```cpp
+QUERY(selectUserByUsername, 
+      "SELECT * FROM users WHERE username=:username;",
+      PREPARE(true), //<-- set prepare to `true` to use a prepared statement.
+      PARAM(oatpp::String, username)) 
+```
+
+**Note**:  
+The database adapter may ignore this. 
+For example: 
+- SQLite is always using prepared statements to execute queries thus **oatpp-sqlite** will ignore this parameter.
+- PostgreSQL has a special method to execute prepared statements thus **oatpp-postgresql** will not ignore this parameter.
+
+### Enable Type Interpretations
+
+When using custom or non-standard types as parameters in `QUERY` macro, 
+as well as when reading query results to custom/non-standard structures, you have to 
+explicitly enable corresponding type interpretations. 
+
+The recommended place to do it - is the constructor:
+
+```cpp
+class MyClient : public oatpp::orm::DbClient {
+public:
+
+  MyClient(const std::shared_ptr<oatpp::orm::Executor>& executor)
+    : oatpp::orm::DbClient(executor)
+  {
+    setEnabledInterpretations({"protobuf"});
+  }
+
+  ...
+        
+};
+```
+
+#### Query With Custom Type Parameter
+
+```cpp
+QUERY(insertUser, 
+      "INSERT INTO users "
+      "(username, email, role) VALUES "
+      "(:user.username, :user.email, :user.role);",
+      PARAM(oatpp::protobuf::Object<User>, user)) // Pass protobuf object
+```
+
+#### Map Query Result To Custom Type
+
+```cpp
+/* Execute query */
+auto result = client->getUserByUsername("admin");
+
+/* Map result to a vector of protobuf objects */
+auto dataset = res->fetch<oatpp::Vector<oatpp::protobuf::Object<User>>>(); // Map result
+
+for(auto& user : *dataset) {
+  ...
+}
+```
+
+### Transactions
+
+Use [DbClient::beginTransaction()](/api/latest/oatpp/orm/DbClient/#dbclient-begintransaction) method to begin a transaction.  
+All queries MUST be executed on the same transaction connection.
+
+```cpp
+{
+  auto transaction = client.beginTransaction();
+  
+  client.insertUser(user1, transaction.getConnection());
+  client.insertUser(user2, transaction.getConnection());
+  client.insertUser(user3, transaction.getConnection());
+
+  transaction.commit();
+}
+```
+
+**Note:**  
+Transaction will be automatically rollback if [Transaction::commit()](/api/latest/oatpp/orm/Transaction/#transaction-commit) method
+was not called. 
+
+
+## Connection Pool
+
+It's always a good idea to use a connection pool when working with a database.
 
 ```cpp
 #include "db/MyClient.hpp"
@@ -107,55 +307,52 @@ public:
 };
 ```
 
-### DbClient Usage Example
+**Note:**
+SQLite is used as an example here. For other databases declaration is similar.
+
+## Schema Migration
+
+Use [SchemaMigration](/api/latest/oatpp/orm/SchemaMigration/) to do schema migrations!  
+The recommended place to do schema migrations is the constructor of your DbClient. 
+
+### Overview
 
 ```cpp
-/* Inject MyClient database client */
-OATPP_COMPONENT(std::shared_ptr<db::MyClient>, client);
+class MyClient : public oatpp::orm::DbClient {
+public:
 
-/* Create new user in the database */
-client->createUser("admin", "admin@domain.com", UserRoles::ADMIN);
-
-/* Find user by name in the database */
-auto result = client->getUserByName("admin");
-
-/* Retrieve query result as a vector of UserDto objects */
-/* Of cause, UserDto had to be previously defined */
-/* You can also use oatpp::Fields<oatpp::Any> - instead of UserDto for any arbitrary result */
-auto dataset = res->fetch<oatpp::Vector<oatpp::Object<UserDto>>>();
-
-/* And we can easily serialize result as a json string using json object mapper */
-auto json = jsonObjectMapper.writeToString(dataset);
-
-/* Print the resultant json */
-std::cout << json->c_str() << std::endl;
-```
-
-Output:
-
-```json
-[
+  MyClient(const std::shared_ptr<oatpp::orm::Executor>& executor)
+    : oatpp::orm::DbClient(executor)
   {
-    "name": "admin",
-    "email": "admin@domain.com",
-    "role": "ROLE_ADMIN"
-  }
-]
-```
-
-## Libraries Hierarchy
-
-The main **oatpp** module contains ORM interfaces only. In order to "plug" a specific database, 
-you have to link the corresponding adaptor (ex.: **oatpp-sqlite**).
-
-```
-- oatpp                     # The main oatpp module. ORM interfaces are here.
-    |
-    |- oatpp-sqlite         # Sqlite adapter for oatpp ORM. Sqlite-specific implementation is here.
-    |- oatpp-postgresql     # PostgreSQL adapter for oatpp ORM. PostgreSQL-specific implementation is here.
+    oatpp::orm::SchemaMigration migration(executor); 
+    migration.addFile(1 /* version */, "sql/initial_schema.sql" /* migration script */);
+    migration.addFile(2 /* version */, "sql/schema_fix_1.sql"   /* migration script */);
     ...
-    ... etc.
+    migration.migrate(); //<-- This guy will throw on error.
+  }
+
+  ...
+        
+};
 ```
+
+**Note:**
+
+- Version MUST start from `1`.
+- Version MUST be incremented by `1`.
+- In case of an error changes will be rolled back to the last successfully applied version.
+
+### Schema Name
+
+If you have multiple Schemas in your database you can manage migrations of each one independently. 
+For this specify a version control table suffix:
+
+```cpp
+oatpp::orm::SchemaMigration migration(executor, "suffix");
+```
+
+**Note:**
+It is recommended to have one DbClient per schema!
 
 ## Examples projects
 
