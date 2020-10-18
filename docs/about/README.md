@@ -18,12 +18,13 @@ It provides all the necessary components for production-grade development, inclu
 
 - Advanced REST framework with request parameters mapping and Swagger-UI annotations. 
 See [Api Controller](/docs/components/api-controller/) and [Api Client](/docs/components/api-client/).
+- ORM Framework. See [Object-Relational Mapping (ORM)](/docs/components/orm/)
 - WebSocket framework. See [5-million connections benchmark](/benchmark/websocket/5-million/).
 - Object Mapping. See [Data Transfer Object (DTO)](/docs/components/dto/).
 - Dependency Injection
 - Swagger-UI. See [oatpp-swagger](/docs/modules/oatpp-swagger/) module.
 
-It is zero-dependency, easy-portable, and high-performance.
+It's zero-dependency, easy-portable, and high-performance.
 
 ## Maintainers
 <br>

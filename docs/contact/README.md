@@ -4,7 +4,7 @@ description: Contact team of Oat++ web framework.
 sidebarDepth: 0
 ---
 
-# Contacts <seo/>
+# Contact <seo/>
 
 ## Communities
 

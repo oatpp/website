@@ -106,12 +106,24 @@ class UserDto : public oatpp::Object {
 ```cpp
 using namespace oatpp::parser::json::mapping;
 
+/* Create JSON object mapper */
+ObjectMapper objectMapper;
+
 auto user = UserDto::createShared();
 user->id = 1;
 user->name = "Ivan";
 
-auto objectMapper = ObjectMapper::createShared();
-auto json = objectMapper->writeToString(user);
+/* Serialize DTO to JSON */
+auto json = objectMapper.writeToString(user);
+```
+
+Output:
+
+```json
+{
+  "id": 1,
+  "name": "Ivan"
+}
 ```
 
 ## Swagger-UI Annotations
@@ -138,6 +150,74 @@ ENDPOINT("PUT", "/users/{userId}", putUser,
   return createDtoResponse(Status::CODE_200, m_database->updateUser(userDto));
 }
 ```
+
+## ORM Framework 
+
+For more info see [Oat++ ORM Framework](/docs/components/orm/)
+
+### Declare DbClient
+
+```cpp
+class MyClient : public oatpp::orm::DbClient {
+public:
+
+  MyClient(const std::shared_ptr<oatpp::orm::Executor>& executor)
+    : oatpp::orm::DbClient(executor)
+  {}
+
+  QUERY(createUser,
+        "INSERT INTO users (username, email, role) VALUES (:username, :email, :role);",
+        PARAM(oatpp::String, username), 
+        PARAM(oatpp::String, email), 
+        PARAM(oatpp::Enum<UserRoles>::AsString, role)) 
+
+  QUERY(getUserByName, 
+        "SELECT * FROM users WHERE username=:username;", 
+        PARAM(oatpp::String, username)) 
+        
+};
+```
+
+### DbClient Usage Example
+
+```cpp
+...
+
+/* Create MyClient database client */
+MyClient client(executor);
+
+/* Create new user in the database */
+client.createUser("admin", "admin@domain.com", UserRoles::ADMIN);
+
+/* Find user by username in the database */
+auto result = client.getUserByUsername("admin");
+
+/* Retrieve query result as a vector of UserDto objects */
+/* Of cause, UserDto had to be previously defined */
+auto dataset = result->fetch<oatpp::Vector<oatpp::Object<UserDto>>>();
+
+/* And we can easily serialize result as a json string using json object mapper */
+auto json = jsonObjectMapper.writeToString(dataset);
+
+/* Print the resultant json */
+std::cout << json->c_str() << std::endl;
+```
+
+Output:
+
+```json
+[
+  {
+    "name": "admin",
+    "email": "admin@domain.com",
+    "role": "ROLE_ADMIN"
+  }
+]
+```
+
+## Modules And Build Status
+
+To get an overview of oatpp modules, their hierarchy, and build status - see [build status](/status/build/).
 
 ## Read Next
 

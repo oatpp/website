@@ -1,10 +1,10 @@
 ---
 title: Oat++ ORM
-description: About Oat++ Object-relational mapping (ORM) framework.
+description: About Oat++ object-relational mapping (ORM) framework.
 sidebarDepth: 2
 ---
 
-# Object-Relational Mapping (ORM) framework <seo/>
+# Object-Relational Mapping (ORM) Framework <seo/>
 
 :::tip 
 Have got any questions - ask them in the [Devs Chat on Gitter](https://gitter.im/oatpp-framework/Lobby)
@@ -44,19 +44,13 @@ public:
   MyClient(const std::shared_ptr<oatpp::orm::Executor>& executor)
     : oatpp::orm::DbClient(executor)
   {}
-
-  /**
-   * Create User.
-   */
+  
   QUERY(createUser,
         "INSERT INTO users (username, email, role) VALUES (:username, :email, :role);",
         PARAM(oatpp::String, username), 
         PARAM(oatpp::String, email), 
         PARAM(oatpp::Enum<UserRoles>::AsString, role)) 
 
-  /**
-   * Get User by username.
-   */
   QUERY(getUserByName, 
         "SELECT * FROM users WHERE username=:username;", 
         PARAM(oatpp::String, username)) 

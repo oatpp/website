@@ -23,15 +23,14 @@ Welcome to :seedling:Oat++
    - [Starter Project - Simple API](/docs/start/project/)
    - [Starter project - Async API](/docs/start/project-async-api/)
    
-5. :point_right:Join dev community and don't hesitate to ask questions - [chat on Gitter](https://gitter.im/oatpp-framework/Lobby):point_left::v:
+5. :point_right:Join dev community and don't hesitate to ask questions - [Chat On Gitter](https://gitter.im/oatpp-framework/Lobby):point_left::v:
    
 ## Examples
 
 ### REST-API
 
-- [ApiClient Demo](https://github.com/oatpp/example-api-client) - Example project of how-to use Retrofit-like client wrapper (ApiClient) and how it works.
-- [Asynchronous API](https://github.com/oatpp/example-async-api) - Example project on how to use asynchronous API to handle a large number of simultaneous connections.
-- [CRUD With Swagger UI](https://github.com/oatpp/example-crud) - Example project on how to create CRUD endpoints.
+- [REST Service](/examples/crud/) - A complete example of a "CRUD" service (UserService) built with Oat++. REST + Swagger-UI + SQLite.
+- [REST Client](https://github.com/oatpp/example-api-client) - Example project of how-to use Retrofit-like client wrapper (ApiClient) and how it works.
 
 ### WebSocket
 
@@ -39,6 +38,12 @@ Welcome to :seedling:Oat++
 - [WebSocket](https://github.com/oatpp/example-websocket) - Collection of oatpp WebSocket examples.
 - [YUV Websocket Stream](https://github.com/oatpp/example-yuv-websocket-stream) - Example project how-to create a YUV image stream from a V4L device (i.E. Webcam) using websockets.
 
+### Databases
+
+- [SQLite](/examples/crud/) - A complete example of a "CRUD" service. REST + Swagger-UI + SQLite.
+- [PostgreSQL](/examples/postgresql/) - Example of a production-grade entity service storing information in PostgreSQL. With Swagger-UI and configuration profiles.
+- [MongoDB](https://github.com/oatpp/example-mongodb) - Example project how to work with MongoDB using **oatpp-mongo** mondule. Project is a web-service with basic CRUD and Swagger-UI.
+ 
 ### IoT
 
 - [Example-IoT-Hue](https://github.com/oatpp/example-iot-hue-ssdp) - Example project how-to create an Philips Hue compatible REST-API that is discovered and controllable by Hue compatible Smart-Home devices like Amazon Alexa or Google Echo.
@@ -56,10 +61,8 @@ Welcome to :seedling:Oat++
 
 - [Consul Integration](https://github.com/oatpp/example-consul) - Example project on how to use [oatpp::consul::Client](/api/latest/oatpp-consul/rest/Client/). Consul integration.
 - [Microservices](https://github.com/oatpp/example-microservices) - Example project on how to build microservices with Oat++, 
-and example on how to consolidate those microservices using [monolithization](https://oatpp.io/docs/monolithization/) technique.
+and example on how to consolidate those microservices using [monolithization](/docs/monolithization/) technique.
 
-### Databases
+### Asynchronous API
 
-- [PostgreSQL](https://github.com/oatpp/example-postgresql) - Example of a production-grade entity service storing information in PostgreSQL. With Swagger-UI and configuration profiles.
-- [MongoDB](https://github.com/oatpp/example-mongodb) - Example project how to work with MongoDB using **oatpp-mongo** mondule. Project is a web-service with basic CRUD and Swagger-UI.
- 
+- [Async Service](https://github.com/oatpp/example-async-api) - Example project on how to use asynchronous API to handle a large number of simultaneous connections.
