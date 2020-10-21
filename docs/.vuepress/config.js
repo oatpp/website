@@ -40,8 +40,9 @@ module.exports = {
         },
 
         nav: [
+            {text: "Quick Start", link: "/docs/start/"},
             {text: "About", link: "/about/"},
-            {text: "Contact", link: "/contact/"}
+            {text: "Support", link: "/support/"}
         ],
         sidebar: [
             {
