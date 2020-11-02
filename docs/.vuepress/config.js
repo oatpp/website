@@ -86,7 +86,8 @@ module.exports = {
                 collapsable: true,
                 children: [
                     ["/docs/installation/unix-linux/", "Unix/Linux"],
-                    ["/docs/installation/windows/", "Windows"]
+                    ["/docs/installation/windows/", "Windows"],
+                    ["/docs/installation/vcpkg/", "Vcpkg"]
                 ]
             },{
                 title: "Start",

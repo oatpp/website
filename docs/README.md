@@ -41,7 +41,7 @@ License: `Apache-2.0 License`
     </div>
 </div>
 
-<h2 class="h2-main margin1">How It Looks Like</h2>
+<h2 class="h2-main margin1">How It Looks</h2>
 
 ```cpp
 ENDPOINT("POST", "/users", createUser, 
