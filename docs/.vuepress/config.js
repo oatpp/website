@@ -87,7 +87,8 @@ module.exports = {
                 children: [
                     ["/docs/installation/unix-linux/", "Unix/Linux"],
                     ["/docs/installation/windows/", "Windows"],
-                    ["/docs/installation/vcpkg/", "Vcpkg"]
+                    ["/docs/installation/vcpkg/", "Vcpkg"],
+                    ["/docs/installation/conan/", "Conan"]
                 ]
             },{
                 title: "Start",
