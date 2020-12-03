@@ -8,6 +8,20 @@ sidebarDepth: 0
 
 [[toc]]
 
+## Upload and stream to file
+```cpp
+
+#include "oatpp/core/data/stream/FileStream.hpp"
+
+...
+
+ENDPOINT("POST", "/upload", upload, REQUEST(std::shared_ptr<IncomingRequest>, request)) {
+    oatpp::data::stream::FileOutputStream fileOutputStream("/path/to/file");
+    request->transferBodyToStream(&fileOutputStream); // transfer body chunk by chunk
+    return createResponse(Status::CODE_200, "OK");
+}
+```
+
 ## Simple API Multipart Upload
 
 ### Store Part In Memory
