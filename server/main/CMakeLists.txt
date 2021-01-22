@@ -22,9 +22,9 @@ add_library(${project_name}-lib
 
 ## link libs
 
-find_package(oatpp              1.2.0 REQUIRED)
-find_package(oatpp-libressl     1.2.0 REQUIRED)
-find_package(oatpp-zlib         1.2.0 REQUIRED)
+find_package(oatpp              1.2.5 REQUIRED)
+find_package(oatpp-libressl     1.2.5 REQUIRED)
+find_package(oatpp-zlib         1.2.5 REQUIRED)
 find_package(ZLIB)
 
 include(FindPkgConfig) # <-- include pkg-config needed by FindLibreSSL.cmake script

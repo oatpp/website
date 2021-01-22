@@ -33,6 +33,16 @@
                         name: "RadioIP",
                         logo: "https://radio-ip.com/wp-content/uploads/2019/11/logog.png",
                         website: "https://www.radio-ip.com/"
+                    },
+                    {
+                      name: "iCOGNIZE",
+                      logo: "https://www.icognize.de/wp-content/uploads/2020/07/ic_logo_sv2.svg",
+                      website: "https://www.icognize.de/"
+                    },
+                    {
+                      name: "DeepDetect",
+                      logo: "https://www.deepdetect.com/img/icons/menu/sidebar/deepdetect.svg",
+                      website: "https://www.deepdetect.com/"
                     }
                 ]
             }

@@ -9,7 +9,7 @@
 #ifndef SitePath_hpp
 #define SitePath_hpp
 
-#include "oatpp/web/server/handler/Interceptor.hpp"
+#include "oatpp/web/server/interceptor/RequestInterceptor.hpp"
 #include "oatpp/web/protocol/http/outgoing/BufferBody.hpp"
 
 class SitePath {
@@ -26,9 +26,10 @@ public:
   
 public:
   
-  class RedirectInterceptor : public oatpp::web::server::handler::RequestInterceptor {
+  class RedirectInterceptor : public oatpp::web::server::interceptor::RequestInterceptor {
   public:
-    std::shared_ptr<OutgoingResponse> intercept(std::shared_ptr<IncomingRequest>& request) override {
+
+    std::shared_ptr<OutgoingResponse> intercept(const std::shared_ptr<IncomingRequest>& request) override {
       if(doRedirect) {
         auto host = request->getHeader(oatpp::web::protocol::http::Header::HOST);
         if(!host || !host->equals(SiteHost)) {
@@ -42,9 +43,9 @@ public:
     }
   };
   
-  class RedirectToSecureInterceptor : public oatpp::web::server::handler::RequestInterceptor {
+  class RedirectToSecureInterceptor : public oatpp::web::server::interceptor::RequestInterceptor {
   public:
-    std::shared_ptr<OutgoingResponse> intercept(std::shared_ptr<IncomingRequest>& request) override {
+    std::shared_ptr<OutgoingResponse> intercept(const std::shared_ptr<IncomingRequest>& request) override {
       if(doRedirect) {
         //OATPP_LOGD("Interceptor", "do redirect from http to https");
         auto response = OutgoingResponse::createShared(oatpp::web::protocol::http::Status::CODE_301, nullptr);

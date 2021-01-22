@@ -158,11 +158,94 @@ oatpp::Any any = dto;
 auto dto = any.retrieve<oatpp::Object<MyDto>>(); // throws `std::runtime_error` if stored type doesn't match.
 ```
 
-### Custom Mapping-Enabled Types
+### Custom Types
 
-*Please note that one can define a custom type to be used in custom ObjectMapper.*  
-*This section is not documented yet.*
+To simplify the integration of custom types with oatpp Object-Mapping framework the "**Type Interpretation**" feature was introduced.  
 *For information about custom object mapping contact us in [dev-chat](https://gitter.im/oatpp-framework/Lobby)*
+
+Let's say you have some struct that is not part of oatpp object-mapping framework.
+
+```cpp
+struct VPoint {
+  v_int32 x;
+  v_int32 y;
+  v_int32 z;
+};
+```
+
+To integrate it with oatpp object-mapping you can do the following:
+
+```cpp
+namespace __class {
+  class PointClass;
+}
+
+/* Declare ObjectWrapper for your type */
+/* Mapping-Enabled Point */
+typedef oatpp::data::mapping::type::Primitive<VPoint, __class::PointClass> Point;
+
+namespace __class {
+
+  /**
+   * Type info
+   */
+  class PointClass {
+  private:
+
+    /**
+     * Type interpretation
+     */
+    class Inter : public oatpp::Type::Interpretation<Point, oatpp::UnorderedFields<oatpp::Int32>>  {
+    public:
+
+      oatpp::UnorderedFields<oatpp::Int32> interpret(const Point& value) const override {
+          return {{"x", value->x}, {"y", value->y}, {"z", value->z}};
+      }
+
+      Point reproduce(const oatpp::UnorderedFields<oatpp::Int32> map) const override {
+        return Point({map["x"], map["y"], map["z"]});
+      }
+
+    };
+
+  public:
+
+    static const oatpp::ClassId CLASS_ID;
+
+    static oatpp::Type* getType(){
+      static Type type(CLASS_ID, nullptr, nullptr, {{"my-types", new Inter()}} /* <-- Add type interpretation */ );
+      return &type;
+    }
+
+  };
+
+  const oatpp::ClassId PointClass::CLASS_ID("my-types::Point");
+
+}
+```
+
+Now the "Point" struct can be serialized/deserialized with object mappers.
+
+```cpp
+oatpp::parser::json::mapping::ObjectMapper mapper;
+
+{
+  auto config = mapper.getSerializer()->getConfig();
+  config->enabledInterpretations = {"my-types"}; // Enable "my-types" for serializer
+}
+
+{
+  auto config = mapper.getDeserializer()->getConfig();
+  config->enabledInterpretations = {"my-types"}; // Enable "my-types" for deserializer
+}
+
+Point point ({1, 2, 3}); // Create mapping-enabled Point
+
+auto json = mapper.writeToString(point); // Serialize Point
+auto pointClone = mapper.readFromString<Point>(json); // Deserialize Point
+```
+
+**Note:** Type interpretations work through all framework components including REST framework, ORM, and Swagger-UI.
 
 ## Example
 

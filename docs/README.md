@@ -11,7 +11,7 @@ footer: This website is built with VuePress and served by Oat++ server
 
 <seo/>
 
-Version: `1.2.0`  
+Version: `1.2.5`  
 License: `Apache-2.0 License`
 
 <div class="features">
