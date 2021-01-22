@@ -8,6 +8,20 @@ sidebarDepth: 0
 
 [[toc]]
 
+## Upload and stream to file
+```cpp
+
+#include "oatpp/core/data/stream/FileStream.hpp"
+
+...
+
+ENDPOINT("POST", "/upload", upload, REQUEST(std::shared_ptr<IncomingRequest>, request)) {
+    oatpp::data::stream::FileOutputStream fileOutputStream("/path/to/file");
+    request->transferBodyToStream(&fileOutputStream); // transfer body chunk by chunk
+    return createResponse(Status::CODE_200, "OK");
+}
+```
+
 ## Simple API Multipart Upload
 
 ### Store Part In Memory
@@ -16,6 +30,7 @@ sidebarDepth: 0
 
   #include "oatpp/web/mime/multipart/InMemoryPartReader.hpp"
   #include "oatpp/web/mime/multipart/Reader.hpp"
+  #include "oatpp/web/mime/multipart/PartList.hpp"
   
   ...
   
@@ -23,12 +38,12 @@ sidebarDepth: 0
   
   ...
 
-  ENDPOINT("POST", "upload/multipart", uploadMultipart,
-           REQUEST(std::shared_ptr<IncomingRequest>, request))
-  {
+ENDPOINT("POST", "upload/multipart", uploadMultipart,
+    REQUEST(std::shared_ptr<IncomingRequest>, request))
+{
 
     /* Prepare multipart container. */
-    auto multipart = std::make_shared<multipart::Multipart>(request->getHeaders());
+    auto multipart = std::make_shared<multipart::PartList>(request->getHeaders());
 
     /* Create multipart reader. */
     multipart::Reader multipartReader(multipart.get());
@@ -50,7 +65,7 @@ sidebarDepth: 0
 
     return createResponse(Status::CODE_200, "OK");
 
-  }
+}
 
 ```
 
@@ -60,6 +75,8 @@ sidebarDepth: 0
 
   #include "oatpp/web/mime/multipart/FileStreamProvider.hpp"
   #include "oatpp/web/mime/multipart/Reader.hpp"
+  #include "oatpp/web/mime/multipart/PartList.hpp"
+
   
   ...
   
@@ -72,7 +89,7 @@ sidebarDepth: 0
   {
 
     /* Prepare multipart container. */
-    auto multipart = std::make_shared<multipart::Multipart>(request->getHeaders());
+    auto multipart = std::make_shared<multipart::PartList>(request->getHeaders());
 
     /* Create multipart reader. */
     multipart::Reader multipartReader(multipart.get());
@@ -90,7 +107,7 @@ sidebarDepth: 0
     OATPP_ASSERT_HTTP(part1, Status::CODE_400, "part1 is null");
 
     /* Get part data input stream */
-    auto inputStream = filePart->getInputStream();
+    auto inputStream = part1->getInputStream();
     
     // TODO - process file stream.
 
@@ -107,7 +124,8 @@ sidebarDepth: 0
   #include "oatpp/web/mime/multipart/FileStreamProvider.hpp"
   #include "oatpp/web/mime/multipart/InMemoryPartReader.hpp"
   #include "oatpp/web/mime/multipart/Reader.hpp"
-  
+  #include "oatpp/web/mime/multipart/PartList.hpp"
+
   ...
   
   namespace multipart = oatpp::web::mime::multipart;
@@ -119,7 +137,7 @@ sidebarDepth: 0
   {
 
     /* Prepare multipart container. */
-    auto multipart = std::make_shared<multipart::Multipart>(request->getHeaders());
+    auto multipart = std::make_shared<multipart::PartList>(request->getHeaders());
 
     /* Create multipart reader. */
     multipart::Reader multipartReader(multipart.get());

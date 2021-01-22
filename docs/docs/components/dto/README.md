@@ -371,14 +371,15 @@ Without the use of beautifier the json serializer output will contain no spaces 
 In order to beautify json output set `useBeautifier = true` in serializer config:
 
 ```cpp
-/* create serializer config */
-auto config = oatpp::parser::json::mapping::Serializer::Config::createShared();
+/* create serializer and deserializer configurations */
+auto serializeConfig = oatpp::parser::json::mapping::Serializer::Config::createShared();
+auto deserializeConfig = oatpp::parser::json::mapping::Deserializer::Config::createShared();
 
 /* enable beautifier */
-config->useBeautifier = true;
+serializeConfig->useBeautifier = true;
 
 /* create json object mapper with serializer config */
-auto jsonObjectMapper = oatpp::parser::json::mapping::ObjectMapper::createShared(config);
+auto jsonObjectMapper = oatpp::parser::json::mapping::ObjectMapper::createShared(serializeConfig, deserializeConfig);
 ```
 
 More about json object mapper configuration see:
