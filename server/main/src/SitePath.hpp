@@ -32,7 +32,7 @@ public:
     std::shared_ptr<OutgoingResponse> intercept(const std::shared_ptr<IncomingRequest>& request) override {
       if(doRedirect) {
         auto host = request->getHeader(oatpp::web::protocol::http::Header::HOST);
-        if(!host || !host->equals(SiteHost)) {
+        if(!host || host != SiteHost) {
           //OATPP_LOGD("Interceptor", "do redirect from https to https");
           auto response = OutgoingResponse::createShared(oatpp::web::protocol::http::Status::CODE_301, nullptr);
           response->putHeader("Location", CanonicalBase + request->getStartingLine().path.toString());

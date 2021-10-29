@@ -13,12 +13,16 @@
 #include "StaticFileManager.hpp"
 #include "FilesIndex.hpp"
 
-#include "oatpp-libressl/server/ConnectionProvider.hpp"
+#include "oatpp-openssl/server/ConnectionProvider.hpp"
 
 #include "oatpp-zlib/EncoderProvider.hpp"
 
 #include "oatpp/web/server/AsyncHttpConnectionHandler.hpp"
 #include "oatpp/web/server/HttpRouter.hpp"
+
+#include "oatpp/network/monitor/ConnectionMaxAgeChecker.hpp"
+#include "oatpp/network/monitor/ConnectionInactivityChecker.hpp"
+#include "oatpp/network/monitor/ConnectionMonitor.hpp"
 #include "oatpp/network/tcp/server/ConnectionProvider.hpp"
 
 #include "oatpp/parser/json/mapping/ObjectMapper.hpp"
@@ -56,8 +60,21 @@ public:
     const char* keyFile = "/certificate/oatpp.io.key";
     const char* certFile = "/certificate/oatpp.io.crt";
 #endif
-    auto config = oatpp::libressl::Config::createDefaultServerConfigShared(certFile, keyFile);
-    return oatpp::libressl::server::ConnectionProvider::createShared(config, {"0.0.0.0", port, oatpp::network::Address::IP_4});
+    auto config = oatpp::openssl::Config::createDefaultServerConfigShared(certFile, keyFile);
+    auto sslProvider = oatpp::openssl::server::ConnectionProvider::createShared(config, {"0.0.0.0", port, oatpp::network::Address::IP_4});
+
+    auto monitor = std::make_shared<oatpp::network::monitor::ConnectionMonitor>(sslProvider);
+
+    monitor->addMetricsChecker(std::make_shared<oatpp::network::monitor::ConnectionInactivityChecker>(
+      std::chrono::minutes(5),
+      std::chrono::minutes(5)
+    ));
+    monitor->addMetricsChecker(std::make_shared<oatpp::network::monitor::ConnectionMaxAgeChecker>(
+      std::chrono::minutes(30)
+    ));
+
+    return monitor;
+
   }());
   
   /**

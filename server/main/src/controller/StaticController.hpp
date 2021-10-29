@@ -154,12 +154,12 @@ public:
       auto path = pathLabel.toString();
 
       auto queryLabel = caret.putLabel();
-      caret.setPosition(tail->getSize());
+      caret.setPosition(tail->size());
 
       oatpp::parser::Caret pathCaret(path);
 
       /* redirect from non canonical urls */
-      if(path->getSize() > 0 && path->getData()[path->getSize() - 1] != '/' && !pathCaret.findChar('.')) {
+      if(path->size() > 0 && path->data()[path->size() - 1] != '/' && !pathCaret.findChar('.')) {
         auto response = OutgoingResponse::createShared(oatpp::web::protocol::http::Status::CODE_301, nullptr);
         oatpp::data::stream::ChunkedBuffer stream;
         stream.writeSimple(SitePath::CanonicalBase);

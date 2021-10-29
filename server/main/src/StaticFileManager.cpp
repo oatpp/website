@@ -9,7 +9,7 @@ oatpp::String StaticFileManager::getFile(const oatpp::String &filename, bool cac
   auto it = m_cache.find(filename);
   oatpp::String buffer;
   if(it == m_cache.end()) {
-    buffer = oatpp::base::StrBuffer::loadFromFile(filename->c_str());
+    buffer = oatpp::String::loadFromFile(filename->c_str());
     if(buffer && cache){
       m_cache[filename] = buffer;
     }

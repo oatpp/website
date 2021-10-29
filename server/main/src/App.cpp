@@ -9,8 +9,6 @@
 #include "./controller/StaticController.hpp"
 #include "./AppComponent.hpp"
 
-#include "oatpp-libressl/Callbacks.hpp"
-
 #include "oatpp/network/Server.hpp"
 
 #include <iostream>
@@ -21,20 +19,14 @@ void run() {
   /* ignore SIGPIPE */
   std::signal(SIGPIPE, SIG_IGN);
   
-  /* set default callbacks for libressl */
-  oatpp::libressl::Callbacks::setDefaultCallbacks();
-  
   AppComponent components; // Create scope Environment components
   
   /* create ApiControllers and add endpoints to router */
-  
   auto router = components.httpRouter.getObject();
-  
-  auto staticController = StaticController::createShared();
-  staticController->addEndpointsToRouter(router);
+
+  router->addController(StaticController::createShared());
   
   /* create server */
-  
   std::thread thread1([&components] {
     oatpp::network::Server server(components.serverConnectionProvider.getObject(),
                                   components.serverConnectionHandler.getObject());
