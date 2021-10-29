@@ -6,6 +6,8 @@
 
 oatpp::String StaticFileManager::getFile(const oatpp::String &filename, bool cache) {
 
+  std::lock_guard<std::mutex> lock(m_mutex);
+
   auto it = m_cache.find(filename);
   oatpp::String buffer;
   if(it == m_cache.end()) {
