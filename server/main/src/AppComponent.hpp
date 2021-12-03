@@ -95,7 +95,7 @@ public:
     return handler;
   }());
   
-  OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, serverSecureConnectionHandler)("http-provider", [] {
+  OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, serverSecureConnectionHandler)("https-handler", [] {
     OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router); // get Router component
 
     /* Create HttpProcessor::Components */
