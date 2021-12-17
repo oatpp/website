@@ -183,7 +183,7 @@ auto client = MyApiClient::createShared(requestExecutor, objectMapper);
 
 ### Automatic Retries
 
-To enable automatic retries - provide [RetryPolicy](http://localhost:8080/api/latest/oatpp/web/client/RetryPolicy/) to the API client.
+To enable automatic retries - provide [RetryPolicy](/api/latest/oatpp/web/client/RetryPolicy/) to the API client.
 
 *Note: Connection pools and automatic retries can work together with no conflicts - invalid connections are dismissed from the pool right away. And after retry interval client will request a new valid connection.*
 
