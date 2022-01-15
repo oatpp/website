@@ -86,7 +86,7 @@ OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::swagger::Resources>, swaggerResour
 
 ```cpp
 auto swaggerController = oatpp::swagger::Controller::createShared(<list-of-endpoints-to-document>);
-swaggerController->addEndpointsToRouter(router);
+router->addController(swaggerController);
 ```
 
 **Done!**
