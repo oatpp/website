@@ -300,8 +300,8 @@ sister->age = 20;
 /* create list of siblings */
 oatpp::List<oatpp::Object<User>> siblings = {brother, sister};
 
-user->familyMembers->insert({"siblings", siblings});
-user->additionalNotes->insert({"Education", "Master of Computer Science"});
+user->familyMembers->push_back({"siblings", siblings});
+user->additionalNotes->push_back({"Education", "Master of Computer Science"});
 ```
 
 #### Create JSON object mapper
