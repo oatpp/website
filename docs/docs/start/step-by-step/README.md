@@ -797,7 +797,7 @@ void MyControllerTest::onRun() {
     OATPP_ASSERT(response->getStatusCode() == 200);
 
     /* Read response body as MessageDto */
-    auto message = response->readBodyToDto<oatpp::Object<MessageDto>>(objectMapper);
+    auto message = response->readBodyToDto<oatpp::Object<MessageDto>>(objectMapper.get());
 
     /* Assert that received message is as expected */
     OATPP_ASSERT(message);
