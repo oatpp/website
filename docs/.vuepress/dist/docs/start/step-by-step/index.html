@@ -7,7 +7,7 @@
     <meta name="generator" content="VuePress 1.5.2">
     <link rel="icon" href="/logo_x64.png"><link rel='canonical' href='https://oatpp.io/docs/start/step-by-step/'/>
     <meta name="description" content="Step-by-step guide how to setup and build oatpp project from scratch.">
-    <link rel="preload" href="/assets/css/0.styles.5f58b113.css" as="style"><link rel="preload" href="/assets/js/app.b3fafb4a.js" as="script"><link rel="preload" href="/assets/js/3.0e791e97.js" as="script"><link rel="preload" href="/assets/js/314.1cfbdb8b.js" as="script"><link rel="preload" href="/assets/js/7.a7c042c4.js" as="script">
+    <link rel="preload" href="/assets/css/0.styles.5f58b113.css" as="style"><link rel="preload" href="/assets/js/app.4c0e249b.js" as="script"><link rel="preload" href="/assets/js/3.0e791e97.js" as="script"><link rel="preload" href="/assets/js/314.09b57b2b.js" as="script"><link rel="preload" href="/assets/js/7.a7c042c4.js" as="script">
     <link rel="stylesheet" href="/assets/css/0.styles.5f58b113.css">
   </head>
   <body>
@@ -485,7 +485,7 @@ And the final look of the App.cpp is as follows:</p> <div class="language-cpp ex
 
   <span class="token comment">/* Create MyController and add all of its endpoints to router */</span>
   <span class="token keyword">auto</span> myController <span class="token operator">=</span> std<span class="token operator">::</span>make_shared<span class="token operator">&lt;</span>MyController<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  myController<span class="token operator">-&gt;</span><span class="token function">addEndpointsToRouter</span><span class="token punctuation">(</span>router<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  router<span class="token operator">-&gt;</span><span class="token function">addController</span><span class="token punctuation">(</span>myController<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
   <span class="token comment">/* Get connection handler component */</span>
   <span class="token function">OATPP_COMPONENT</span><span class="token punctuation">(</span>std<span class="token operator">::</span>shared_ptr<span class="token operator">&lt;</span>oatpp<span class="token operator">::</span>network<span class="token operator">::</span>ConnectionHandler<span class="token operator">&gt;</span><span class="token punctuation">,</span> connectionHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -540,7 +540,7 @@ And the final look of the App.cpp is as follows:</p> <div class="language-cpp ex
    * Create oatpp virtual network interface for test networking
    */</span>
   <span class="token function">OATPP_CREATE_COMPONENT</span><span class="token punctuation">(</span>std<span class="token operator">::</span>shared_ptr<span class="token operator">&lt;</span>oatpp<span class="token operator">::</span>network<span class="token operator">::</span>virtual_<span class="token operator">::</span>Interface<span class="token operator">&gt;</span><span class="token punctuation">,</span> virtualInterface<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> oatpp<span class="token operator">::</span>network<span class="token operator">::</span>virtual_<span class="token operator">::</span>Interface<span class="token operator">::</span><span class="token function">createShared</span><span class="token punctuation">(</span><span class="token string">&quot;virtualhost&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> oatpp<span class="token operator">::</span>network<span class="token operator">::</span>virtual_<span class="token operator">::</span>Interface<span class="token operator">::</span><span class="token function">obtainShared</span><span class="token punctuation">(</span><span class="token string">&quot;virtualhost&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
   <span class="token comment">/**
@@ -674,7 +674,7 @@ In folder <code>test/app/</code> create file <code>MyApiTestClient.hpp</code> wi
     <span class="token function">OATPP_ASSERT</span><span class="token punctuation">(</span>response<span class="token operator">-&gt;</span><span class="token function">getStatusCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token comment">/* Read response body as MessageDto */</span>
-    <span class="token keyword">auto</span> message <span class="token operator">=</span> response<span class="token operator">-&gt;</span>readBodyToDto<span class="token operator">&lt;</span>oatpp<span class="token operator">::</span>Object<span class="token operator">&lt;</span>MessageDto<span class="token operator">&gt;&gt;</span><span class="token punctuation">(</span>objectMapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">auto</span> message <span class="token operator">=</span> response<span class="token operator">-&gt;</span>readBodyToDto<span class="token operator">&lt;</span>oatpp<span class="token operator">::</span>Object<span class="token operator">&lt;</span>MessageDto<span class="token operator">&gt;&gt;</span><span class="token punctuation">(</span>objectMapper<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token comment">/* Assert that received message is as expected */</span>
     <span class="token function">OATPP_ASSERT</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -729,6 +729,6 @@ Test will fail if objects leaks found (Counts only objects extending <a href="/a
       </a>
       →
     </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.b3fafb4a.js" defer></script><script src="/assets/js/3.0e791e97.js" defer></script><script src="/assets/js/314.1cfbdb8b.js" defer></script><script src="/assets/js/7.a7c042c4.js" defer></script>
+    <script src="/assets/js/app.4c0e249b.js" defer></script><script src="/assets/js/3.0e791e97.js" defer></script><script src="/assets/js/314.09b57b2b.js" defer></script><script src="/assets/js/7.a7c042c4.js" defer></script>
   </body>
 </html>

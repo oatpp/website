@@ -7,7 +7,7 @@
     <meta name="generator" content="VuePress 1.5.2">
     <link rel="icon" href="/logo_x64.png"><link rel='canonical' href='https://oatpp.io/docs/components/dto/'/>
     <meta name="description" content="Oatpp Data-Transfer-Object (DTO) and object mapping.">
-    <link rel="preload" href="/assets/css/0.styles.5f58b113.css" as="style"><link rel="preload" href="/assets/js/app.b3fafb4a.js" as="script"><link rel="preload" href="/assets/js/3.0e791e97.js" as="script"><link rel="preload" href="/assets/js/287.f3b97935.js" as="script"><link rel="preload" href="/assets/js/7.a7c042c4.js" as="script">
+    <link rel="preload" href="/assets/css/0.styles.5f58b113.css" as="style"><link rel="preload" href="/assets/js/app.4c0e249b.js" as="script"><link rel="preload" href="/assets/js/3.0e791e97.js" as="script"><link rel="preload" href="/assets/js/287.fa63d625.js" as="script"><link rel="preload" href="/assets/js/7.a7c042c4.js" as="script">
     <link rel="stylesheet" href="/assets/css/0.styles.5f58b113.css">
   </head>
   <body>
@@ -174,8 +174,8 @@ sister<span class="token operator">-&gt;</span>age <span class="token operator">
 <span class="token comment">/* create list of siblings */</span>
 oatpp<span class="token operator">::</span>List<span class="token operator">&lt;</span>oatpp<span class="token operator">::</span>Object<span class="token operator">&lt;</span>User<span class="token operator">&gt;&gt;</span> siblings <span class="token operator">=</span> <span class="token punctuation">{</span>brother<span class="token punctuation">,</span> sister<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-user<span class="token operator">-&gt;</span>familyMembers<span class="token operator">-&gt;</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&quot;siblings&quot;</span><span class="token punctuation">,</span> siblings<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-user<span class="token operator">-&gt;</span>additionalNotes<span class="token operator">-&gt;</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&quot;Education&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Master of Computer Science&quot;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+user<span class="token operator">-&gt;</span>familyMembers<span class="token operator">-&gt;</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&quot;siblings&quot;</span><span class="token punctuation">,</span> siblings<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+user<span class="token operator">-&gt;</span>additionalNotes<span class="token operator">-&gt;</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&quot;Education&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Master of Computer Science&quot;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre></div><h4 id="create-json-object-mapper"><a href="#create-json-object-mapper" class="header-anchor">#</a> Create JSON object mapper</h4> <div class="language-cpp extra-class"><pre class="language-cpp"><code><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&quot;oatpp/parser/json/mapping/ObjectMapper.hpp&quot;</span></span>
 
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
@@ -230,6 +230,6 @@ serializeConfig<span class="token operator">-&gt;</span>useBeautifier <span clas
       </a>
       →
     </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.b3fafb4a.js" defer></script><script src="/assets/js/3.0e791e97.js" defer></script><script src="/assets/js/287.f3b97935.js" defer></script><script src="/assets/js/7.a7c042c4.js" defer></script>
+    <script src="/assets/js/app.4c0e249b.js" defer></script><script src="/assets/js/3.0e791e97.js" defer></script><script src="/assets/js/287.fa63d625.js" defer></script><script src="/assets/js/7.a7c042c4.js" defer></script>
   </body>
 </html>

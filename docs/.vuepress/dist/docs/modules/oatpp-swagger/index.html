@@ -7,7 +7,7 @@
     <meta name="generator" content="VuePress 1.5.2">
     <link rel="icon" href="/logo_x64.png"><link rel='canonical' href='https://oatpp.io/docs/modules/oatpp-swagger/'/>
     <meta name="description" content="Swagger UI. Auto-generate api-docs for oatpp Api Controllers.">
-    <link rel="preload" href="/assets/css/0.styles.5f58b113.css" as="style"><link rel="preload" href="/assets/js/app.b3fafb4a.js" as="script"><link rel="preload" href="/assets/js/3.0e791e97.js" as="script"><link rel="preload" href="/assets/js/302.4562e961.js" as="script"><link rel="preload" href="/assets/js/7.a7c042c4.js" as="script">
+    <link rel="preload" href="/assets/css/0.styles.5f58b113.css" as="style"><link rel="preload" href="/assets/js/app.4c0e249b.js" as="script"><link rel="preload" href="/assets/js/3.0e791e97.js" as="script"><link rel="preload" href="/assets/js/302.41732327.js" as="script"><link rel="preload" href="/assets/js/7.a7c042c4.js" as="script">
     <link rel="stylesheet" href="/assets/css/0.styles.5f58b113.css">
   </head>
   <body>
@@ -71,7 +71,7 @@ Supports both &quot;Simple&quot; and &quot;Async&quot; oatpp APIs.</p> <h2 id="b
 <span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 </code></pre></div><ol start="2"><li>Create <code>oatpp::swagger::Controller</code> with list of endpoints you whant to document and add it to router:</li></ol> <div class="language-cpp extra-class"><pre class="language-cpp"><code><span class="token keyword">auto</span> swaggerController <span class="token operator">=</span> oatpp<span class="token operator">::</span>swagger<span class="token operator">::</span>Controller<span class="token operator">::</span><span class="token function">createShared</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>list<span class="token operator">-</span>of<span class="token operator">-</span>endpoints<span class="token operator">-</span>to<span class="token operator">-</span>document<span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-swaggerController<span class="token operator">-&gt;</span><span class="token function">addEndpointsToRouter</span><span class="token punctuation">(</span>router<span class="token punctuation">)</span><span class="token punctuation">;</span>
+router<span class="token operator">-&gt;</span><span class="token function">addController</span><span class="token punctuation">(</span>swaggerController<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre></div><p><strong>Done!</strong></p></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/oatpp/website/edit/master/docs/docs/modules/oatpp-swagger/README.md" target="_blank" rel="noopener noreferrer">Edit this page</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
       ←
       <a href="/docs/modules/oatpp-ssdp/" class="prev">
@@ -81,6 +81,6 @@ swaggerController<span class="token operator">-&gt;</span><span class="token fun
       </a>
       →
     </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.b3fafb4a.js" defer></script><script src="/assets/js/3.0e791e97.js" defer></script><script src="/assets/js/302.4562e961.js" defer></script><script src="/assets/js/7.a7c042c4.js" defer></script>
+    <script src="/assets/js/app.4c0e249b.js" defer></script><script src="/assets/js/3.0e791e97.js" defer></script><script src="/assets/js/302.41732327.js" defer></script><script src="/assets/js/7.a7c042c4.js" defer></script>
   </body>
 </html>

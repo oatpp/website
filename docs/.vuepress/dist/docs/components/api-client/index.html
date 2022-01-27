@@ -7,7 +7,7 @@
     <meta name="generator" content="VuePress 1.5.2">
     <link rel="icon" href="/logo_x64.png"><link rel='canonical' href='https://oatpp.io/docs/components/api-client/'/>
     <meta name="description" content="HTTP calls with oatpp Api Client.">
-    <link rel="preload" href="/assets/css/0.styles.5f58b113.css" as="style"><link rel="preload" href="/assets/js/app.b3fafb4a.js" as="script"><link rel="preload" href="/assets/js/3.0e791e97.js" as="script"><link rel="preload" href="/assets/js/285.b79dde59.js" as="script"><link rel="preload" href="/assets/js/7.a7c042c4.js" as="script">
+    <link rel="preload" href="/assets/css/0.styles.5f58b113.css" as="style"><link rel="preload" href="/assets/js/app.4c0e249b.js" as="script"><link rel="preload" href="/assets/js/3.0e791e97.js" as="script"><link rel="preload" href="/assets/js/285.e30338e8.js" as="script"><link rel="preload" href="/assets/js/7.a7c042c4.js" as="script">
     <link rel="stylesheet" href="/assets/css/0.styles.5f58b113.css">
   </head>
   <body>
@@ -102,7 +102,7 @@ See <a href="/docs/oatpp-coroutines/">oatpp coroutines</a> for more information.
 
 <span class="token comment">/* create API client */</span>
 <span class="token keyword">auto</span> client <span class="token operator">=</span> MyApiClient<span class="token operator">::</span><span class="token function">createShared</span><span class="token punctuation">(</span>requestExecutor<span class="token punctuation">,</span> objectMapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre></div><h3 id="automatic-retries"><a href="#automatic-retries" class="header-anchor">#</a> Automatic Retries</h3> <p>To enable automatic retries - provide <a href="http://localhost:8080/api/latest/oatpp/web/client/RetryPolicy/" target="_blank" rel="noopener noreferrer">RetryPolicy<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> to the API client.</p> <p><em>Note: Connection pools and automatic retries can work together with no conflicts - invalid connections are dismissed from the pool right away. And after retry interval client will request a new valid connection.</em></p> <div class="language-cpp extra-class"><pre class="language-cpp"><code><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&quot;oatpp/network/ConnectionPool.hpp&quot;</span></span>
+</code></pre></div><h3 id="automatic-retries"><a href="#automatic-retries" class="header-anchor">#</a> Automatic Retries</h3> <p>To enable automatic retries - provide <a href="/api/latest/oatpp/web/client/RetryPolicy/">RetryPolicy</a> to the API client.</p> <p><em>Note: Connection pools and automatic retries can work together with no conflicts - invalid connections are dismissed from the pool right away. And after retry interval client will request a new valid connection.</em></p> <div class="language-cpp extra-class"><pre class="language-cpp"><code><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&quot;oatpp/network/ConnectionPool.hpp&quot;</span></span>
 
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 
@@ -136,6 +136,6 @@ See <a href="/docs/oatpp-coroutines/">oatpp coroutines</a> for more information.
       </a>
       →
     </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.b3fafb4a.js" defer></script><script src="/assets/js/3.0e791e97.js" defer></script><script src="/assets/js/285.b79dde59.js" defer></script><script src="/assets/js/7.a7c042c4.js" defer></script>
+    <script src="/assets/js/app.4c0e249b.js" defer></script><script src="/assets/js/3.0e791e97.js" defer></script><script src="/assets/js/285.e30338e8.js" defer></script><script src="/assets/js/7.a7c042c4.js" defer></script>
   </body>
 </html>
