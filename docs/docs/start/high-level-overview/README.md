@@ -71,8 +71,8 @@ public:
 
   API_CLIENT_INIT(UserService)
 
-  API_CALL("GET", "/users", getUsers)
-  API_CALL("GET", "/users/{userId}", getUserById, PATH(Int64, userId))
+  API_CALL("GET", "users", getUsers)
+  API_CALL("GET", "users/{userId}", getUserById, PATH(Int64, userId))
 
 };
 ```
