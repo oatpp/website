@@ -29,7 +29,7 @@ class MyApiClient : public oatpp::web::client::ApiClient {
 
   API_CLIENT_INIT(MyApiClient)
 
-  API_CALL("GET", "/resource", getResource)
+  API_CALL("GET", "resource", getResource)
 
 };
 
@@ -57,25 +57,25 @@ API_CALL_ASYNC  ("<http-method>", "<path>", <method-name>, <optional param-mappi
 ### Path Variables Mapping
 
 ```cpp
-API_CALL("GET", "/users/{userId}", getUserById, PATH(Int64, userId))
+API_CALL("GET", "users/{userId}", getUserById, PATH(Int64, userId))
 ```
 
 #### Path Variable Name Qualifier
 
 ```cpp
-API_CALL("GET", "/users/{user-id}", getUserById, PATH(Int64, userId, "user-id"))
+API_CALL("GET", "users/{user-id}", getUserById, PATH(Int64, userId, "user-id"))
 ```
 
 ### Headers Mapping
 
 ```cpp
-API_CALL("GET", "/users", getUsers, HEADER(String, userId, "X-USER-ID"))
+API_CALL("GET", "users", getUsers, HEADER(String, userId, "X-USER-ID"))
 ```
 
 ### Query Parameters Mapping
 
 ```cpp
-API_CALL("GET", "/users", getUsers, QUERY(Int32, age))
+API_CALL("GET", "users", getUsers, QUERY(Int32, age))
 ```
 
 Here the destination URL will be:
@@ -87,7 +87,7 @@ Here the destination URL will be:
 If more query parameters specified:
 
 ```cpp
-API_CALL("GET", "/users", getUsers, QUERY(Int32, age), QUERY(String, firstName))
+API_CALL("GET", "users", getUsers, QUERY(Int32, age), QUERY(String, firstName))
 ```
 
 the destination URL will be:
@@ -99,7 +99,7 @@ the destination URL will be:
 #### Query Parameter Name Qualifier
 
 ```cpp
-API_CALL("GET", "/users", getUsers, QUERY(Int32, age, "user-age"))
+API_CALL("GET", "users", getUsers, QUERY(Int32, age, "user-age"))
 ```
 
 the destination URL will be:
@@ -113,7 +113,7 @@ the destination URL will be:
 #### Body As String
 
 ```cpp
-API_CALL("POST", "/users", createUser, BODY_STRING(String, userInfo))
+API_CALL("POST", "users", createUser, BODY_STRING(String, userInfo))
 ```
 
 #### Body As DTO
@@ -121,7 +121,7 @@ API_CALL("POST", "/users", createUser, BODY_STRING(String, userInfo))
 *DTO will be serialized using ObjectMapper given to the ApiClient constructor*
 
 ```cpp
-API_CALL("POST", "/users", createUser, BODY_DTO(Object<UserDto>, userInfo))
+API_CALL("POST", "users", createUser, BODY_DTO(Object<UserDto>, userInfo))
 ```
 
 ## Create Api Client
