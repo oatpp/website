@@ -91,6 +91,17 @@ $ apk add g++
 $ apk add make
 ```
 
+### Arch
+
+Install prerequisites:
+
+```bash
+$ pacman -S git
+$ pacman -S make
+$ pacman -S cmake
+$ pacman -S gcc
+```
+
 ## Patches
 
 Some platforms may require patching of build-scripts to properly install oatpp. 
