@@ -9,7 +9,7 @@
 #ifndef Sitemap_hpp
 #define Sitemap_hpp
 
-#include "oatpp/core/data/stream/ChunkedBuffer.hpp"
+#include "oatpp/core/data/stream/BufferStream.hpp"
 #include <unordered_map>
 
 class Sitemap {
@@ -23,8 +23,8 @@ private:
 private:
   std::unordered_map<v_int32, oatpp::String> m_urlsByIndex;
   oatpp::String m_baseSitemapUrl;
-  std::shared_ptr<oatpp::data::stream::ChunkedBuffer> m_indexStream;
-  std::shared_ptr<oatpp::data::stream::ChunkedBuffer> m_currUrlsStream;
+  oatpp::data::stream::BufferOutputStream m_indexStream;
+  oatpp::data::stream::BufferOutputStream m_currUrlsStream;
   v_int32 m_urlCounter;
   v_int32 m_currUrlsStreamIndex;
   oatpp::String m_indexFile;

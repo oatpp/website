@@ -161,7 +161,7 @@ public:
       /* redirect from non canonical urls */
       if(path->size() > 0 && path->data()[path->size() - 1] != '/' && !pathCaret.findChar('.')) {
         auto response = OutgoingResponse::createShared(oatpp::web::protocol::http::Status::CODE_301, nullptr);
-        oatpp::data::stream::ChunkedBuffer stream;
+        oatpp::data::stream::BufferOutputStream stream(256);
         stream.writeSimple(SitePath::CanonicalBase);
         stream.writeSimple("/", 1);
         stream.writeSimple(path);
