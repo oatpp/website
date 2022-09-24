@@ -64,7 +64,7 @@ ENDPOINT("<http-method>", "<path>", <method-name>, <optional param-mappings>)
 ENDPOINT("GET", "/users/{userId}", getUserById,
          PATH(Int64, userId)) 
 {
-  OATPP_LOGD("Test", "userId=%d", userId->getValue());
+  OATPP_LOGD("Test", "userId=%d", *userId);
   return createResponse(Status::CODE_200, "OK");
 }
 ```
@@ -75,7 +75,7 @@ ENDPOINT("GET", "/users/{userId}", getUserById,
 ENDPOINT("GET", "/users/{my-path-variable}", getUserById,
          PATH(Int64, userId, "my-path-variable")) 
 {
-  OATPP_LOGD("Test", "userId=%d", userId->getValue());
+  OATPP_LOGD("Test", "userId=%d", *userId);
   return createResponse(Status::CODE_200, "OK");
 }
 ```
@@ -86,7 +86,7 @@ ENDPOINT("GET", "/users/{my-path-variable}", getUserById,
 ENDPOINT("GET", "/users", getUsers,
          HEADER(String, userAgent, "User-Agent")) 
 {
-  OATPP_LOGD("Test", "userAgent=%s", userAgent->getData());
+  OATPP_LOGD("Test", "userAgent=%s", *userAgent);
   return createResponse(Status::CODE_200, "OK");
 }
 ```
@@ -97,7 +97,7 @@ ENDPOINT("GET", "/users", getUsers,
 ENDPOINT("GET", "/users", getUsers,
          QUERY(Int32, age)) 
 {
-  OATPP_LOGD("Test", "age=%d", age->getValue());
+  OATPP_LOGD("Test", "age=%d", *age);
   return createResponse(Status::CODE_200, "OK");
 }
 ```
@@ -112,7 +112,7 @@ Note:
 ENDPOINT("GET", "/users", getUsers,
          QUERY(Int32, age, "user-age")) 
 {
-  OATPP_LOGD("Test", "age=%d", age->getValue());
+  OATPP_LOGD("Test", "age=%d", *age);
   return createResponse(Status::CODE_200, "OK");
 }
 ```
@@ -144,7 +144,7 @@ See also [QueryParams](/api/latest/oatpp/web/protocol/http/Http/#queryparams) da
 ENDPOINT("POST", "/users", postUsers,
          BODY_STRING(String, userInfo))
 {
-  OATPP_LOGD("Test", "body='%s'", userInfo->getData());
+  OATPP_LOGD("Test", "body='%s'", *userInfo);
   return createResponse(Status::CODE_200, "OK");
 }
 ```
