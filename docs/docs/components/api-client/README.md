@@ -168,7 +168,7 @@ using namespace oatpp::web;
 auto connectionProvider = tcp::client::ConnectionProvider::createShared({"httpbin.org", 80, oatpp::network::Address::IP_4});
 
 /* create connection pool */
-auto connectionPool = std::make_shared<ClientConnectionPool>(
+auto connectionPool = ClientConnectionPool::createShared(
         connectionProvider /* connection provider */, 
         10 /* max connections */, 
         std::chrono::seconds(5) /* max lifetime of idle connection */
