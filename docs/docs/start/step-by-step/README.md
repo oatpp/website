@@ -23,6 +23,10 @@ To get basic components overview let's take a look at the simplest oatpp server 
 #include "oatpp/network/Server.hpp"
 #include "oatpp/network/tcp/server/ConnectionProvider.hpp"
 
+#if defined(WIN32) || defined(_WIN32)
+#pragma comment(lib, "Ws2_32.lib")
+#endif
+
 void run() {
 
   /* Create Router for HTTP requests routing */
@@ -84,6 +88,10 @@ requests to it via `Router`:
 
 #include "oatpp/network/Server.hpp"
 #include "oatpp/network/tcp/server/ConnectionProvider.hpp"
+
+#if defined(WIN32) || defined(_WIN32)
+#pragma comment(lib, "Ws2_32.lib")
+#endif
 
 /** 
  * Custom Request Handler
@@ -166,6 +174,10 @@ will be serialized to JSON.
 #include "oatpp/network/tcp/server/ConnectionProvider.hpp"
 
 #include "oatpp/core/macro/codegen.hpp"
+
+#if defined(WIN32) || defined(_WIN32)
+#pragma comment(lib, "Ws2_32.lib")
+#endif
 
 /* Begin DTO code-generation */
 #include OATPP_CODEGEN_BEGIN(DTO)
@@ -372,6 +384,10 @@ Now all major components are initialized in one place which makes it easy to con
 #include "oatpp/network/Server.hpp"
 
 #include "oatpp/core/macro/codegen.hpp"
+
+#if defined(WIN32) || defined(_WIN32)
+#pragma comment(lib, "Ws2_32.lib")
+#endif
 
 /* Begin DTO code-generation */
 #include OATPP_CODEGEN_BEGIN(DTO)
@@ -823,6 +839,10 @@ In folder `test/` create file `Tests.cpp`:
 #include "MyControllerTest.hpp"
 
 #include <iostream>
+
+#if defined(WIN32) || defined(_WIN32)
+#pragma comment(lib, "Ws2_32.lib")
+#endif
 
 void runTests() {
 

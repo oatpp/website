@@ -8,11 +8,12 @@ sidebarDepth: 0
 
 ## Requirements 
 
-- Microsoft Visual Studio (Tested with Visual Studio 2017)
+- Microsoft Visual Studio (Tested with Visual Studio 2022)
 - CMake (Latest version recommended)
 - Git
 
 ## Install Oat++
+Build at an administrator command prompt.
 
 ```bash
 $ git clone https://github.com/oatpp/oatpp.git
@@ -22,6 +23,7 @@ $ cd build\
 
 $ cmake ..
 $ cmake --build . --target INSTALL
+$ copy src\Debug\oatpp.pdb  "C:\Program Files (x86)\oatpp\lib\oatpp-1.3.0"
 ```
 
 ### Installation CMake options:
@@ -34,3 +36,19 @@ $ cmake --build . --target INSTALL
 |`OATPP_DISABLE_ENV_OBJECT_COUNTERS`|`OFF`|If `ON`, do not count oatpp objects (do not detect memory-leaks). This will increase performance. <br> **Note:** DO NOT use this flags to build/run application tests, as tests won't detect memory-leaks.|
 |`OATPP_DISABLE_POOL_ALLOCATIONS`|`OFF`|If `ON`, do not use oatpp memory-pools.|
 |`OATPP_COMPAT_BUILD_NO_THREAD_LOCAL`|`OFF`|Build without `thread_local` feature. See [#81](https://github.com/oatpp/oatpp/issues/81).|
+
+## Application build notes
+
+To build Oat++ applications under Windows do the following:
+
+- Define an environment variable OATPP_HOME as `C:\Program Files (x86)\oatpp`
+- Add this code to the main program after all the `#includes`:
+```cpp
+#if defined(WIN32) || defined(_WIN32)
+#pragma comment(lib, "Ws2_32.lib")
+#endif 
+```
+- Make the following changes to Visual Studio projects:
+  - add an additional include directory `$(OATPP_HOME)\include\oatpp-1.3.0\oatpp`
+  - add an additional lib directory `%OATPP_HOME%\lib\oatpp-1.3.0`
+  - add an additional link dependency `oatpp.lib`
