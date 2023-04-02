@@ -23,7 +23,6 @@ $ cd build\
 
 $ cmake ..
 $ cmake --build . --target INSTALL
-$ copy src\Debug\oatpp.pdb  "C:\Program Files (x86)\oatpp\lib\oatpp-1.3.0"
 ```
 
 ### Installation CMake options:
@@ -39,16 +38,12 @@ $ copy src\Debug\oatpp.pdb  "C:\Program Files (x86)\oatpp\lib\oatpp-1.3.0"
 
 ## Application build notes
 
-To build Oat++ applications under Windows do the following:
+To build Oat++ applications under Windows do the following.
 
-- Define an environment variable OATPP_HOME as `C:\Program Files (x86)\oatpp`
 - Add this code to the main program after all the `#includes`:
 ```cpp
 #if defined(WIN32) || defined(_WIN32)
 #pragma comment(lib, "Ws2_32.lib")
 #endif 
 ```
-- Make the following changes to Visual Studio projects:
-  - add an additional include directory `$(OATPP_HOME)\include\oatpp-1.3.0\oatpp`
-  - add an additional lib directory `%OATPP_HOME%\lib\oatpp-1.3.0`
-  - add an additional link dependency `oatpp.lib`
+
