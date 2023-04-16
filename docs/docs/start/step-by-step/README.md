@@ -480,7 +480,7 @@ Move `MessageDto` definition to `DTOs.hpp`:
 #ifndef DTOs_hpp
 #define DTOs_hpp
 
-#include "oatpp/core/data/mapping/type/Object.hpp"
+#include "oatpp/parser/json/mapping/ObjectMapper.hpp"
 #include "oatpp/core/macro/codegen.hpp"
 
 /* Begin DTO code-generation */
